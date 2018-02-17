@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~reset-css/reset'
 @import 'variables'
 /**** BASE ****/
 
@@ -15,11 +14,27 @@ div
   box-sizing: border-box
 a
   text-decoration: none
+
+input
+  border: 0px solid
+  border-bottom: 1px solid $accent-color
+  &:focus
+    outline: none
+
+
   
 /**** LAYOUT ****/
 
 /**** MODULES ****/
 
 /**** STATE ****/
+
+/** GROWL MESSAGES **/
+.ui-growl
+  top: 80px
+.ui-growl-item-container
+  font-size: .85rem
+  background-color: #e62a10
+  color: #ffffff
 
 /**** THEMES ****/

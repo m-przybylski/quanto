@@ -6,6 +6,7 @@ import { TopbarModule } from '../shared/topbar/topbar.module'
 import { RouterModule } from '@angular/router'
 import { GrowlModule } from 'primeng/growl'
 import { MessageService } from 'primeng/components/common/messageservice'
+import { CoreModule } from '../core/core.module'
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { MessageService } from 'primeng/components/common/messageservice'
     TopbarModule,
     RouterModule,
     GrowlModule,
+    CoreModule,
   ],
   declarations: [HomeComponent],
   providers: [MessageService],

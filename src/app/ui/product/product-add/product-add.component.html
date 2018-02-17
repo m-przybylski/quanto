@@ -1,16 +1,31 @@
 <form [formGroup]='product' (ngSubmit)="onSubmit()">
-  sku:
-  <input type='text' formControlName='productSku'> item name:
-  <input type='text' formControlName='productName'> price
-  <select formControlName='productCategory'>
-    <option *ngFor='let category of productCategory' value={{category.id}}>{{category.name}}</option>
-  </select>
-  <select formControlName='priceCurrency'>
-    <option>USD</option>
-    <option>EUR</option>
-  </select>
-  <input type="number" formControlName='priceValue'>
-  <input type="text" formControlName='description'>
-  <button type="submit">Add</button>
-  <button type="reset">clear</button>
+  <div class='layout-product-add-wrapper'>
+    <div class='layout-product-add-row'>
+      <label>sku:</label>
+      <input type='text' formControlName='productSku'>
+      <label>item name:</label>
+      <input type='text' formControlName='productName'>
+    </div>
+    <div class='layout-product-add-row'>
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon">$</span>
+        <input type="text" pInputText placeholder="Price" formControlName='priceValue'>
+        <span class="ui-inputgroup-addon">.00</span>
+      </div>
+      <label>price EUR</label>
+      <input type="number" formControlName='priceValue'>
+      <label>category</label>
+      <select formControlName='productCategory'>
+        <option *ngFor='let category of productCategory' value={{category.id}}>{{category.name}}</option>
+      </select>
+    </div>
+    <div class='layout-product-add-row'>
+      <p-editor formControlName='description'></p-editor>
+    </div>
+    <div class='layout-product-add-row-buttons'>
+      <button pButton type="submit">Add</button>
+      <button pButton type="reset">clear</button>
+    </div>
+
+  </div>
 </form>

@@ -1,18 +1,19 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core'
-import { MenuItem } from 'primeng/api'
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from '@angular/core'
+import { MenuItem, Message } from 'primeng/api'
+import { MessageService } from 'primeng/components/common/messageservice'
 
 @Component({
   selector: 'qto-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.sass'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent implements OnInit {
-  private items: MenuItem[]
-
-  constructor() {}
-
-  ngOnInit() {
-    this.items = [{ label: 'home' }, { label: 'products' }, { label: 'quote' }]
+export class HomeComponent {
+  constructor(private service: MessageService, private cdr: ChangeDetectorRef) {
+    this.service.messageObserver.subscribe(message => {})
   }
 }

@@ -19,10 +19,14 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "qto",
       "styles": [
-        "styles/styles.sass",
-        "../node_modules/primeng/resources/primeng.min.css"
+        "../node_modules/reset-css/reset.css",
+        "../node_modules/primeng/resources/primeng.min.css",
+        "../node_modules/font-awesome/css/font-awesome.min.css",
+        "../node_modules/quill/dist/quill.core.css", 
+        "../node_modules/quill/dist/quill.snow.css",
+        "styles/styles.sass"
       ],
-      "scripts": [],
+      "scripts": ["../node_modules/quill/dist/quill.js"],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
