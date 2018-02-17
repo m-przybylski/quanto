@@ -1,10 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing'
 
 import { ProductService } from './product.service'
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-} from 'angularfire2/firestore'
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database'
 import { Deceiver } from 'deceiver-core'
 import { Product } from './products'
 
@@ -12,20 +9,24 @@ import { of } from 'rxjs/observable/of'
 
 const ProductList: Product[] = [
   {
-    id: 1,
+    id: '1',
     name: 'name',
-    price: 12,
+    price: [{ currency: 'USD', price: 12 }],
+    sku: '123',
+    description: 'opus',
   },
   {
-    id: 2,
-    name: 'name 2',
-    price: 13,
+    id: '2',
+    name: 'name',
+    price: [{ currency: 'USD', price: 12 }],
+    sku: '123',
+    description: 'opus',
   },
 ]
 
 describe('ProductService', () => {
-  const AngularFirestoreMock = Deceiver(AngularFirestore)
-  const angularFirestoreCollection = Deceiver(AngularFirestoreCollection)
+  const AngularFirestoreMock = Deceiver(AngularFireDatabase)
+  const angularFirestoreCollection = Deceiver(AngularFireList)
   let collectionCall
   let returnProducts
   let addProduct
@@ -40,7 +41,7 @@ describe('ProductService', () => {
     collectionCall = AngularFirestoreMock.collection = jasmine
       .createSpy()
       .and.callFake(collection => angularFirestoreCollection)
-    service = new ProductService(AngularFirestoreMock)
+    service = new ProductService(AngularFirestoreMock, undefined)
   })
 
   it('should be created', () => {

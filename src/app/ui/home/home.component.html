@@ -1,7 +1,12 @@
+<p-growl></p-growl>
 <div class='layout-app-wrapper'>
   <qto-sidebar></qto-sidebar>
   <div class='layout-main'>
     <qto-topbar></qto-topbar>
-    <router-outlet></router-outlet>
+    <div class='layout-topbarspacer'></div>
+    <div class='layout-content'>
+      <router-outlet></router-outlet>
+    </div>
+
   </div>
 </div>

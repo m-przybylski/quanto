@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core'
 import { MenuItem } from 'primeng/api'
 
 @Component({
   selector: 'qto-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.sass'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent implements OnInit {
   public items: MenuItem[]
@@ -12,8 +13,18 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.items = [
-      { label: 'products', icon: 'book', routerLink: ['/products'] },
-      { label: 'quote', icon: 'book', routerLink: ['/quote'] },
+      {
+        label: 'products',
+        icon: 'book',
+        routerLink: ['/products'],
+        routerLinkActiveOptions: {},
+      },
+      {
+        label: 'quote',
+        icon: 'book',
+        routerLink: ['/quote'],
+        routerLinkActiveOptions: 'active',
+      },
     ]
   }
 }

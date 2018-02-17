@@ -1,0 +1,16 @@
+<form [formGroup]='product' (ngSubmit)="onSubmit()">
+  sku:
+  <input type='text' formControlName='productSku'> item name:
+  <input type='text' formControlName='productName'> price
+  <select formControlName='productCategory'>
+    <option *ngFor='let category of productCategory' value={{category.id}}>{{category.name}}</option>
+  </select>
+  <select formControlName='priceCurrency'>
+    <option>USD</option>
+    <option>EUR</option>
+  </select>
+  <input type="number" formControlName='priceValue'>
+  <input type="text" formControlName='description'>
+  <button type="submit">Add</button>
+  <button type="reset">clear</button>
+</form>
