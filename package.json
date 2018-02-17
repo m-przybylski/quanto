@@ -21,7 +21,10 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "angularfire2": "^5.0.0-rc.6",
     "core-js": "^2.4.1",
+    "firebase": "^4.10.0",
+    "primeng": "^5.2.0",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },
@@ -34,6 +37,7 @@
     "@types/node": "~6.0.60",
     "angular2-template-loader": "^0.6.2",
     "codelyzer": "^4.0.1",
+    "deceiver-core": "^1.0.0-beta.10",
     "electron": "^1.8.2",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",

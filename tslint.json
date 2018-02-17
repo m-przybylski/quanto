@@ -51,6 +51,11 @@
     "no-use-before-declare": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
+    "ordered-imports": [true,{
+      "import-sources-order": "case-insensitive",
+      "module-source-path": "full",
+      "grouped-imports": true
+    }],
     "one-line": [
       true,
       "check-open-brace",
