@@ -17,10 +17,7 @@ import { Observable } from '@firebase/util'
 export class ProductListComponent {
   productList: Product[]
   public products$
-  constructor(
-    private products: ProductService,
-    private cdr: ChangeDetectorRef,
-  ) {
+  constructor(private products: ProductService) {
     this.products$ = this.products.getProducts()
   }
 }

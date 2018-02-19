@@ -8,6 +8,7 @@ import { CoreModule } from '../../core/core.module'
 import { ProductAddComponent } from './product-add/product-add.component'
 import { ProductEditComponent } from './product-edit/product-edit.component'
 import { DataListModule } from 'primeng/datalist'
+import { ButtonModule } from 'primeng/button'
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { DataListModule } from 'primeng/datalist'
     CoreModule,
     ReactiveFormsModule,
     DataListModule,
+    ButtonModule,
   ],
   declarations: [
     ProductListComponent,

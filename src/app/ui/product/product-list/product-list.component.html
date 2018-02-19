@@ -1,23 +1,22 @@
 <div class='layout-product-list'>
-  <p-dataList [value]="products$ | async" [paginator]="true" [rows]="5">
-    <p-header>
-      Products
-    </p-header>
-    <ng-template let-product pTemplate="item">
-      <div class="ui-g ui-fluid car-item">
-        <div class="ui-g-12 ui-md-9 car-details">
-          <div class="ui-g">
-            <div class="ui-g-2 ui-sm-6">ID </div>
-            <div class="ui-g-10 ui-sm-6">{{product.id}}</div>
-            <div class="ui-g-2 ui-sm-6">SKU </div>
-            <div class="ui-g-10 ui-sm-6">{{product.sku}}</div>
-            <div class="ui-g-2 ui-sm-6">Name </div>
-            <div class="ui-g-10 ui-sm-6">{{product.name}}</div>
+  <div class='header'>
+    <span class='header--text'>Products</span>
+    <p-button icon="fa fa-fw fa-plus" iconPos="right" routerLink='add' label='Add'></p-button>
+  </div>
+  <p-dataList [value]='products$ | async' [paginator]='true' [rows]='5'>
+    <ng-template let-product pTemplate='item'>
+      <div class='ui-g ui-fluid'>
+        <div class='ui-g-12 ui-md-9 car-details'>
+          <div class='ui-g'>
+            <div class='ui-g-2 ui-sm-6'>ID </div>
+            <div class='ui-g-10 ui-sm-6'>{{product.id}}</div>
+            <div class='ui-g-2 ui-sm-6'>SKU </div>
+            <div class='ui-g-10 ui-sm-6'>{{product.sku}}</div>
+            <div class='ui-g-2 ui-sm-6'>Name </div>
+            <div class='ui-g-10 ui-sm-6'>{{product.name}}</div>
           </div>
         </div>
       </div>
     </ng-template>
   </p-dataList>
-
-  <button routerLink='add'>ADD</button>
 </div>
