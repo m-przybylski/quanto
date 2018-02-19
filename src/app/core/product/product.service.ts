@@ -45,7 +45,7 @@ export class ProductService {
 
   public getProductById(key: string): Observable<Product[]> {
     return this.database
-      .list<Product>('products', ref => ref.equalTo(name, key))
+      .list<Product>('products', ref => ref.orderByKey().equalTo(key))
       .valueChanges()
   }
 }

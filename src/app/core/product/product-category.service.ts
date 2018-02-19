@@ -15,7 +15,9 @@ export class ProductCategoryService {
   private syncCategory() {
     values.map(value => {
       this.database
-        .list('productCategory', ref => ref.equalTo('name', value.name))
+        .list('productCategory', ref =>
+          ref.orderByChild('name').equalTo(value.name),
+        )
         .valueChanges()
         .subscribe(val => {
           if (val.length === 0) {

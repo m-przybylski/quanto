@@ -6,6 +6,7 @@ import {
 } from '@angular/core'
 import { ProductService } from '../../../core/product/product.service'
 import { Product } from '../../../core/product/products'
+import { Observable } from '@firebase/util'
 
 @Component({
   selector: 'qto-product-list',
@@ -14,14 +15,12 @@ import { Product } from '../../../core/product/products'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductListComponent {
-  public productList: Product[]
+  productList: Product[]
+  public products$
   constructor(
     private products: ProductService,
     private cdr: ChangeDetectorRef,
   ) {
-    this.products.getProducts().subscribe(prods => {
-      this.productList = prods
-      cdr.markForCheck()
-    })
+    this.products$ = this.products.getProducts()
   }
 }

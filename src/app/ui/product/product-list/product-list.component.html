@@ -1,6 +1,5 @@
-<!-- <qto-list [items]='productList'></qto-list> -->
 <div class='layout-product-list'>
-  <p-dataList [value]="productList" [paginator]="true" [rows]="5">
+  <p-dataList [value]="products$ | async" [paginator]="true" [rows]="5">
     <p-header>
       Products
     </p-header>
