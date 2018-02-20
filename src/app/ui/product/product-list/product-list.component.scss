@@ -4,22 +4,6 @@
   color: $primary-text-color;
   border: 1px solid $divider-color;}
 
-.product-list-header {
-  font-size: 1.5rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  padding-left: 4rem;
-  padding-right: 4rem;
-  background: $primary-color;
-  color: $primary-color-text;
-  border-bottom: 1px solid $divider-color;
-  display: flex;
-  justify-content: space-between;
-}
-.header--text {
-  padding: .25em 0
-}
-
 .product-list-item-container {
   width: 100%;
   display: flex;
@@ -60,4 +44,13 @@
 }
 .product-list-item-details {
   flex: 2 0 0px;
+  padding: 0 1rem;
+}
+
+.product-list-item-desc {
+  padding: 1rem;
+  background-color: $divider-color;
+  strong {
+    font-weight: 700;
+  }
 }

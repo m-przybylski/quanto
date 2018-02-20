@@ -1,8 +1,8 @@
 <div class='layout-product-list'>
-  <div class='product-list-header'>
+  <qto-header>
     <span class='header--text'>Products</span>
     <p-button icon="fa fa-fw fa-plus" iconPos="right" routerLink='add' label='Add'></p-button>
-  </div>
+  </qto-header>
   <p-dataList [value]='products$ | async' [paginator]='true' [rows]='5'>
     <ng-template let-product pTemplate='product'>
       <div class='product-list-item-container'>
@@ -18,7 +18,7 @@
             <div class='detail-header'>Price Eur</div>
             <div class='detail-value'>{{product.priceEUR}}</div>
           </div>
-          <div class='product-list-item-desc' [innerHTML]='product.desc'></div>
+          <div *ngIf='product.description' class='product-list-item-desc' [innerHTML]='product.description'></div>
         </div>
       </div>
     </ng-template>

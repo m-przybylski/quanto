@@ -1,16 +1,35 @@
-<div [formGroup]='product' (ngSubmit)="onSubmit()">
-  sku:
-  <input type='text' formControlName='productSku'> item name:
-  <input type='text' formControlName='productName'> price
-  <select formControlName='productCategory'>
-    <option *ngFor='let category of productCategory' value={{category.id}}>{{category.name}}</option>
-  </select>
-  <select formControlName='priceCurrency'>
-    <option>USD</option>
-    <option>EUR</option>
-  </select>
-  <input type="number" formControlName='priceValue'>
-  <input type="text" formControlName='description'>
-  <button type="submit">Add</button>
-  <button type="reset">clear</button>
+<div class='layout-product-add'>
+  <qto-header>
+    <span class='header-text'>Add Product</span>
+    <button (click)='onSubmit()' pButton label='Add' icon='fa-plus' iconPos='right'></button>
+  </qto-header>
+  <form [formGroup]='product' class='layout-product-add-form'>
+    <div class='product-add-prop'>
+      <span class='ui-float-label'>
+        <input type='text' size='30' pInputText formControlName='productSku' required>
+        <label>SKU</label>
+      </span>
+    </div>
+    <div class='product-add-prop'>
+      <span class='ui-float-label'>
+        <input type='text' size='30' formControlName='productName' pInputText>
+        <label>item name:</label>
+      </span>
+    </div>
+    <div class='product-add-prop'>
+      <p-dropdown *ngIf='productCategory' [options]='productCategory' formControlName='productCategoryCtrl' optionLabel='description'></p-dropdown>
+    </div>
+    <div class='product-add-prop product-add-prop-full-width'>
+      <p-dropdown [options]='currencyList' formControlName='priceCurrency'></p-dropdown>
+      <span class='ui-float-label'>
+        <input type='number' size='30' formControlName='priceValue' pInputText>
+        <label>Price</label>
+      </span>
+    </div>
+    <div class='product-add-prop product-add-prop-full-width'>
+      <p-editor class='product-add-desc-editor' formControlName='description' [style]="{'height': '320px'}"></p-editor>
+    </div>
+
+    <button pButton type='reset' label='Clear'></button>
+  </form>
 </div>

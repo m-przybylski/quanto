@@ -1,0 +1,34 @@
+@import '../../../../styles/variables';
+
+.layout-product-add {
+  width: 100%;
+  border: 1px solid $divider-color;
+}
+
+.layout-product-add-form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 2rem 1rem;
+}
+
+.product-add-prop {
+  padding-bottom: 1rem;
+}
+
+.product-add-prop:nth-child(odd) {
+  flex: 0 0 16%;
+}
+.product-add-prop:nth-child(even) {
+  flex: 0 0 84%;
+}
+
+.product-add-prop.product-add-prop-full-width {
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 100%;
+}
+
+.product-add-desc-editor {
+  width: 100%;
+}

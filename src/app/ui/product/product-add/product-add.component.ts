@@ -1,18 +1,26 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core'
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
+} from '@angular/core'
 import { FormControl, FormGroup } from '@angular/forms'
 import { ProductService } from '../../../core/product/product.service'
 import { Price, ProductCategory } from '../../../core/product/products'
 import { ProductCategoryService } from '../../../core/product/product-category.service'
 import { MessageService } from 'primeng/components/common/messageservice'
+import { SelectItem } from 'primeng/api'
 
 @Component({
   selector: 'qto-product-add',
   templateUrl: './product-add.component.html',
   styleUrls: ['./product-add.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductAddComponent implements OnInit {
   public product: FormGroup
   public productCategory: ProductCategory[]
+  public currencyList: SelectItem[]
   constructor(
     private productService: ProductService,
     private productCategoryService: ProductCategoryService,
@@ -25,8 +33,13 @@ export class ProductAddComponent implements OnInit {
       priceCurrency: new FormControl(),
       priceValue: new FormControl(),
       description: new FormControl(),
-      productCategory: new FormControl(),
+      productCategoryCtrl: new FormControl(),
     })
+
+    this.currencyList = [
+      { label: 'USD', value: 'USD' },
+      { label: 'EUR', value: 'EUR' },
+    ]
   }
 
   ngOnInit(): void {
@@ -45,7 +58,7 @@ export class ProductAddComponent implements OnInit {
         name: this.getFormValue('productName'),
         price: [this.price],
         description: this.getFormValue('description'),
-        category: this.getFormValue('productCategory'),
+        category: this.getFormValue('productCategoryCtrl'),
       })
       .catch(message => {
         console.log(message)
