@@ -1,4 +1,4 @@
-<form [formGroup]='product' (ngSubmit)="onSubmit()">
+<div [formGroup]='product' (ngSubmit)="onSubmit()">
   sku:
   <input type='text' formControlName='productSku'> item name:
   <input type='text' formControlName='productName'> price
@@ -13,4 +13,4 @@
   <input type="text" formControlName='description'>
   <button type="submit">Add</button>
   <button type="reset">clear</button>
-</form>
+</div>

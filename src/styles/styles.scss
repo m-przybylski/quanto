@@ -2,7 +2,8 @@
 @import 'variables';
 /**** BASE ****/
 
-html body {  font-size: $font-size;
+html body {  
+  font-size: $font-size;
   color: $primary-text-color;
 }
 
@@ -11,6 +12,7 @@ html {
 }
 
 body {
+  font-family: $font-family;
   min-height: 100%;
 }
 
@@ -27,6 +29,7 @@ button {
   border-radius: 3px;
   background-color: $accent-color;
   color: $primary-color-text;
+  font: inherit;
 }
 
 /**** LAYOUT ****/

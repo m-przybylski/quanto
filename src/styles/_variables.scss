@@ -1,5 +1,6 @@
 /** COLLOR PALLET PINK INDIGO **/
-  
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 $primary-color-dark:   #C2185B;
 $primary-color:        #E91E63;
 $primary-color-light:  #F8BBD0;
@@ -9,8 +10,12 @@ $primary-text-color:   #212121;
 $secondary-text-color: #757575;
 $divider-color:        #BDBDBD;
 
+/*** font settings ***/
 $font-size: 16px;
+$font-family: 'Roboto', sans-serif;
 
 $sidebar-width: 240px;
 
 $topbar-height: 64px;
+
+
