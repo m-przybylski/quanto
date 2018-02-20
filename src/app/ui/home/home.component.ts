@@ -4,7 +4,7 @@ import { MenuItem } from 'primeng/api'
 @Component({
   selector: 'qto-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.sass'],
+  styleUrls: ['./home.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {

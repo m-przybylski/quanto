@@ -8,7 +8,7 @@ import { MessageService } from 'primeng/components/common/messageservice'
 @Component({
   selector: 'qto-product-add',
   templateUrl: './product-add.component.html',
-  styleUrls: ['./product-add.component.sass'],
+  styleUrls: ['./product-add.component.scss'],
 })
 export class ProductAddComponent implements OnInit {
   public product: FormGroup

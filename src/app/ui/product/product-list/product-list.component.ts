@@ -11,7 +11,7 @@ import { Observable } from '@firebase/util'
 @Component({
   selector: 'qto-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.sass'],
+  styleUrls: ['./product-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductListComponent {
