@@ -41,6 +41,7 @@ export class ProductAddComponent {
     this.productSku = new FormControl('', {
       validators: Validators.required,
       asyncValidators: this.ValidateSKU,
+      updateOn: 'blur',
     })
     this.prices = new FormArray([this.createPriceItem()])
     this.product = new FormGroup({
