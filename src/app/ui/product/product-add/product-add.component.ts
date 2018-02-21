@@ -1,41 +1,62 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core'
-import { FormControl, FormGroup } from '@angular/forms'
+import {
+  Component,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+} from '@angular/core'
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  AbstractControl,
+  AsyncValidatorFn,
+  FormArray,
+} from '@angular/forms'
 import { ProductService } from '../../../core/product/product.service'
-import { Price, ProductCategory } from '../../../core/product/products'
+import { Price, ProductCategory, Product } from '../../../core/product/products'
 import { ProductCategoryService } from '../../../core/product/product-category.service'
 import { MessageService } from 'primeng/components/common/messageservice'
+import { SelectItem } from 'primeng/api'
+import { Observable } from 'rxjs/Observable'
+import { map, take } from 'rxjs/operators'
 
 @Component({
   selector: 'qto-product-add',
   templateUrl: './product-add.component.html',
-  styleUrls: ['./product-add.component.sass'],
+  styleUrls: ['./product-add.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductAddComponent implements OnInit {
+export class ProductAddComponent {
   public product: FormGroup
-  public productCategory: ProductCategory[]
+  public productCategory$: Observable<ProductCategory[]>
+  public currencyList: SelectItem[]
+  public productSku: FormControl
+  public prices: FormArray
+  public disableAdd = false
   constructor(
     private productService: ProductService,
     private productCategoryService: ProductCategoryService,
-    private cdr: ChangeDetectorRef,
     private messageService: MessageService,
+    private cdr: ChangeDetectorRef,
   ) {
-    this.product = new FormGroup({
-      productName: new FormControl(),
-      productSku: new FormControl(),
-      priceCurrency: new FormControl(),
-      priceValue: new FormControl(),
-      description: new FormControl(),
-      productCategory: new FormControl(),
+    this.productSku = new FormControl('', {
+      validators: Validators.required,
+      asyncValidators: this.ValidateSKU,
     })
-  }
+    this.prices = new FormArray([this.createPriceItem()])
+    this.product = new FormGroup({
+      productName: new FormControl('', { validators: Validators.required }),
+      productSku: this.productSku,
+      priceCurrency: new FormControl(),
+      prices: this.prices,
+      description: new FormControl(),
+      productCategoryCtrl: new FormControl(),
+    })
 
-  ngOnInit(): void {
-    this.productCategoryService
-      .getProductCategories()
-      .subscribe(productCategories => {
-        this.productCategory = productCategories
-        this.cdr.markForCheck()
-      })
+    this.currencyList = [
+      { label: 'USD', value: 'USD' },
+      { label: 'EUR', value: 'EUR' },
+    ]
+    this.productCategory$ = this.productCategoryService.getProductCategories()
   }
 
   public onSubmit() {
@@ -45,7 +66,7 @@ export class ProductAddComponent implements OnInit {
         name: this.getFormValue('productName'),
         price: [this.price],
         description: this.getFormValue('description'),
-        category: this.getFormValue('productCategory'),
+        category: this.getFormValue('productCategoryCtrl'),
       })
       .catch(message => {
         console.log(message)
@@ -56,7 +77,20 @@ export class ProductAddComponent implements OnInit {
         })
       })
   }
-
+  public addPrice(i: number) {
+    this.prices.insert(i + 1, this.createPriceItem())
+    if (this.prices.length === this.currencyList.length) {
+      this.disableAdd = true
+    }
+  }
+  private createPriceItem(): FormGroup {
+    return new FormGroup({
+      currency: new FormControl(),
+      price: new FormControl('', {
+        validators: [Validators.required, Validators.min(0)],
+      }),
+    })
+  }
   private getFormValue(controllName: string) {
     return this.product.controls[controllName].value
   }
@@ -65,5 +99,16 @@ export class ProductAddComponent implements OnInit {
       currency: this.product.controls['priceCurrency'].value,
       price: this.product.controls['priceValue'].value,
     }
+  }
+  private ValidateSKU: AsyncValidatorFn = (control: AbstractControl) => {
+    return this.productService.getProductBySKU(control.value).pipe(
+      take(1),
+      map((products: Product[]) => {
+        requestAnimationFrame(() => {
+          this.cdr.markForCheck()
+        })
+        return products.length > 0 ? { skuExists: true } : null
+      }),
+    )
   }
 }

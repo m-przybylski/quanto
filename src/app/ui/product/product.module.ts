@@ -8,9 +8,11 @@ import { CoreModule } from '../../core/core.module'
 import { ProductAddComponent } from './product-add/product-add.component'
 import { ProductEditComponent } from './product-edit/product-edit.component'
 import { DataListModule } from 'primeng/datalist'
+import { ButtonModule } from 'primeng/button'
+import { InputTextModule } from 'primeng/inputtext'
+import { DropdownModule } from 'primeng/dropdown'
 import { EditorModule } from 'primeng/editor'
-import { ButtonModule } from 'primeng/components/button/button'
-import { InputTextModule } from 'primeng/components/inputtext/inputtext'
+import { HeaderModule } from '../../shared/header/header.module'
 @NgModule({
   imports: [
     CommonModule,
@@ -19,9 +21,11 @@ import { InputTextModule } from 'primeng/components/inputtext/inputtext'
     CoreModule,
     ReactiveFormsModule,
     DataListModule,
-    EditorModule,
     ButtonModule,
     InputTextModule,
+    DropdownModule,
+    EditorModule,
+    HeaderModule,
   ],
   declarations: [
     ProductListComponent,

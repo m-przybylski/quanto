@@ -4,7 +4,7 @@ import { MenuItem } from 'primeng/api'
 @Component({
   selector: 'qto-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.sass'],
+  styleUrls: ['./sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent implements OnInit {

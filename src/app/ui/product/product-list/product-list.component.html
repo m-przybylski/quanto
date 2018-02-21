@@ -1,24 +1,26 @@
-<!-- <qto-list [items]='productList'></qto-list> -->
 <div class='layout-product-list'>
-  <p-dataList [value]="productList" [paginator]="true" [rows]="5">
-    <p-header>
-      Products
-    </p-header>
-    <ng-template let-product pTemplate="item">
-      <div class="ui-g ui-fluid car-item">
-        <div class="ui-g-12 ui-md-9 car-details">
-          <div class="ui-g">
-            <div class="ui-g-2 ui-sm-6">ID </div>
-            <div class="ui-g-10 ui-sm-6">{{product.id}}</div>
-            <div class="ui-g-2 ui-sm-6">SKU </div>
-            <div class="ui-g-10 ui-sm-6">{{product.sku}}</div>
-            <div class="ui-g-2 ui-sm-6">Name </div>
-            <div class="ui-g-10 ui-sm-6">{{product.name}}</div>
+  <qto-header>
+    <span class='header--text'>Products</span>
+    <p-button icon="fa fa-fw fa-plus" iconPos="right" routerLink='add' label='Add'></p-button>
+  </qto-header>
+  <p-dataList [value]='products$ | async' [paginator]='true' [rows]='5'>
+    <ng-template let-product pTemplate='product'>
+      <div class='product-list-item-container'>
+        <div class='product-list-item-image'></div>
+        <div class='product-list-item-details'>
+          <div class='product-list-item-header'>
+            <div class='detail-header'>SKU</div>
+            <div class='detail-value'>{{product.sku}}</div>
+            <div class='detail-header'>Item name</div>
+            <div class='detail-value'>{{product.name}}</div>
+            <div class='detail-header'>Price USD</div>
+            <div class='detail-value'>{{product.priceUSD}}</div>
+            <div class='detail-header'>Price Eur</div>
+            <div class='detail-value'>{{product.priceEUR}}</div>
           </div>
+          <div *ngIf='product.description' class='product-list-item-desc' [innerHTML]='product.description'></div>
         </div>
       </div>
     </ng-template>
   </p-dataList>
-
-  <button routerLink='add'>ADD</button>
 </div>

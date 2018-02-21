@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { HomeComponent } from './home.component'
 import { ToolbarModule } from 'primeng/toolbar'
 import { SharedModule } from '../../shared/shared.module'
-import { MenuModule } from 'primeng/menu'
 import { RouterTestingModule } from '@angular/router/testing'
 
 describe('HomeComponent', () => {

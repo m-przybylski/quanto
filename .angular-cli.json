@@ -21,12 +21,14 @@
       "styles": [
         "../node_modules/reset-css/reset.css",
         "../node_modules/primeng/resources/primeng.min.css",
-        "../node_modules/font-awesome/css/font-awesome.min.css",
-        "../node_modules/quill/dist/quill.core.css", 
+        "../node_modules/font-awesome/css/font-awesome.css",
+        "../node_modules/quill/dist/quill.core.css",
         "../node_modules/quill/dist/quill.snow.css",
-        "styles/styles.sass"
+        "styles/styles.scss"
       ],
-      "scripts": ["../node_modules/quill/dist/quill.js"],
+      "scripts": [
+        "../node_modules/quill/dist/quill.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -59,7 +61,7 @@
     }
   },
   "defaults": {
-    "styleExt": "sass",
+    "styleExt": "scss",
     "component": {
       "inlineStyle": false,
       "inlineTemplate": false

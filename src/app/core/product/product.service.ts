@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core'
+import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
 import { Product } from './products'
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database'
@@ -9,18 +9,24 @@ export class ProductService {
   private productList: AngularFireList<Product>
   constructor(
     private database: AngularFireDatabase,
-    private productCategory: ProductCategoryService,
+    private _productCategory: ProductCategoryService,
   ) {
     this.productList = this.database.list<Product>('products')
   }
 
   public getProducts(): Observable<Product[]> {
+    this._productCategory.getProductCategories()
     return this.productList.snapshotChanges().map(productsSnapshot =>
       productsSnapshot.map(productSnapshot => ({
         id: productSnapshot.key,
         ...productSnapshot.payload.val(),
       })),
     )
+  }
+  public getProductBySKU(sku: string): Observable<Product[]> {
+    return this.database
+      .list<Product>('products', ref => ref.orderByChild('sku').equalTo(sku))
+      .valueChanges()
   }
   /**this can be done better
    * use streem to kill other streem maybe?
@@ -45,7 +51,7 @@ export class ProductService {
 
   public getProductById(key: string): Observable<Product[]> {
     return this.database
-      .list<Product>('products', ref => ref.equalTo(name, key))
+      .list<Product>('products', ref => ref.orderByKey().equalTo(key))
       .valueChanges()
   }
 }

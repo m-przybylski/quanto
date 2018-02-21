@@ -1,7 +1,5 @@
-import { TestBed, inject } from '@angular/core/testing'
-
 import { ProductService } from './product.service'
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database'
+import { AngularFireDatabase } from 'angularfire2/database'
 import { Deceiver } from 'deceiver-core'
 import { Product } from './products'
 
@@ -14,6 +12,7 @@ const ProductList: Product[] = [
     price: [{ currency: 'USD', price: 12 }],
     sku: '123',
     description: 'opus',
+    category: '1',
   },
   {
     id: '2',
@@ -21,26 +20,24 @@ const ProductList: Product[] = [
     price: [{ currency: 'USD', price: 12 }],
     sku: '123',
     description: 'opus',
+    category: '1',
   },
 ]
 
 describe('ProductService', () => {
   const AngularFirestoreMock = Deceiver(AngularFireDatabase)
-  const angularFirestoreCollection = Deceiver(AngularFireList)
   let collectionCall
-  let returnProducts
-  let addProduct
   let service: ProductService
   beforeEach(() => {
-    returnProducts = angularFirestoreCollection.valueChanges = jasmine
-      .createSpy('getProducts')
-      .and.returnValues(of(ProductList))
-    addProduct = angularFirestoreCollection.add = jasmine
-      .createSpy('addProduct')
-      .and.stub()
-    collectionCall = AngularFirestoreMock.collection = jasmine
+    collectionCall = AngularFirestoreMock.list = jasmine
       .createSpy()
-      .and.callFake(collection => angularFirestoreCollection)
+      .and.callFake(() =>
+        jasmine.createSpyObj('list', {
+          snapshotChanges: jasmine
+            .createSpy('getProducts')
+            .and.returnValues(of(ProductList)),
+        }),
+      )
     service = new ProductService(AngularFirestoreMock, undefined)
   })
 
@@ -57,26 +54,20 @@ describe('ProductService', () => {
   it('should add product to list', () => {
     const product: Product = {
       name: 'new product',
-      price: 12,
+      price: [{ currency: 'USD', price: 12 }],
+      category: '1',
+      description: '',
+      sku: '123',
     }
-    const newProdList = ProductList.concat({ ...product, id: 3 })
-    returnProducts = angularFirestoreCollection.valueChanges = jasmine
-      .createSpy()
-      .and.returnValues(of(ProductList))
-
-    returnProducts = angularFirestoreCollection.valueChanges = jasmine
-      .createSpy('getProducts')
-      .and.returnValues(of(newProdList))
-
+    const newProdList = ProductList.concat(product)
     service.addProduct(product)
-    expect(addProduct).toHaveBeenCalledWith(product)
     service.getProducts().subscribe(prods => expect(prods).toEqual(newProdList))
   })
 
   xit('should get product of specific ID', async () => {
-    let product = await service.getProductById(0)
+    let product = await service.getProductById('0')
     expect(product).toEqual({})
-    product = await service.getProductById(1)
+    product = await service.getProductById('1')
     expect(product).toEqual({ id: 1, name: 'name', price: 12 })
   })
 })

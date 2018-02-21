@@ -1,31 +1,51 @@
-<form [formGroup]='product' (ngSubmit)="onSubmit()">
-  <div class='layout-product-add-wrapper'>
-    <div class='layout-product-add-row'>
-      <label>sku:</label>
-      <input type='text' formControlName='productSku'>
-      <label>item name:</label>
-      <input type='text' formControlName='productName'>
-    </div>
-    <div class='layout-product-add-row'>
-      <div class="ui-inputgroup">
-        <span class="ui-inputgroup-addon">$</span>
-        <input type="text" pInputText placeholder="Price" formControlName='priceValue'>
-        <span class="ui-inputgroup-addon">.00</span>
+<div class='layout-product-add'>
+  <qto-header>
+    <span class='header-text'>Add Product</span>
+    <button pButton type='button' (click)='onSubmit()' [disabled]="true" label='Add' icon='fa-plus' iconPos='right'></button>
+  </qto-header>
+  <form [formGroup]='product' class='layout-product-add-form'>
+    <div class='product-add-prop'>
+      <span class='ui-float-label'>
+        <input type='text' size='30' pInputText formControlName='productSku' required>
+        <label>SKU</label>
+      </span>
+      <div class='ui-input-error' *ngIf='productSku.errors'>
+        <div *ngIf='productSku.errors.skuExists'>SKU already exists</div>
+        <div *ngIf='productSku.errors.required'>SKU is required</div>
       </div>
-      <label>price EUR</label>
-      <input type="number" formControlName='priceValue'>
-      <label>category</label>
-      <select formControlName='productCategory'>
-        <option *ngFor='let category of productCategory' value={{category.id}}>{{category.name}}</option>
-      </select>
     </div>
-    <div class='layout-product-add-row'>
-      <p-editor formControlName='description'></p-editor>
+    <div class='product-add-prop'>
+      <span class='ui-float-label'>
+        <input type='text' size='30' formControlName='productName' pInputText>
+        <label>Item name:</label>
+      </span>
     </div>
-    <div class='layout-product-add-row-buttons'>
-      <button pButton type="submit">Add</button>
-      <button pButton type="reset">clear</button>
+    <div class='product-add-prop'>
+      <label class='dropdown-label'>Product category</label>
+      <p-dropdown [autoWidth]='false' [options]='productCategory$ | async' formControlName='productCategoryCtrl' optionLabel='description'></p-dropdown>
+    </div>
+    <div class='product-add-prop-full-width' [ngClass]='{ "no-padding": last }' formArrayName='prices' *ngFor='let price of prices.controls; let i = index; let last = last'>
+      <div class='product-price-line' [formGroupName]='i'>
+        <label class='dropdown-label'>Currency</label>
+        <p-dropdown [options]='currencyList' [autoWidth]='false' formControlName='currency'></p-dropdown>
+        <div class='price-value-input'>
+          <span class='ui-float-label'>
+            <input type='number' size='30' formControlName='price' pInputText>
+            <label>Price</label>
+          </span>
+          <div class='ui-input-error' *ngIf='price.controls.price.errors'>
+            <div *ngIf='price.controls.price.errors.required'>Prce is required</div>
+            <div *ngIf='price.controls.price.errors.min'>Minimal price is 0</div>
+
+          </div>
+        </div>
+        <p-button [disabled]='disableAdd' (onClick)="addPrice(i)" class='add-price-button' icon="fa fa-fw fa-plus"></p-button>
+      </div>
+    </div>
+    <div class='product-add-prop-full-width no-padding'>
+      <p-editor class='product-add-desc-editor' formControlName='description' [style]="{'height': '320px'}"></p-editor>
     </div>
 
-  </div>
-</form>
+    <button pButton type='reset' label='Clear'></button>
+  </form>
+</div>
