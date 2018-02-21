@@ -1,15 +1,11 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectorRef,
-  ChangeDetectionStrategy,
-} from '@angular/core'
-import { FormControl, FormGroup } from '@angular/forms'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { ProductService } from '../../../core/product/product.service'
 import { Price, ProductCategory } from '../../../core/product/products'
 import { ProductCategoryService } from '../../../core/product/product-category.service'
 import { MessageService } from 'primeng/components/common/messageservice'
 import { SelectItem } from 'primeng/api'
+import { Observable } from 'rxjs/Observable'
 
 @Component({
   selector: 'qto-product-add',
@@ -17,19 +13,20 @@ import { SelectItem } from 'primeng/api'
   styleUrls: ['./product-add.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductAddComponent implements OnInit {
+export class ProductAddComponent {
   public product: FormGroup
-  public productCategory: ProductCategory[]
+  public productCategory$: Observable<ProductCategory[]>
   public currencyList: SelectItem[]
+  public productSku: FormControl
   constructor(
     private productService: ProductService,
     private productCategoryService: ProductCategoryService,
-    private cdr: ChangeDetectorRef,
     private messageService: MessageService,
   ) {
+    this.productSku = new FormControl('', { validators: Validators.required })
     this.product = new FormGroup({
-      productName: new FormControl(),
-      productSku: new FormControl(),
+      productName: new FormControl('', { validators: Validators.required }),
+      productSku: this.productSku,
       priceCurrency: new FormControl(),
       priceValue: new FormControl(),
       description: new FormControl(),
@@ -40,15 +37,7 @@ export class ProductAddComponent implements OnInit {
       { label: 'USD', value: 'USD' },
       { label: 'EUR', value: 'EUR' },
     ]
-  }
-
-  ngOnInit(): void {
-    this.productCategoryService
-      .getProductCategories()
-      .subscribe(productCategories => {
-        this.productCategory = productCategories
-        this.cdr.markForCheck()
-      })
+    this.productCategory$ = this.productCategoryService.getProductCategories()
   }
 
   public onSubmit() {

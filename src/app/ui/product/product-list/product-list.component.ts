@@ -1,12 +1,6 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-} from '@angular/core'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { ProductService } from '../../../core/product/product.service'
 import { Product } from '../../../core/product/products'
-import { Observable } from '@firebase/util'
 
 @Component({
   selector: 'qto-product-list',

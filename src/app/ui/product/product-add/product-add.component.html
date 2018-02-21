@@ -1,7 +1,7 @@
 <div class='layout-product-add'>
   <qto-header>
     <span class='header-text'>Add Product</span>
-    <button (click)='onSubmit()' pButton label='Add' icon='fa-plus' iconPos='right'></button>
+    <button pButton type='button' (click)='onSubmit()' [disabled]="true" label='Add' icon='fa-plus' iconPos='right'></button>
   </qto-header>
   <form [formGroup]='product' class='layout-product-add-form'>
     <div class='product-add-prop'>
@@ -9,22 +9,28 @@
         <input type='text' size='30' pInputText formControlName='productSku' required>
         <label>SKU</label>
       </span>
+      <div class='ui-input-error'>{{productSku.hasError|json}}</div>
     </div>
     <div class='product-add-prop'>
       <span class='ui-float-label'>
         <input type='text' size='30' formControlName='productName' pInputText>
         <label>item name:</label>
       </span>
+      <div class='ui-input-error'>Error</div>
     </div>
     <div class='product-add-prop'>
-      <p-dropdown *ngIf='productCategory' [options]='productCategory' formControlName='productCategoryCtrl' optionLabel='description'></p-dropdown>
+      <p-dropdown [autoWidth]='false' [options]='productCategory$ | async' formControlName='productCategoryCtrl' optionLabel='description'></p-dropdown>
+      <div class='ui-input-error'>Error</div>
     </div>
     <div class='product-add-prop product-add-prop-full-width'>
-      <p-dropdown [options]='currencyList' formControlName='priceCurrency'></p-dropdown>
-      <span class='ui-float-label'>
-        <input type='number' size='30' formControlName='priceValue' pInputText>
-        <label>Price</label>
-      </span>
+      <p-dropdown [options]='currencyList' [autoWidth]='false' formControlName='priceCurrency'></p-dropdown>
+      <div class='price-value-input'>
+        <span class='ui-float-label'>
+          <input type='number' size='30' formControlName='priceValue' pInputText>
+          <label>Price</label>
+        </span>
+        <div class='ui-input-error'>Error</div>
+      </div>
     </div>
     <div class='product-add-prop product-add-prop-full-width'>
       <p-editor class='product-add-desc-editor' formControlName='description' [style]="{'height': '320px'}"></p-editor>

@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core'
+import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
 import { Product } from './products'
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database'
@@ -9,12 +9,13 @@ export class ProductService {
   private productList: AngularFireList<Product>
   constructor(
     private database: AngularFireDatabase,
-    private productCategory: ProductCategoryService,
+    private _productCategory: ProductCategoryService,
   ) {
     this.productList = this.database.list<Product>('products')
   }
 
   public getProducts(): Observable<Product[]> {
+    this._productCategory.getProductCategories()
     return this.productList.snapshotChanges().map(productsSnapshot =>
       productsSnapshot.map(productSnapshot => ({
         id: productSnapshot.key,

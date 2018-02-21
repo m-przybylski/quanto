@@ -13,7 +13,7 @@
 }
 
 .product-add-prop {
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
 }
 
 .product-add-prop:nth-child(odd) {
@@ -21,14 +21,27 @@
 }
 .product-add-prop:nth-child(even) {
   flex: 0 0 84%;
+  padding-left: 1rem;
 }
 
 .product-add-prop.product-add-prop-full-width {
   display: flex;
   flex-direction: row;
   flex: 0 0 100%;
+  padding-left: 0;
 }
 
 .product-add-desc-editor {
   width: 100%;
+}
+
+.price-value-input {
+  padding-left: 1rem;
+}
+
+.ui-input-error {
+  font-size: .75em;
+  color: $primary-color;
+  padding-left: 1em;
+  padding-top: 0.5em;
 }
