@@ -1,7 +1,7 @@
 <div class='layout-product-add'>
   <qto-header>
     <span class='header-text'>Add Product</span>
-    <button pButton type='button' (click)='onSubmit()' [disabled]="true" label='Add' icon='fa-plus' iconPos='right'></button>
+    <p-button type='button' (click)='postProduct()' [disabled]='product.invalid' label='Add' icon='fa fa-fw fa-plus' iconPos='right'></p-button>
   </qto-header>
   <form [formGroup]='product' class='layout-product-add-form'>
     <div class='product-add-prop'>
@@ -18,6 +18,9 @@
       <span class='ui-float-label'>
         <input type='text' size='30' formControlName='productName' pInputText>
         <label>Item name:</label>
+        <div class='ui-input-error' *ngIf='productName.errors'>
+          <div *ngIf='productName.errors.required'>Name is required</div>
+        </div>
       </span>
     </div>
     <div class='product-add-prop'>
@@ -27,7 +30,7 @@
     <div class='product-add-prop-full-width' [ngClass]='{ "no-padding": last }' formArrayName='prices' *ngFor='let price of prices.controls; let i = index; let last = last'>
       <div class='product-price-line' [formGroupName]='i'>
         <label class='dropdown-label'>Currency</label>
-        <p-dropdown [options]='currencyList' [autoWidth]='false' formControlName='currency'></p-dropdown>
+        <p-dropdown [options]='currencyListArray[i]' [disabled]='!last' [autoWidth]='false' formControlName='currency'></p-dropdown>
         <div class='price-value-input'>
           <span class='ui-float-label'>
             <input type='number' size='30' formControlName='price' pInputText>
@@ -39,7 +42,10 @@
 
           </div>
         </div>
-        <p-button [disabled]='disableAdd' (onClick)="addPrice(i)" class='add-price-button' icon="fa fa-fw fa-plus"></p-button>
+        <ng-container *ngIf='last'>
+          <p-button [disabled]='disableAdd' (onClick)="addPrice(i)" class='add-price-button' icon="fa fa-fw fa-plus"></p-button>
+          <p-button [disabled]='disableRemove' (onClick)="removePrice(i)" class='add-price-button' icon="fa fa-fw fa-minus"></p-button>
+        </ng-container>
       </div>
     </div>
     <div class='product-add-prop-full-width no-padding'>

@@ -13,10 +13,14 @@
             <div class='detail-value'>{{product.sku}}</div>
             <div class='detail-header'>Item name</div>
             <div class='detail-value'>{{product.name}}</div>
-            <div class='detail-header'>Price USD</div>
-            <div class='detail-value'>{{product.priceUSD}}</div>
-            <div class='detail-header'>Price Eur</div>
-            <div class='detail-value'>{{product.priceEUR}}</div>
+            <div class='detail-header'>Category</div>
+            <div class='detail-value'>{{product.category?.description}}</div>
+            <div class='detail-header'></div>
+            <div class='detail-value'></div>
+            <ng-template ngFor let-price [ngForOf]="product.price">
+              <div class='detail-header'>Price</div>
+              <div class='detail-value'>{{price.currency}} {{price.price}}</div>
+            </ng-template>
           </div>
           <div *ngIf='product.description' class='product-list-item-desc' [innerHTML]='product.description'></div>
         </div>

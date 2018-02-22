@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { ProductService } from '../../../core/product/product.service'
-import { Product } from '../../../core/product/products'
+import { Product, Price } from '../../../core/product/products'
 
 @Component({
   selector: 'qto-product-list',
@@ -13,5 +13,16 @@ export class ProductListComponent {
   public products$
   constructor(private products: ProductService) {
     this.products$ = this.products.getProducts()
+  }
+
+  public getPrice(prices: Price[], currency: string): string {
+    if (prices) {
+      const priceFound = prices.find(price => price.currency === currency)
+      if (priceFound) {
+        return priceFound.price.toString()
+      }
+      return '-'
+    }
+    return '-'
   }
 }

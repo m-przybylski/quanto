@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable'
 import { Product } from './products'
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database'
 import { ProductCategoryService } from './product-category.service'
+import { switchMap, map } from 'rxjs/operators'
 
 @Injectable()
 export class ProductService {
@@ -15,12 +16,19 @@ export class ProductService {
   }
 
   public getProducts(): Observable<Product[]> {
-    this._productCategory.getProductCategories()
-    return this.productList.snapshotChanges().map(productsSnapshot =>
-      productsSnapshot.map(productSnapshot => ({
-        id: productSnapshot.key,
-        ...productSnapshot.payload.val(),
-      })),
+    return this._productCategory.getProductCategories().pipe(
+      switchMap(categories =>
+        this.productList.snapshotChanges().map(productsSnapshot =>
+          productsSnapshot.map(productSnapshot => ({
+            id: productSnapshot.key,
+            ...productSnapshot.payload.val(),
+            category: categories.find(
+              category =>
+                category.id === productSnapshot.payload.val().category,
+            ),
+          })),
+        ),
+      ),
     )
   }
   public getProductBySKU(sku: string): Observable<Product[]> {
