@@ -42,7 +42,6 @@ button {
 /**** MODULES ****/
 
 /* MENU */
-
 .ui-menu {
   width: auto;
   .ui-menuitem-link {
@@ -59,6 +58,12 @@ button {
     background-color: $primary-color;
     color: $primary-color-text
   }
+}
+
+/* ERROR MESSAGES */
+.ui-growl-item-container {
+  background: $primary-color-dark;
+  color: $primary-color-text;
 }
 /* FORMS - USER INPUT */
 %common-ui-input-border {
@@ -87,6 +92,13 @@ button {
 
 .ui-float-label > label {
   color: $primary-text-color;
+}
+
+.ui-float-label>input:focus ~ label,
+.ui-float-label>input.ui-state-filled ~ label,
+.ui-float-label>.ui-inputwrapper-focus ~ label,
+.ui-float-label>.ui-inputwrapper-filled ~ label {
+  font-size: .75em;
 }
 
 .ui-inputtext:focus {

@@ -1,7 +1,7 @@
 <div class='layout-product-add'>
   <qto-header>
     <span class='header-text'>Add Product</span>
-    <p-button type='button' (click)='postProduct()' [disabled]='product.invalid' label='Add' icon='fa fa-fw fa-plus' iconPos='right'></p-button>
+    <p-button type='button' (onClick)='postProduct()' [disabled]='product.invalid' label='Add' icon='fa fa-fw fa-plus' iconPos='right'></p-button>
   </qto-header>
   <form [formGroup]='product' class='layout-product-add-form'>
     <div class='product-add-prop'>

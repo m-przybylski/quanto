@@ -1,9 +1,12 @@
 <div class='layout-login-page'>
   <div class='login-form' [formGroup]='loginForm'>
+    <div class='login-icon'>
+      <i class='fa fa-3x fa-user'></i>
+    </div>
     <div class='login-form-item'>
       <span class='ui-float-label'>
-        <input type='text' pInputText formControlName='email' />
-        <label>user name</label>
+        <input type='text ' pInputText formControlName='email' />
+        <label>email</label>
       </span>
     </div>
     <div class='login-form-item'>
@@ -15,5 +18,8 @@
     <div class='login-from-actions'>
       <p-button label='login' (click)='login()'></p-button>
     </div>
+  </div>
+  <div class="error-message" *ngIf='message'>
+    <span class='error-message-message'>{{message}}</span>
   </div>
 </div>

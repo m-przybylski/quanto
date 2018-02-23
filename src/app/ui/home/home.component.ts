@@ -5,7 +5,7 @@ import { MessageService } from 'primeng/components/common/messageservice'
   selector: 'qto-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class HomeComponent {
   constructor(private service: MessageService) {

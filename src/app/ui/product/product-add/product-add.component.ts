@@ -78,6 +78,9 @@ export class ProductAddComponent {
         description: this.getFormValue('description'),
         category: this.getFormValue('productCategoryCtrl'),
       })
+      .then(() => {
+        this.router.navigate(['products'])
+      })
       .catch(message => {
         console.log(message)
         this.messageService.add({
@@ -85,9 +88,6 @@ export class ProductAddComponent {
           summary: 'Error Message',
           detail: message,
         })
-      })
-      .then(() => {
-        this.router.navigate(['products'])
       })
   }
   public addPrice(i: number): FormArray {
