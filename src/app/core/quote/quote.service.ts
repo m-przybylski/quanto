@@ -11,7 +11,6 @@ export class QuoteService {
   }
 
   public getQuoteList(): Observable<Quote[]> {
-    this.quoteList.valueChanges().subscribe(console.log)
     return this.quoteList.valueChanges()
   }
 

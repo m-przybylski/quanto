@@ -18,8 +18,12 @@ const routes: Routes = [
     ],
   },
   {
+    path: 'login',
+    loadChildren: 'app/ui/login/login.module#LoginModule',
+  },
+  {
     path: '**',
-    redirectTo: '',
+    redirectTo: '/login',
   },
 ]
 

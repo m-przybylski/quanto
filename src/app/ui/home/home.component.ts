@@ -9,6 +9,6 @@ import { MessageService } from 'primeng/components/common/messageservice'
 })
 export class HomeComponent {
   constructor(private service: MessageService) {
-    this.service.messageObserver.subscribe(() => {})
+    this.service.messageObserver.subscribe(console.log)
   }
 }

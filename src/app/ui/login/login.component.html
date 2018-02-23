@@ -1,0 +1,19 @@
+<div class='layout-login-page'>
+  <div class='login-form' [formGroup]='loginForm'>
+    <div class='login-form-item'>
+      <span class='ui-float-label'>
+        <input type='text' pInputText formControlName='email' />
+        <label>user name</label>
+      </span>
+    </div>
+    <div class='login-form-item'>
+      <span class='ui-float-label'>
+        <input type='password' pInputText formControlName='password' />
+        <label>password:</label>
+      </span>
+    </div>
+    <div class='login-from-actions'>
+      <p-button label='login' (click)='login()'></p-button>
+    </div>
+  </div>
+</div>
