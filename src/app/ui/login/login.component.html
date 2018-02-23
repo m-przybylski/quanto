@@ -1,5 +1,5 @@
 <div class='layout-login-page'>
-  <div class='login-form' [formGroup]='loginForm'>
+  <form class='login-form' [formGroup]='loginForm'>
     <div class='login-icon'>
       <i class='fa fa-3x fa-user'></i>
     </div>
@@ -16,9 +16,9 @@
       </span>
     </div>
     <div class='login-from-actions'>
-      <p-button label='login' (click)='login()'></p-button>
+      <p-button type='submit' label='login' (onClick)='login()'></p-button>
     </div>
-  </div>
+  </form>
   <div class="error-message" *ngIf='message'>
     <span class='error-message-message'>{{message}}</span>
   </div>

@@ -1,8 +1,8 @@
-@import '../../../styles/variables';
+@import '../../../../styles/variables';
   
 .layout-topbar {
   width: calc(100% - 240px);
-  z-index: 999;
+  z-index: 20;
   position: fixed;
   height: $topbar-height;
   background-color: $primary-color;

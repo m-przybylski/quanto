@@ -25,7 +25,7 @@ export class LoginComponent {
       )
       .then(a => {
         console.log(a)
-        this.router.navigate(['/home'])
+        this.router.navigate(['/'])
       })
       .catch(err => {
         this.message = err

@@ -41,6 +41,19 @@ button {
 
 /**** MODULES ****/
 
+/* PROGRESS BAR */
+.ui-progressbar {
+  background-color: $primary-color-light;
+  height: 6px;
+  position: absolute;
+  z-index:40;
+  width: 100%;
+}
+
+.ui-progressbar-value { 
+  background-color: $primary-color-dark;
+}
+
 /* MENU */
 .ui-menu {
   width: auto;

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
 import { MenuModule } from 'primeng/menu'
-import { TopbarComponent } from './topbar.component'
+import { TopbarComponent } from './topbar/topbar.component'
 
 @NgModule({
   imports: [CommonModule, MenuModule],

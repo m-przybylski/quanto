@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { CompanyService } from '../../core/company/company.service'
 import { ProductService } from '../../core/product/product.service'
 import { DropdownModule } from 'primeng/dropdown'
-import { InputTextModule } from 'primeng/inputtext';
+import { InputTextModule } from 'primeng/inputtext'
 import { QuoteEditComponent } from './quote-edit/quote-edit.component'
 
 @NgModule({

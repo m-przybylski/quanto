@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { HomeComponent } from './ui/home/home.component'
+import { LoginGuardService } from './core/guards/login-guard.service'
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+    canActivate: [LoginGuardService],
     children: [
       {
         path: 'products',
@@ -28,7 +30,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { enableTracing: false })],
+  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

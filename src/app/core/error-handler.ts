@@ -4,7 +4,8 @@ import { MessageService } from 'primeng/components/common/messageservice'
 export class GlobalErrorHandler implements ErrorHandler {
   constructor(private message: MessageService) {}
   handleError(error) {
-    this.message.add(error)
+    console.log(error.message)
+    this.message.add(error.message)
     throw error
   }
 }
