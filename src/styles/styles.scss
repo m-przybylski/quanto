@@ -41,6 +41,25 @@ button {
 
 /**** MODULES ****/
 
+/* MENU */
+
+.ui-menu {
+  width: auto;
+  .ui-menuitem-link {
+    background-color: $accent-color;
+    color: $primary-color-text;
+    border-radius: 5px;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    &.ui-state-active {
+      background-color: $primary-color-dark;
+    }
+  }
+  .ui-menuitem-link:hover {
+    background-color: $primary-color;
+    color: $primary-color-text
+  }
+}
 /* FORMS - USER INPUT */
 %common-ui-input-border {
   width: 100%;

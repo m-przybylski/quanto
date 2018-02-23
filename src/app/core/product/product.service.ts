@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable'
 import { Product } from './products'
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database'
 import { ProductCategoryService } from './product-category.service'
-import { switchMap, map } from 'rxjs/operators'
+import { switchMap } from 'rxjs/operators'
 
 @Injectable()
 export class ProductService {

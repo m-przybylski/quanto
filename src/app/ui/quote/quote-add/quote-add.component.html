@@ -1,0 +1,26 @@
+<div class='layout-quote-add'>
+  <qto-header>
+    <span class='header--text'>Quote add</span>
+    <p-button icon="fa fa-fw fa-plus" iconPos="right" (click)='addQuote()' label='Add'></p-button>
+  </qto-header>
+  <form [formGroup]='quote' class='layout-quote-add-form'>
+    <p-dropdown [autoWidth]='false' [options]='company$ | async' formControlName='companyCrtl' optionLabel='name'></p-dropdown>
+    <span class='ui-float-label'>
+      <input formControlName='quoteNumberCtrl' type='text' pInputText>
+      <label>Quote Number</label>
+    </span>
+    <span class='ui-float-label'>
+      <input formControlName='expirationDateCtrl' type='text' pInputText>
+      <label>Expiration Date</label>
+    </span>
+    <span class='ui-float-label'>
+      <input formControlName='preparedByCtrl' type='text' pInputText>
+      <label>Prepared By</label>
+    </span>
+    <span class='ui-float-label'>
+      <input formControlName='clientCtrl' type='text' pInputText>
+      <label>Customer</label>
+    </span>
+    <p-dropdown [autoWidth]='false' [options]='products$ | async' formControlName='productCrtl' optionLabel='name'></p-dropdown>
+  </form>
+</div>

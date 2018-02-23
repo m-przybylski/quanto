@@ -1,0 +1,16 @@
+{
+  "company": [
+    {
+      "name": "company 1",
+      "address": "some address"
+    },
+    {
+      "name": "company 2",
+      "address": "some address"
+    },
+    {
+      "name": "company 3",
+      "address": "some address"
+    }
+  ]
+}

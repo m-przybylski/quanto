@@ -1,4 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core'
+import { Component, ChangeDetectionStrategy } from '@angular/core'
+import { QuoteService } from '../../../core/quote/quote.service'
+import { Observable } from 'rxjs/Observable'
 
 @Component({
   selector: 'qto-quote-list',
@@ -6,8 +8,13 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core'
   styleUrls: ['./quote-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QuoteListComponent implements OnInit {
-  constructor() {}
+export class QuoteListComponent {
+  public quotes$: Observable<any[]>
+  constructor(private quoteService: QuoteService) {
+    this.quotes$ = this.quoteService.getQuoteList()
+  }
 
-  ngOnInit() {}
+  public generatePDF() {
+    console.log('whooops, not implementes')
+  }
 }

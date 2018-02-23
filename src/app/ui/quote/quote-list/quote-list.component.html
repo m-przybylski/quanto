@@ -1,3 +1,25 @@
-<p>
-  quote-list works!
-</p>
+<div class='layout-quote-list'>
+  <qto-header>
+    <span class='header--text'>Quote List</span>
+    <p-button icon="fa fa-fw fa-plus" iconPos="right" routerLink='add' label='Add'></p-button>
+  </qto-header>
+  <p-dataList [value]='quotes$ | async' [paginator]='true' [rows]='5'>
+    <ng-template let-quote pTemplate='quote'>
+      <div class='quote-value'>
+        <div class='quote-item-kay'>ID: </div>
+        <div class='quote-item-value'>{{quote.id}}</div>
+        <div class='quote-item-kay'>Company: </div>
+        <div class='quote-item'>{{quote.company | json}}</div>
+        <div class='quote-item-products'>
+          <div class='quote-item-product' *ngFor='let product of quote.products'>
+            {{product | json}}
+          </div>
+        </div>
+      </div>
+      <div class='quote-options'>
+        <p-button routerLink='edit' label='edit'></p-button>
+        <p-button (click)='generatePDF()' label='pdf'></p-button>
+      </div>
+    </ng-template>
+  </p-dataList>
+</div>
