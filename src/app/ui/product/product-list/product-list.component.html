@@ -3,7 +3,7 @@
     <span class='header--text'>Products</span>
     <p-button icon="fa fa-fw fa-plus" iconPos="right" routerLink='add' label='Add'></p-button>
   </qto-header>
-  <p-dataList [value]='products$ | async' [paginator]='true' [rows]='5'>
+  <p-dataList [value]='productList' [paginator]='true' [rows]='5'>
     <ng-template let-product pTemplate='product'>
       <div class='product-list-item-container'>
         <div class='product-list-item-image'></div>
@@ -13,8 +13,10 @@
             <div class='detail-value'>{{product.sku}}</div>
             <div class='detail-header'>Item name</div>
             <div class='detail-value'>{{product.name}}</div>
-            <div class='detail-header'>Category</div>
-            <div class='detail-value'>{{product.category?.description}}</div>
+            <ng-template ngFor let-category [ngForOf]="product.categories">
+              <div class='detail-header'>Category</div>
+              <div class='detail-value'>{{category?.description}}</div>
+            </ng-template>
             <div class='detail-header'></div>
             <div class='detail-value'></div>
             <ng-template ngFor let-price [ngForOf]="product.price">

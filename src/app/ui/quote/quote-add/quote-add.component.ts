@@ -1,12 +1,10 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
-import { Observable } from 'rxjs/Observable'
 import { Product } from '../../../core/product/products'
-import { CompanyService } from '../../../core/company/company.service'
-import { ProductService } from '../../../core/product/product.service'
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { QuoteService } from '../../../core/quote/quote.service'
 import { Quote } from '../../../core/quote/quote'
+import { Company } from '../../../core/company/company'
 
 @Component({
   selector: 'qto-quote-add',
@@ -15,28 +13,29 @@ import { Quote } from '../../../core/quote/quote'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuoteAddComponent {
-  public console = console
   public quote: FormGroup
-  public products$: Observable<Product[]>
-  public company$: Observable<any>
+  public products: Product[]
+  public company: Company
+  public nextID: number
   public disabled = true
   constructor(
-    private companyService: CompanyService,
-    private productService: ProductService,
     private quoteService: QuoteService,
     private router: Router,
+    private route: ActivatedRoute,
   ) {
-    this.company$ = this.companyService.getCompanyList()
-    this.products$ = this.productService.getProducts()
+    this.company = this.route.snapshot.data.company
+    this.products = this.route.snapshot.data.products
+    this.nextID = this.route.snapshot.data.nextID
+
     this.quote = new FormGroup({
-      companyCrtl: new FormControl({
+      companyCrtl: new FormControl(this.company[0], {
         validators: Validators.required,
       }),
-      quoteNumberCtrl: new FormControl({ value: 1, disabled: true }),
+      quoteNumberCtrl: new FormControl({ value: this.nextID, disabled: true }),
       expirationDateCtrl: new FormControl(),
       preparedByCtrl: new FormControl(),
       clientCtrl: new FormControl(),
-      productCrtl: new FormControl(),
+      productCrtl: new FormControl(this.products[0]),
     })
   }
 

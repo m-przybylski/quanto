@@ -4,7 +4,7 @@
     <p-button icon="fa fa-fw fa-plus" iconPos="right" (click)='addQuote()' label='Add'></p-button>
   </qto-header>
   <form [formGroup]='quote' class='layout-quote-add-form'>
-    <p-dropdown [autoWidth]='false' [options]='company$ | async' formControlName='companyCrtl' optionLabel='name'></p-dropdown>
+    <p-dropdown [autoWidth]='false' [options]='company' formControlName='companyCrtl' optionLabel='name'></p-dropdown>
     <span class='ui-float-label'>
       <input formControlName='quoteNumberCtrl' type='text' pInputText>
       <label>Quote Number</label>
@@ -21,6 +21,6 @@
       <input formControlName='clientCtrl' type='text' pInputText>
       <label>Customer</label>
     </span>
-    <p-dropdown [autoWidth]='false' [options]='products$ | async' formControlName='productCrtl' optionLabel='name'></p-dropdown>
+    <p-dropdown [autoWidth]='false' [options]='products' formControlName='productCrtl' optionLabel='name'></p-dropdown>
   </form>
 </div>

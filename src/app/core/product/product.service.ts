@@ -1,65 +1,114 @@
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
-import { Product } from './products'
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database'
-import { ProductCategoryService } from './product-category.service'
-import { switchMap } from 'rxjs/operators'
+import { Product, ProductCategory, Price } from './products'
+import {
+  AngularFireDatabase,
+  AngularFireList,
+  AngularFireObject,
+} from 'angularfire2/database'
+import { switchMap, map } from 'rxjs/operators'
+import { AngularFireAuth } from 'angularfire2/auth'
 
 @Injectable()
 export class ProductService {
-  private productList: AngularFireList<Product>
-  constructor(
-    private database: AngularFireDatabase,
-    private _productCategory: ProductCategoryService,
-  ) {
-    this.productList = this.database.list<Product>('products')
+  private _productList: AngularFireList<ProductDatabase>
+  private _productCategories: AngularFireObject<ProductCategoryDatabase>
+  private _getProductBySKU
+  constructor(private database: AngularFireDatabase, auth: AngularFireAuth) {
+    this._productList = this.database.list<ProductDatabase>(
+      `${auth.auth.currentUser.uid}/products/`,
+    )
+
+    this._productCategories = this.database.object<ProductCategoryDatabase>(
+      `${auth.auth.currentUser.uid}/productCategories/`,
+    )
+    this._getProductBySKU = productSku =>
+      this.database.list<ProductDatabase>(
+        `${auth.auth.currentUser.uid}/products/${productSku}`,
+      )
   }
 
   public getProducts(): Observable<Product[]> {
-    return this._productCategory.getProductCategories().pipe(
+    return this._productCategories.valueChanges().pipe(
       switchMap(categories =>
-        this.productList.snapshotChanges().map(productsSnapshot =>
-          productsSnapshot.map(productSnapshot => ({
-            id: productSnapshot.key,
-            ...productSnapshot.payload.val(),
-            category: categories.find(
-              category =>
-                category.id === productSnapshot.payload.val().category,
-            ),
+        this._productList.valueChanges().map(products =>
+          products.map(product => ({
+            ...product,
+            categories: this.mapCategories(product.categories, categories),
           })),
         ),
       ),
     )
   }
-  public getProductBySKU(sku: string): Observable<Product[]> {
-    return this.database
-      .list<Product>('products', ref => ref.orderByChild('sku').equalTo(sku))
+  public getProductCategories(): Observable<ProductCategory[]> {
+    return this._productCategories
       .valueChanges()
+      .pipe(map(categories => this.mapAllCategories(categories)))
   }
-  /**this can be done better
-   * use streem to kill other streem maybe?
-   * maybe drop Promise??
-   */
-  public addProduct(product: Product): Promise<void> {
-    return new Promise((resolve, reject) => {
-      const sub = this.database
-        .list('products', ref => ref.orderByChild('sku').equalTo(product.sku))
-        .valueChanges()
-        .subscribe(dbProduct => {
-          if (dbProduct.length > 0) {
-            reject('Product with sku already exists')
-          } else {
-            this.productList.push(product)
-            resolve()
-          }
-          sub.unsubscribe()
-        })
-    })
+  public getProductBySKU(sku: string): Observable<Product[]> {
+    return this._getProductBySKU(sku).valueChanges()
+  }
+  public getCurrency() {
+    return [
+      { label: 'USD', value: 'USD' },
+      { label: 'EUR', value: 'EUR' },
+      { label: 'PLN', value: 'PLN' },
+    ]
+  }
+  public addEditProduct(product: Product): Promise<any> {
+    const productToBeInserted: ProductDatabase = {
+      sku: product.sku,
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      categories: product.categories.reduce((acc, category) => {
+        acc[category.name] = true
+        return Object.assign({}, { ...acc })
+      }, {}),
+    }
+    return this._productList.set(product.sku, productToBeInserted)
   }
 
-  public getProductById(key: string): Observable<Product[]> {
-    return this.database
-      .list<Product>('products', ref => ref.orderByKey().equalTo(key))
-      .valueChanges()
+  /**
+   * function to create a list of name: string, description: string values that represents product categories
+   * @param categories list of true/false values that that determines if specific category is assigned to our product
+   * @param categoryList list od all categories
+   */
+  private mapCategories(
+    categories: { [key: string]: boolean },
+    categoryList: ProductCategoryDatabase,
+  ): ProductCategory[] {
+    const result: ProductCategory[] = []
+    for (const category of Object.keys(categories)) {
+      if (categories[category] && categoryList[category]) {
+        result.push({
+          name: category,
+          ...categoryList[category],
+        })
+      }
+    }
+    return result
   }
+
+  private mapAllCategories(
+    categoryList: ProductCategoryDatabase,
+  ): ProductCategory[] {
+    const result: ProductCategory[] = []
+    for (const category of Object.keys(categoryList)) {
+      result.push({ name: category, ...categoryList[category] })
+    }
+    return result
+  }
+}
+
+interface ProductDatabase {
+  categories: { [key: string]: boolean }
+  name: string
+  sku: string
+  price: Price[]
+  description: string
+}
+
+interface ProductCategoryDatabase {
+  [key: string]: { description: string }
 }

@@ -1,0 +1,81 @@
+{
+  "7A54SxvKB9YTcbUU0inRYsQivDf1" : {
+    "productCategories" : {
+      "Consulting" : {
+        "description" : "Consulting"
+      },
+      "Hardware" : {
+        "description" : "Hardware"
+      },
+      "Shipping" : {
+        "description" : "Shipping"
+      },
+      "Software" : {
+        "description" : "Software"
+      },
+      "Support" : {
+        "description" : "Support"
+      },
+      "Training" : {
+        "description" : "Training"
+      }
+    },
+    "products" : {
+      "00123" : {
+        "categories" : {
+          "Consulting" : true
+        },
+        "name" : "test",
+        "price" : [ {
+          "currency" : "USD",
+          "price" : 350
+        } ],
+        "sku" : "00123"
+      },
+      "12334" : {
+        "categories" : {
+          "Software" : true
+        },
+        "name" : "fasdfasdf",
+        "price" : [ {
+          "currency" : "USD",
+          "price" : 123
+        }, {
+          "currency" : "USD",
+          "price" : 4444
+        } ],
+        "sku" : "12334"
+      }
+    },
+    "quote" : [ null, {
+      "company" : {
+        "address" : "some address",
+        "name" : "company 1"
+      },
+      "id" : 1,
+      "products" : [ {
+        "categories" : [ {
+          "description" : "Consulting",
+          "name" : "Consulting"
+        } ],
+        "name" : "test",
+        "price" : [ {
+          "currency" : "USD",
+          "price" : 350
+        } ],
+        "sku" : "00123"
+      } ]
+    } ],
+    "company" : [ {
+    "address" : "some address",
+    "name" : "company 1"
+  }, {
+    "address" : "some address",
+    "name" : "company 2"
+  }, {
+    "address" : "some address",
+    "name" : "company 3"
+  } ]
+
+  }
+}

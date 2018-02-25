@@ -1,7 +1,7 @@
 <div class='layout-product-add'>
   <qto-header>
     <span class='header-text'>Add Product</span>
-    <p-button type='button' (onClick)='postProduct()' [disabled]='product.invalid' label='Add' icon='fa fa-fw fa-plus' iconPos='right'></p-button>
+    <p-button type='button' (onClick)='postProduct()' [disabled]='!product.valid' label='Add' icon='fa fa-fw fa-plus' iconPos='right'></p-button>
   </qto-header>
   <form [formGroup]='product' class='layout-product-add-form'>
     <div class='product-add-prop'>
@@ -25,12 +25,12 @@
     </div>
     <div class='product-add-prop'>
       <label class='dropdown-label'>Product category</label>
-      <p-dropdown [autoWidth]='false' [options]='productCategory$ | async' formControlName='productCategoryCtrl' optionLabel='description'></p-dropdown>
+      <p-dropdown [autoWidth]='false' [options]='productCategories' formControlName='productCategoryCtrl' optionLabel='description'></p-dropdown>
     </div>
     <div class='product-add-prop-full-width' [ngClass]='{ "no-padding": last }' formArrayName='prices' *ngFor='let price of prices.controls; let i = index; let last = last'>
       <div class='product-price-line' [formGroupName]='i'>
         <label class='dropdown-label'>Currency</label>
-        <p-dropdown [options]='currencyListArray[i]' [disabled]='!last' [autoWidth]='false' formControlName='currency'></p-dropdown>
+        <p-dropdown [options]='currencyListArray[i]' [autoWidth]='false' formControlName='currency'></p-dropdown>
         <div class='price-value-input'>
           <span class='ui-float-label'>
             <input type='number' size='30' formControlName='price' pInputText>

@@ -1,5 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core'
-import { MessageService } from 'primeng/components/common/messageservice'
+import { ActivatedRoute } from '@angular/router'
+import { User } from '@firebase/auth-types'
+import { Observable } from 'rxjs/Observable'
 
 @Component({
   selector: 'qto-home',
@@ -8,7 +10,8 @@ import { MessageService } from 'primeng/components/common/messageservice'
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class HomeComponent {
-  constructor(private service: MessageService) {
-    this.service.messageObserver.subscribe(console.log)
+  user: Observable<User>
+  constructor(route: ActivatedRoute) {
+    this.user = route.snapshot.data.user
   }
 }

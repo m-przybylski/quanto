@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core'
-import { QuoteService } from '../../../core/quote/quote.service'
-import { Observable } from 'rxjs/Observable'
+import { ActivatedRoute } from '@angular/router'
+import { Quote } from '../../../core/quote/quote'
 
 @Component({
   selector: 'qto-quote-list',
@@ -9,9 +9,9 @@ import { Observable } from 'rxjs/Observable'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuoteListComponent {
-  public quotes$: Observable<any[]>
-  constructor(private quoteService: QuoteService) {
-    this.quotes$ = this.quoteService.getQuoteList()
+  public quotes: Quote[]
+  constructor(route: ActivatedRoute) {
+    this.quotes = route.snapshot.data.quotes
   }
 
   public generatePDF() {

@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core'
-import { ProductService } from '../../../core/product/product.service'
 import { Product, Price } from '../../../core/product/products'
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'qto-product-list',
@@ -10,9 +10,8 @@ import { Product, Price } from '../../../core/product/products'
 })
 export class ProductListComponent {
   productList: Product[]
-  public products$
-  constructor(private products: ProductService) {
-    this.products$ = this.products.getProducts()
+  constructor(route: ActivatedRoute) {
+    this.productList = route.snapshot.data.products
   }
 
   public getPrice(prices: Price[], currency: string): string {

@@ -1,5 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core'
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core'
 import { AngularFireAuth } from 'angularfire2/auth'
+import { User } from '@firebase/auth-types'
 
 @Component({
   selector: 'qto-topbar',
@@ -9,6 +10,7 @@ import { AngularFireAuth } from 'angularfire2/auth'
 })
 export class TopbarComponent {
   constructor(private auth: AngularFireAuth) {}
+  @Input() user: User
 
   public logout() {
     this.auth.auth.signOut()

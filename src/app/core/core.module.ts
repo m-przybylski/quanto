@@ -1,11 +1,21 @@
 import { CommonModule } from '@angular/common'
 import { NgModule, ModuleWithProviders } from '@angular/core'
-// import { ProductModule } from './product/product.module'
 import { AngularFireModule } from 'angularfire2'
 import { AngularFireDatabaseModule } from 'angularfire2/database'
 import { environment } from '../../environments/environment'
 import { AngularFireAuthModule } from 'angularfire2/auth'
 import { LoginGuardService } from './guards/login-guard.service'
+import { UserResolverService } from './resolvers/user-resolver.service'
+import { ProductResolverService } from './resolvers/product-resolver.service'
+import {
+  QuoteResolverService,
+  NewQuoteIDResolverService,
+} from './resolvers/quote-resolver.service'
+import { ProductService } from './product/product.service'
+import { ProductCategoryResolverService } from './resolvers/product-category-resolver.service'
+import { QuoteService } from './quote/quote.service'
+import { CompanyResolverService } from './resolvers/company-resolver.service'
+import { CompanyService } from './company/company.service'
 
 @NgModule({
   imports: [
@@ -22,10 +32,16 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
-        {
-          provide: LoginGuardService,
-          useClass: LoginGuardService,
-        },
+        { provide: LoginGuardService, useClass: LoginGuardService },
+        UserResolverService,
+        ProductCategoryResolverService,
+        ProductResolverService,
+        ProductService,
+        NewQuoteIDResolverService,
+        QuoteResolverService,
+        QuoteService,
+        CompanyResolverService,
+        CompanyService,
       ],
     }
   }

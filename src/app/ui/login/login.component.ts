@@ -23,8 +23,7 @@ export class LoginComponent {
         this.loginForm.controls.email.value,
         this.loginForm.controls.password.value,
       )
-      .then(a => {
-        console.log(a)
+      .then(() => {
         this.router.navigate(['/'])
       })
       .catch(err => {

@@ -3,7 +3,7 @@
     <span class='header--text'>Quote List</span>
     <p-button icon="fa fa-fw fa-plus" iconPos="right" routerLink='add' label='Add'></p-button>
   </qto-header>
-  <p-dataList [value]='quotes$ | async' [paginator]='true' [rows]='5'>
+  <p-dataList [value]='quotes' [paginator]='true' [rows]='5'>
     <ng-template let-quote pTemplate='quote'>
       <div class='quote-value'>
         <div class='quote-item-kay'>ID: </div>

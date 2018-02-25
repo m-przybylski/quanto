@@ -7,7 +7,6 @@ import { AngularFireAuth } from 'angularfire2/auth'
 export class LoginGuardService implements CanActivate {
   constructor(private auth: AngularFireAuth) {}
   canActivate(): Observable<boolean> {
-    this.auth.authState.subscribe(console.log)
     return this.auth.authState.map(val => !!val)
   }
 }

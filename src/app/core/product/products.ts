@@ -1,11 +1,10 @@
 export interface Product {
-  id?: string
   sku: string
   name: string
   price: Price[]
   description: string
   customFields?: { [key: string]: any }
-  category: string
+  categories: ProductCategory[]
 }
 
 export interface Price {
@@ -16,7 +15,6 @@ export interface Price {
 export type Currency = 'USD' | 'EUR'
 
 export interface ProductCategory {
-  id?: string
   name: string
   description: string
 }
