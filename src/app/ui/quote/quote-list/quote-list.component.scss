@@ -1,0 +1,76 @@
+@import '../../../../styles/variables';
+%quote-item-common {
+  padding: .5rem;
+}
+
+/*** LAYOUT ***/
+.layout-quote-item {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem 0rem 1rem 2rem;
+}
+.layout-quote-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.layout-quote-options {
+  flex: 0 0 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  &>* {
+    margin-right: 5px;
+  }
+  &>*:nth-last-child(1) {
+    margin-right: 0px;
+  }
+}
+.quote-item-key {
+  @extend %quote-item-common;
+  flex: 0 0 10%;
+  font-weight: 800;
+  text-align: right;
+}
+.quote-item-value {
+  @extend %quote-item-common;
+  flex: 0 0 23%;
+  text-align: left;
+}
+
+.quote-item-products {
+  @extend %quote-item-common;
+  flex: 0 0 100%;
+}
+/*** MODULES ***/
+
+/* TABLE */
+.products-table {
+  width: 100%;
+}
+thead > tr {
+  background-color: $primary-color;
+  color: $primary-color-text;
+}
+th {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  padding: .5em 0;
+}
+
+td { padding: .25em .5em; }
+
+td.number { text-align: right; }
+
+
+/* BORDERS */
+.layout-quote {
+  border: 1px solid $divider-color;
+}
+
+.layout-quote-options {
+  border-left: 2px solid $divider-color;
+}

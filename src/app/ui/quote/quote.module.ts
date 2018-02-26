@@ -15,6 +15,7 @@ import { ProductService } from '../../core/product/product.service'
 import { DropdownModule } from 'primeng/dropdown'
 import { InputTextModule } from 'primeng/inputtext'
 import { QuoteEditComponent } from './quote-edit/quote-edit.component'
+import { CalendarModule } from 'primeng/calendar'
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { QuoteEditComponent } from './quote-edit/quote-edit.component'
     DropdownModule,
     HeaderModule,
     DataListModule,
+    CalendarModule,
   ],
   providers: [QuoteService, CompanyService, ProductService],
   declarations: [QuoteListComponent, QuoteAddComponent, QuoteEditComponent],

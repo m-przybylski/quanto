@@ -1,4 +1,37 @@
 {
+  "xFYJcBT22JeKgFgLNM2TwTPMuml1": {
+    "productCategories" : {
+      "Consulting" : {
+        "description" : "Consulting"
+      },
+      "Hardware" : {
+        "description" : "Hardware"
+      },
+      "Shipping" : {
+        "description" : "Shipping"
+      },
+      "Software" : {
+        "description" : "Software"
+      },
+      "Support" : {
+        "description" : "Support"
+      },
+      "Training" : {
+        "description" : "Training"
+      }
+    },
+    "company" : [ {
+    "address" : "some address",
+    "name" : "company 1"
+  }, {
+    "address" : "some address",
+    "name" : "company 2"
+  }, {
+    "address" : "some address",
+    "name" : "company 3"
+  } ]
+
+  },
   "7A54SxvKB9YTcbUU0inRYsQivDf1" : {
     "productCategories" : {
       "Consulting" : {

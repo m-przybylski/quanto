@@ -2,33 +2,22 @@
 @import 'variables';
 /**** BASE ****/
 
-html body {  
-  
-  color: $primary-text-color;
-}
-
+html body { color: $primary-text-color; }
 html {
   height: 100%;
   font-size: $font-size;
 }
-
 body {
   font-family: $font-family;
   min-height: 100%;
 }
-
-input {
-  font: inherit;
-}
-
-div {
-  box-sizing: border-box;
-}
-
-a {
-  text-decoration: none;
-}
-
+input { font: inherit; }
+div { box-sizing: border-box; }
+a { text-decoration: none; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
 button {
   border: 1px solid $accent-color;
   border-radius: 5px;
@@ -175,6 +164,24 @@ button {
   }
 }
 
+/* UI - CALLENDAR */
+.ui-calendar {
+  width: 100%;
+}
+
+.ui-datepicker {
+  background-color: $white;
+  a {
+    color: $primary-text-color;
+  }
+}
+
+.ui-datepicker-today {
+  background-color: $accent-color;
+  a {
+    color: $primary-color-text;
+  }
+}
 /**** STATE ****/
 
 /**** THEMES ****/
