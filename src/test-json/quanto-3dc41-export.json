@@ -1,38 +1,42 @@
 {
-  "xFYJcBT22JeKgFgLNM2TwTPMuml1": {
-    "productCategories" : {
-      "Consulting" : {
-        "description" : "Consulting"
-      },
-      "Hardware" : {
-        "description" : "Hardware"
-      },
-      "Shipping" : {
-        "description" : "Shipping"
-      },
-      "Software" : {
-        "description" : "Software"
-      },
-      "Support" : {
-        "description" : "Support"
-      },
-      "Training" : {
-        "description" : "Training"
+  "7A54SxvKB9YTcbUU0inRYsQivDf1" : {
+    "client" : {
+      "asfas" : {
+        "bill" : {
+          "city" : "asdf",
+          "contanctAddress" : "asf",
+          "contanctEmail" : "asfd",
+          "contanctName" : "asdf",
+          "country" : "asdf",
+          "name" : "asf",
+          "postalCode" : "asdf"
+        },
+        "name" : "asfas",
+        "ship" : {
+          "city" : "asf",
+          "contanctAddress" : "asf",
+          "contanctEmail" : "asf",
+          "contanctName" : "asf",
+          "country" : "asfd",
+          "name" : "asfas",
+          "postalCode" : "asf"
+        }
       }
     },
-    "company" : [ {
-    "address" : "some address",
-    "name" : "company 1"
-  }, {
-    "address" : "some address",
-    "name" : "company 2"
-  }, {
-    "address" : "some address",
-    "name" : "company 3"
-  } ]
-
-  },
-  "7A54SxvKB9YTcbUU0inRYsQivDf1" : {
+    "company" : {
+      "company 1" : {
+        "address" : "some address",
+        "name" : "company 1"
+      },
+      "company 2" : {
+        "address" : "some address",
+        "name" : "company 2"
+      },
+      "company 3" : {
+        "address" : "some address",
+        "name" : "company 3"
+      }
+    },
     "productCategories" : {
       "Consulting" : {
         "description" : "Consulting"
@@ -80,35 +84,88 @@
         "sku" : "12334"
       }
     },
-    "quote" : [ null, {
-      "company" : {
-        "address" : "some address",
-        "name" : "company 1"
-      },
+    "quote" : [{
+      "client" : "asfas",
+      "company" : "company 1",
       "id" : 1,
+      "preparedBy" : "asdfsadf",
       "products" : [ {
-        "categories" : [ {
-          "description" : "Consulting",
-          "name" : "Consulting"
-        } ],
-        "name" : "test",
-        "price" : [ {
-          "currency" : "USD",
-          "price" : 350
-        } ],
-        "sku" : "00123"
+        "discount" : 0,
+        "product" : "12334",
+        "quantity" : 12
+      }, {
+        "discount" : 0,
+        "product" : "00123",
+        "quantity" : 33
+      }, {
+        "discount" : 0,
+        "product" : "00123",
+        "quantity" : 56
       } ]
-    } ],
+    }, {
+      "client" : "fasfasf",
+      "company" : "company 2",
+      "id" : 2,
+      "preparedBy" : "sfsafas",
+      "products" : [ {
+        "discount" : 0,
+        "product" : "00123",
+        "quantity" : 10
+      }, {
+        "discount" : 0,
+        "product" : "12334",
+        "quantity" : 20
+      }, {
+        "discount" : 0,
+        "product" : "12334",
+        "quantity" : 33
+      } ]
+    }, {
+      "client" : "asfas",
+      "company" : "company 1",
+      "id" : 3,
+      "preparedBy" : "sfsaf",
+      "products" : [ {
+        "discount" : 0,
+        "product" : "00123",
+        "quantity" : 12
+      }, {
+        "discount" : 0,
+        "product" : "00123",
+        "quantity" : 33
+      } ]
+    } ]
+  },
+  "xFYJcBT22JeKgFgLNM2TwTPMuml1" : {
     "company" : [ {
-    "address" : "some address",
-    "name" : "company 1"
-  }, {
-    "address" : "some address",
-    "name" : "company 2"
-  }, {
-    "address" : "some address",
-    "name" : "company 3"
-  } ]
-
+      "address" : "some address",
+      "name" : "company 1"
+    }, {
+      "address" : "some address",
+      "name" : "company 2"
+    }, {
+      "address" : "some address",
+      "name" : "company 3"
+    } ],
+    "productCategories" : {
+      "Consulting" : {
+        "description" : "Consulting"
+      },
+      "Hardware" : {
+        "description" : "Hardware"
+      },
+      "Shipping" : {
+        "description" : "Shipping"
+      },
+      "Software" : {
+        "description" : "Software"
+      },
+      "Support" : {
+        "description" : "Support"
+      },
+      "Training" : {
+        "description" : "Training"
+      }
+    }
   }
 }

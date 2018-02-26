@@ -6,9 +6,8 @@ import { SidebarModule } from '../shared/sidebar/sidebar.module'
 import { TopbarModule } from '../shared/topbar/topbar.module'
 import { RouterModule } from '@angular/router'
 import { GrowlModule } from 'primeng/growl'
-import { MessageService } from 'primeng/components/common/messageservice'
 import { CoreModule } from '../core/core.module'
-
+import { MessageService } from 'primeng/components/common/messageservice'
 @NgModule({
   imports: [
     CommonModule,

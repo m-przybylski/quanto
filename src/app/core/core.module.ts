@@ -16,6 +16,7 @@ import { ProductCategoryResolverService } from './resolvers/product-category-res
 import { QuoteService } from './quote/quote.service'
 import { CompanyResolverService } from './resolvers/company-resolver.service'
 import { CompanyService } from './company/company.service'
+import { ClientResolverService } from './resolvers/client-resolver.service'
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ export class CoreModule {
         ProductResolverService,
         ProductService,
         NewQuoteIDResolverService,
+        ClientResolverService,
         QuoteResolverService,
         QuoteService,
         CompanyResolverService,

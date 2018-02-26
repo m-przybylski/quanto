@@ -9,6 +9,7 @@ import {
 } from '../../core/resolvers/quote-resolver.service'
 import { CompanyResolverService } from '../../core/resolvers/company-resolver.service'
 import { ProductResolverService } from '../../core/resolvers/product-resolver.service'
+import { ClientResolverService } from '../../core/resolvers/client-resolver.service'
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
       company: CompanyResolverService,
       nextID: NewQuoteIDResolverService,
       products: ProductResolverService,
+      clients: ClientResolverService,
     },
   },
   {

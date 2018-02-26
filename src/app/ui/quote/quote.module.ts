@@ -16,6 +16,7 @@ import { DropdownModule } from 'primeng/dropdown'
 import { InputTextModule } from 'primeng/inputtext'
 import { QuoteEditComponent } from './quote-edit/quote-edit.component'
 import { CalendarModule } from 'primeng/calendar'
+import { AutoCompleteModule } from 'primeng/autocomplete'
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { CalendarModule } from 'primeng/calendar'
     HeaderModule,
     DataListModule,
     CalendarModule,
+    AutoCompleteModule,
   ],
   providers: [QuoteService, CompanyService, ProductService],
   declarations: [QuoteListComponent, QuoteAddComponent, QuoteEditComponent],

@@ -15,9 +15,11 @@ import { Company } from '../../../core/company/company'
 export class QuoteAddComponent {
   public quote: FormGroup
   public products: Product[]
+  public filteredCustomer: Client[]
   public company: Company
   public nextID: number
   public disabled = true
+  private clientList: Client[]
   private clientShipGroup: FormGroup
   private clientBillGroup: FormGroup
   public productsArrayCtrl: FormArray
@@ -30,6 +32,7 @@ export class QuoteAddComponent {
     this.company = this.route.snapshot.data.company
     this.products = this.route.snapshot.data.products
     this.nextID = this.route.snapshot.data.nextID || 1
+    this.clientList = this.route.snapshot.data.clients
     this.productsArrayCtrl = new FormArray([this.createProductItem()])
     this.clientShipGroup = new FormGroup({
       nameCtrl: new FormControl(),
@@ -89,9 +92,23 @@ export class QuoteAddComponent {
   public removeProduct(i: number): void {
     this.productsArrayCtrl.removeAt(i)
   }
+  public filterCustomer(event) {
+    const query = event.query
+    this.filteredCustomer = this.clientList.filter(client =>
+      client.name.includes(query),
+    )
+  }
+  public selectCustomer(event: Client) {
+    this.clientShipGroup.setValue(this.intractPartialClientInfo(event.ship))
+    this.clientBillGroup.setValue(this.intractPartialClientInfo(event.bill))
+  }
   private extractClientInfo(): Client {
+    let name = this.quote.controls.clientCtrl.value
+    if (name.name !== undefined) {
+      name = name.name
+    }
     const result: Client = {
-      name: this.quote.controls.clientCtrl.value,
+      name,
       ship: this.extractPartialClientInfo(this.clientShipGroup),
       bill: this.extractPartialClientInfo(this.clientBillGroup),
     }
@@ -106,6 +123,17 @@ export class QuoteAddComponent {
       city: group.controls.cityCtrl.value,
       postalCode: group.controls.postalCodeCtrl.value,
       country: group.controls.countryCtrl.value,
+    }
+  }
+  private intractPartialClientInfo(info: ClientInfo) {
+    return {
+      nameCtrl: info.name,
+      contanctNameCtrl: info.contanctName,
+      contanctEmailCtrl: info.contanctEmail,
+      contanctAddressCtrl: info.contanctAddress,
+      cityCtrl: info.city,
+      postalCodeCtrl: info.postalCode,
+      countryCtrl: info.country,
     }
   }
   private extractProductInfo(

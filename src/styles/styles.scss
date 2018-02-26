@@ -163,8 +163,21 @@ button {
     color: $primary-color-text;
   }
 }
-
-/* UI - CALLENDAR */
+/* FORMS - AUTOCOMPLETE */
+.ui-autocomplete {
+  width: 100%;
+}
+.ui-autocomplete-panel {
+  background-color: $white;
+  & .ui-autocomplete-items {
+    padding: 0px;
+  }
+}
+.ui-autocomplete-list-item:hover {
+  background-color: $primary-color-light;
+  color: $primary-color-text;  
+}
+/* FORMS - CALLENDAR */
 .ui-calendar {
   width: 100%;
 }
