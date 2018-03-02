@@ -1,34 +1,15 @@
-import { Injectable, InjectionToken, Inject } from '@angular/core'
-import * as JSPDF from 'jspdf'
-import { pageFormats } from './page-format'
-
-export const PDFConfig = new InjectionToken<JSPDFConfig>(
-  'PDF Configuration injected from module',
-)
-
-export interface JSPDFConfig {
-  orientation: 'portrait' | 'landscape' | 'p' | 'l'
-  unit: 'pt' | 'mm' | 'cm' | 'in'
-  format: pageFormats
-  compressPdf: boolean
-}
+import { Injectable } from '@angular/core'
+import { JsPDF } from './js-pdf.service'
+import { Quote } from '../quote/quote'
 
 @Injectable()
 export class PdfService {
-  jsPDF = new JSPDF()
-  constructor() {}
+  constructor(private jsPDF: JsPDF) {}
 
-  public generatePdf(fineName) {
-    console.log('here')
+  public generatePdf(fineName: string, quote: Quote) {
+    if (quote) {
+      this.jsPDF.text(quote.company.name, 0, 0)
+    }
     this.jsPDF.save(fineName)
-  }
-}
-@Injectable()
-export class JsPDF extends JSPDF {
-  public config
-  constructor(@Inject(PDFConfig) config: JSPDFConfig) {
-    let orientation, unit, format, compressPdf
-    ;({ orientation, unit, format, compressPdf } = config)
-    super(orientation, unit, format, compressPdf)
   }
 }

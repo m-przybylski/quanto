@@ -28,7 +28,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'edit',
+    path: 'edit/:id',
     component: QuoteEditComponent,
   },
   { path: '**', redirectTo: '/' },

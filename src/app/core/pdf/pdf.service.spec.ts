@@ -1,26 +1,21 @@
-import { PdfService, JsPDF } from './pdf.service'
-import { TestBed, inject } from '@angular/core/testing'
+import { PdfService } from './pdf.service'
 import { Deceiver } from 'deceiver-core'
+import { JsPDF } from './js-pdf.service'
 
 describe('PdfService', () => {
   const JsPDFmock = Deceiver(JsPDF)
+  const saveFunction = (JsPDFmock.save = jasmine.createSpy('saveFinction'))
+  let service: PdfService
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [PdfService, { provide: JsPDF, useValue: JsPDFmock }],
-    })
+    service = new PdfService(JsPDFmock)
   })
 
-  it(
-    'should be created',
-    inject([PdfService], (service: PdfService) => {
-      expect(service).toBeTruthy()
-    }),
-  )
+  it('should be created', () => {
+    expect(service).toBeTruthy()
+  })
 
-  it(
-    'should generate pdf',
-    inject([PdfService], (service: PdfService) => {
-      expect(service).toBeTruthy()
-    }),
-  )
+  it('should generate pdf', () => {
+    service.generatePdf('someName', null)
+    expect(saveFunction).toHaveBeenCalledWith('someName')
+  })
 })

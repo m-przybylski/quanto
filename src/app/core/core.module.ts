@@ -17,7 +17,10 @@ import { QuoteService } from './quote/quote.service'
 import { CompanyResolverService } from './resolvers/company-resolver.service'
 import { CompanyService } from './company/company.service'
 import { ClientResolverService } from './resolvers/client-resolver.service'
-import { PdfService, PDFConfig, JSPDFConfig } from './pdf/pdf.service'
+import { PdfService } from './pdf/pdf.service'
+import { JSPDFConfig } from './pdf/interfaces/js-pdf-config'
+import { PDFConfig } from './pdf/interfaces/tokens'
+import { JsPDF } from './pdf/js-pdf.service'
 
 const PDFConfigVariable: JSPDFConfig = {
   orientation: 'p',
@@ -54,6 +57,7 @@ export class CoreModule {
         CompanyResolverService,
         CompanyService,
         PdfService,
+        JsPDF,
       ],
     }
   }

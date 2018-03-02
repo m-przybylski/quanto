@@ -17,6 +17,7 @@ import { InputTextModule } from 'primeng/inputtext'
 import { QuoteEditComponent } from './quote-edit/quote-edit.component'
 import { CalendarModule } from 'primeng/calendar'
 import { AutoCompleteModule } from 'primeng/autocomplete'
+import { QuoteFormComponent } from './quote-form/quote-form.component'
 
 @NgModule({
   imports: [
@@ -33,6 +34,11 @@ import { AutoCompleteModule } from 'primeng/autocomplete'
     AutoCompleteModule,
   ],
   providers: [QuoteService, CompanyService, ProductService],
-  declarations: [QuoteListComponent, QuoteAddComponent, QuoteEditComponent],
+  declarations: [
+    QuoteListComponent,
+    QuoteAddComponent,
+    QuoteEditComponent,
+    QuoteFormComponent,
+  ],
 })
 export class QuoteModule {}
