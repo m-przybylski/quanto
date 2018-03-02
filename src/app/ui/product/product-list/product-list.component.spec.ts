@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { ProductListComponent } from './product-list.component'
+import { ButtonModule } from 'primeng/button'
+import { HeaderModule } from '../../../shared/header/header.module'
+import { DataListModule } from 'primeng/datalist'
+import { RouterTestingModule } from '@angular/router/testing'
 
 describe('ProductListComponent', () => {
   let component: ProductListComponent
@@ -9,6 +13,12 @@ describe('ProductListComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
+        imports: [
+          HeaderModule,
+          DataListModule,
+          ButtonModule,
+          RouterTestingModule,
+        ],
         declarations: [ProductListComponent],
       }).compileComponents()
     }),

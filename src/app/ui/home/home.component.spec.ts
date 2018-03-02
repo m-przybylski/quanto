@@ -4,6 +4,9 @@ import { HomeComponent } from './home.component'
 import { ToolbarModule } from 'primeng/toolbar'
 import { SharedModule } from '../../shared/shared.module'
 import { RouterTestingModule } from '@angular/router/testing'
+import { GrowlModule } from 'primeng/growl'
+import { SidebarModule } from '../../shared/sidebar/sidebar.module'
+import { TopbarModule } from '../../shared/topbar/topbar.module'
 
 describe('HomeComponent', () => {
   let component: HomeComponent
@@ -12,7 +15,14 @@ describe('HomeComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        imports: [ToolbarModule, SharedModule, RouterTestingModule],
+        imports: [
+          ToolbarModule,
+          SharedModule,
+          RouterTestingModule,
+          GrowlModule,
+          SidebarModule,
+          TopbarModule,
+        ],
         declarations: [HomeComponent],
       }).compileComponents()
     }),

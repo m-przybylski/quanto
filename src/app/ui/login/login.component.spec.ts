@@ -1,25 +1,38 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { LoginComponent } from './login.component';
+import { LoginComponent } from './login.component'
+import { ReactiveFormsModule } from '@angular/forms'
+import { ButtonModule } from 'primeng/button'
+import { Deceiver } from 'deceiver-core'
+import { AngularFireAuth } from 'angularfire2/auth'
+// import { AngularFireDatabase } from 'angularfire2/database'
 
 describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+  let component: LoginComponent
+  let fixture: ComponentFixture<LoginComponent>
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(
+    async(() => {
+      // const AngularFirestoreMock = Deceiver(AngularFireDatabase)
+      const AngularFireAuthMock = Deceiver(AngularFireAuth)
+
+      TestBed.configureTestingModule({
+        imports: [ReactiveFormsModule, ButtonModule],
+        providers: [
+          { provide: AngularFireAuth, useClass: AngularFireAuthMock },
+        ],
+        declarations: [LoginComponent],
+      }).compileComponents()
+    }),
+  )
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(LoginComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})
