@@ -1,23 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'variables';
+
 /**** BASE ****/
 
-html body { color: $primary-text-color; }
+html body {
+  color: $primary-text-color;
+}
+
 html {
   height: 100%;
   font-size: $font-size;
 }
+
 body {
   font-family: $font-family;
   min-height: 100%;
 }
-input { font: inherit; }
-div { box-sizing: border-box; }
-a { text-decoration: none; }
-h1 { font-size: 2rem; }
-h2 { font-size: 1.75rem; }
-h3 { font-size: 1.5rem; }
-h4 { font-size: 1.25rem; }
+
+input {
+  font: inherit;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
 button {
   border: 1px solid $accent-color;
   border-radius: 5px;
@@ -35,30 +62,33 @@ button {
   background-color: $primary-color-light;
   height: 6px;
   position: absolute;
-  z-index:40;
+  z-index: 40;
   width: 100%;
 }
 
-.ui-progressbar-value { 
+.ui-progressbar-value {
   background-color: $primary-color-dark;
 }
 
 /* MENU */
 .ui-menu {
   width: auto;
+
   .ui-menuitem-link {
     background-color: $accent-color;
     color: $primary-color-text;
     border-radius: 5px;
     padding-top: 1em;
     padding-bottom: 1em;
+
     &.ui-state-active {
       background-color: $primary-color-dark;
     }
   }
+
   .ui-menuitem-link:hover {
     background-color: $primary-color;
-    color: $primary-color-text
+    color: $primary-color-text;
   }
 }
 
@@ -67,6 +97,7 @@ button {
   background: $primary-color-dark;
   color: $primary-color-text;
 }
+
 /* FORMS - USER INPUT */
 %common-ui-input-border {
   width: 100%;
@@ -82,6 +113,7 @@ button {
 %common-ui-input-focus-border {
   border-bottom: 2px solid $primary-color;
 }
+
 %common-ui-input-focus {
   padding-bottom: 0px;
 }
@@ -96,11 +128,11 @@ button {
   color: $primary-text-color;
 }
 
-.ui-float-label>input:focus ~ label,
-.ui-float-label>input.ui-state-filled ~ label,
-.ui-float-label>.ui-inputwrapper-focus ~ label,
-.ui-float-label>.ui-inputwrapper-filled ~ label {
-  font-size: .75em;
+.ui-float-label > input:focus ~ label,
+.ui-float-label > input.ui-state-filled ~ label,
+.ui-float-label > .ui-inputwrapper-focus ~ label,
+.ui-float-label > .ui-inputwrapper-filled ~ label {
+  font-size: 0.75em;
 }
 
 .ui-inputtext:focus {
@@ -109,20 +141,23 @@ button {
 }
 
 .ui-state-disabled {
-  opacity: .6;
+  opacity: 0.6;
 }
 
 /* FORMS - SELECT */
 .ui-dropdown {
   @extend %common-ui-input-border;
+
   label {
     line-height: normal;
   }
+
   .ui-dropdown-trigger {
     margin-top: -1px;
+
     .fa {
-      margin-top: .2em;
-      margin-left: 0; 
+      margin-top: 0.2em;
+      margin-left: 0;
     }
   }
 }
@@ -131,52 +166,60 @@ button {
   @extend %common-ui-input-focus-border;
 }
 
-.ui-dropdown.ui-state-focus .ui-dropdown-label{
+.ui-dropdown.ui-state-focus .ui-dropdown-label {
   @extend %common-ui-input-focus;
 }
 
 .dropdown-label {
-  font-size: .75rem;
+  font-size: 0.75rem;
   position: absolute;
   top: -1.25em;
 }
 
 .fa-caret-down:before {
-  content: '\f107'
+  content: '\f107';
 }
+
 .ui-dropdown-panel {
   background-color: $white;
+
   & .ui-dropdown-list {
     padding: 0px;
   }
 }
 
-.ui-dropdown-item:hover{
+.ui-dropdown-item:hover {
   background-color: $primary-color-light;
   color: $primary-color-text;
 }
 
 .ui-dropdown-item {
   background-color: $white;
-  &.ui-state-highlight{
+
+  &.ui-state-highlight {
     background-color: $primary-color;
     color: $primary-color-text;
   }
 }
+
 /* FORMS - AUTOCOMPLETE */
 .ui-autocomplete {
   width: 100%;
 }
+
 .ui-autocomplete-panel {
   background-color: $white;
+
   & .ui-autocomplete-items {
     padding: 0px;
   }
 }
+
 .ui-autocomplete-list-item:hover {
   background-color: $primary-color-light;
-  color: $primary-color-text;  
+  color: $primary-color-text;
 }
+
 /* FORMS - CALLENDAR */
 .ui-calendar {
   width: 100%;
@@ -184,6 +227,7 @@ button {
 
 .ui-datepicker {
   background-color: $white;
+
   a {
     color: $primary-text-color;
   }
@@ -191,10 +235,12 @@ button {
 
 .ui-datepicker-today {
   background-color: $accent-color;
+
   a {
     color: $primary-color-text;
   }
 }
+
 /**** STATE ****/
 
 /**** THEMES ****/

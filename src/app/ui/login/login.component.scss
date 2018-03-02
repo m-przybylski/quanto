@@ -1,4 +1,5 @@
 @import '../../../styles/variables';
+
 .layout-login-page {
   position: fixed;
   width: 100%;
@@ -11,11 +12,11 @@
   font-size: 2rem;
   width: 500px;
   background-color: $white;
-  border: .25em solid $primary-color;
+  border: 0.25em solid $primary-color;
   border-radius: 10px;
   position: relative;
-  top:30%;
-  left:50%;
+  top: 30%;
+  left: 50%;
   transform: translateX(-50%);
 }
 
@@ -54,10 +55,11 @@
   transform: translateX(-50%);
   width: 500px;
   background-color: $primary-color;
-  border: .25em solid $primary-color;
+  border: 0.25em solid $primary-color;
   border-radius: 10px;
   color: $white;
   padding: 2rem 2rem;
+
   &-message {
     margin-left: 1rem;
   }

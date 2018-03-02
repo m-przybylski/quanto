@@ -1,16 +1,19 @@
 @import '../../../../styles/variables';
-  
+
 .layout-topbar {
   width: calc(100% - 240px);
   z-index: 20;
   position: fixed;
   height: $topbar-height;
   background-color: $primary-color;
-  color: $primary-color-text;}
-  a{
-    color: $primary-color-text;}
+  color: $primary-color-text;
+}
 
-.layout-topbar-menu-wrapper{
+a {
+  color: $primary-color-text;
+}
+
+.layout-topbar-menu-wrapper {
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -19,18 +22,26 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
   padding-left: 3rem;
-  padding-right: 3rem;}
+  padding-right: 3rem;
+}
 
-.layout-topbar-menu-left
-  {order: 0;}
-  li
-    {margin-right: 1rem;}
+.layout-topbar-menu-left {
+  order: 0;
+}
 
-.layout-topbar-menu-right
-  {order: 1;}
-  li
-    {margin-left: 1rem;}
+li {
+  margin-right: 1rem;
+}
 
-ul
-  {display: flex;
-  flex-direction: row;}
+.layout-topbar-menu-right {
+  order: 1;
+}
+
+li {
+  margin-left: 1rem;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+}

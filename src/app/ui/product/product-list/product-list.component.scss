@@ -1,8 +1,10 @@
 @import '../../../../styles/variables';
-.layout-product-list{
+
+.layout-product-list {
   min-height: 100%;
   color: $primary-text-color;
-  border: 1px solid $divider-color;}
+  border: 1px solid $divider-color;
+}
 
 .product-list-item-container {
   width: 100%;
@@ -12,14 +14,14 @@
   padding-bottom: 1rem;
   padding-left: 2rem;
   padding-right: 2rem;
-
 }
 
 .product-list-item-header {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  &>div {
+
+  & > div {
     padding-left: 1rem;
     padding-right: 1rem;
     padding-bottom: 1rem;
@@ -42,6 +44,7 @@
   flex: 1 0 0px;
   border-right: 2px solid $divider-color;
 }
+
 .product-list-item-details {
   flex: 2 0 0px;
   padding: 0 1rem;
@@ -50,6 +53,7 @@
 .product-list-item-desc {
   padding: 1rem;
   background-color: $divider-color;
+
   strong {
     font-weight: 700;
   }

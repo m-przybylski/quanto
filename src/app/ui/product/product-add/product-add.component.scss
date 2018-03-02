@@ -12,7 +12,8 @@
   padding: 2rem 1rem;
 }
 
-.product-add-prop, .product-add-prop-full-width {
+.product-add-prop,
+.product-add-prop-full-width {
   padding-bottom: 3.25rem;
   position: relative;
 }
@@ -20,6 +21,7 @@
 .product-add-prop:nth-child(odd) {
   flex: 0 0 16%;
 }
+
 .product-add-prop:nth-child(even) {
   flex: 0 0 84%;
   padding-left: 1rem;
@@ -55,8 +57,8 @@
 
 .ui-input-error {
   position: absolute;
-  font-size: .75em;
+  font-size: 0.75em;
   color: $primary-color;
   padding-left: 1em;
-  padding-top: .5em;
+  padding-top: 0.5em;
 }

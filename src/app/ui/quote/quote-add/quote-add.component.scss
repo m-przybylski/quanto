@@ -11,12 +11,13 @@
 
 .quote-add-segment-header {
   font-weight: 700;
-  padding: 0 0 .75rem 1.75rem;
+  padding: 0 0 0.75rem 1.75rem;
   border-bottom: 2px solid $divider-color;
 }
+
 .quote-add-sub-segment-header {
   font-weight: 700;
-  padding: 0 0 .5rem 2rem;
+  padding: 0 0 0.5rem 2rem;
   border-bottom: 1px solid $divider-color;
 }
 
@@ -43,10 +44,11 @@
   display: none;
 }
 
-.quote-add-segment-details:nth-last-child(1) .quote-add-prop { 
+.quote-add-segment-details:nth-last-child(1) .quote-add-prop {
   .add-product-button {
     display: inline-block;
   }
+
   .remove-product-button {
     display: none;
   }

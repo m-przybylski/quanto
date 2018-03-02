@@ -1,6 +1,7 @@
 @import '../../../../styles/variables';
+
 %quote-item-common {
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
 /*** LAYOUT ***/
@@ -9,31 +10,37 @@
   flex-direction: row;
   padding: 1rem 0rem 1rem 2rem;
 }
+
 .layout-quote-details {
   flex-grow: 1;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
+
 .layout-quote-options {
   flex: 0 0 200px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  &>* {
+
+  & > * {
     margin-right: 5px;
   }
-  &>*:nth-last-child(1) {
+
+  & > *:nth-last-child(1) {
     margin-right: 0px;
   }
 }
+
 .quote-item-key {
   @extend %quote-item-common;
   flex: 0 0 10%;
   font-weight: 800;
   text-align: right;
 }
+
 .quote-item-value {
   @extend %quote-item-common;
   flex: 0 0 23%;
@@ -44,27 +51,33 @@
   @extend %quote-item-common;
   flex: 0 0 100%;
 }
+
 /*** MODULES ***/
 
 /* TABLE */
 .products-table {
   width: 100%;
 }
+
 thead > tr {
   background-color: $primary-color;
   color: $primary-color-text;
 }
+
 th {
   font-size: 1.25rem;
   font-weight: 600;
   text-align: center;
-  padding: .5em 0;
+  padding: 0.5em 0;
 }
 
-td { padding: .25em .5em; }
+td {
+  padding: 0.25em 0.5em;
+}
 
-td.number { text-align: right; }
-
+td.number {
+  text-align: right;
+}
 
 /* BORDERS */
 .layout-quote {

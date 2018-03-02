@@ -1,9 +1,10 @@
 @import '../../../styles/variables';
+
 a {
   color: $primary-color-text;
 }
 
-.layout-sidebar{
+.layout-sidebar {
   width: $sidebar-width;
   position: fixed;
   top: 0;
@@ -14,7 +15,7 @@ a {
   box-shadow: rgba(0, 0, 0, 0.3) 3px 0px 6px 0px;
 }
 
-.sidebar-logo{
+.sidebar-logo {
   height: $topbar-height;
   background-color: $primary-color-dark;
   color: $primary-color-text;
