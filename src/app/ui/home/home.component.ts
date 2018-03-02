@@ -1,7 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { User } from '@firebase/auth-types'
-import { Observable } from 'rxjs/Observable'
+import { UserInfo } from '@firebase/auth-types'
 
 @Component({
   selector: 'qto-home',
@@ -10,7 +9,7 @@ import { Observable } from 'rxjs/Observable'
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class HomeComponent {
-  user: Observable<User>
+  user: UserInfo
   constructor(route: ActivatedRoute) {
     this.user = route.snapshot.data.user
   }

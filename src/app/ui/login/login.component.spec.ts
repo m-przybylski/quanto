@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { ButtonModule } from 'primeng/button'
 import { Deceiver } from 'deceiver-core'
 import { AngularFireAuth } from 'angularfire2/auth'
+import { RouterTestingModule } from '@angular/router/testing'
 // import { AngularFireDatabase } from 'angularfire2/database'
 
 describe('LoginComponent', () => {
@@ -17,9 +18,9 @@ describe('LoginComponent', () => {
       const AngularFireAuthMock = Deceiver(AngularFireAuth)
 
       TestBed.configureTestingModule({
-        imports: [ReactiveFormsModule, ButtonModule],
+        imports: [ReactiveFormsModule, ButtonModule, RouterTestingModule],
         providers: [
-          { provide: AngularFireAuth, useClass: AngularFireAuthMock },
+          { provide: AngularFireAuth, useValue: AngularFireAuthMock },
         ],
         declarations: [LoginComponent],
       }).compileComponents()

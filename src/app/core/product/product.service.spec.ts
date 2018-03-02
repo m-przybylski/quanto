@@ -85,18 +85,13 @@ describe('ProductService', () => {
           .createSpy('getProducts')
           .and.returnValue(of(ProductDatabase)),
       }))
-    callObject = AngularFirestoreMock.object = jasmine.createSpy().and.callFake(
-      () => ({
+    callObject = AngularFirestoreMock.object = jasmine
+      .createSpy()
+      .and.callFake(() => ({
         valueChanges: jasmine
           .createSpy('productCategories')
           .and.returnValue(of(ProductCategoriesDatabase)),
-      }),
-      // jasmine.createSpyObj('object', {
-      //   valueChanges: jasmine
-      //     .createSpy('some name', () => of(ProductCategoriesDatabase))
-      //     .and.returnValue(ProductCategoriesDatabase),
-      // }),
-    )
+      }))
     service = new ProductService(AngularFirestoreMock, AngularFireAuthMock)
   })
 

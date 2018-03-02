@@ -17,6 +17,14 @@ import { QuoteService } from './quote/quote.service'
 import { CompanyResolverService } from './resolvers/company-resolver.service'
 import { CompanyService } from './company/company.service'
 import { ClientResolverService } from './resolvers/client-resolver.service'
+import { PdfService, PDFConfig, JSPDFConfig } from './pdf/pdf.service'
+
+const PDFConfigVariable: JSPDFConfig = {
+  orientation: 'p',
+  format: 'a4',
+  unit: 'mm',
+  compressPdf: false,
+}
 
 @NgModule({
   imports: [
@@ -34,6 +42,7 @@ export class CoreModule {
       ngModule: CoreModule,
       providers: [
         { provide: LoginGuardService, useClass: LoginGuardService },
+        { provide: PDFConfig, useValue: PDFConfigVariable },
         UserResolverService,
         ProductCategoryResolverService,
         ProductResolverService,
@@ -44,6 +53,7 @@ export class CoreModule {
         QuoteService,
         CompanyResolverService,
         CompanyService,
+        PdfService,
       ],
     }
   }
