@@ -39,6 +39,17 @@
   margin-right: 0;
 }
 
+.quote-form-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-top: 2rem;
+}
+
+.quote-form-action {
+  margin-right: 1rem;
+}
+
 // trick to show plus only @ the end and remore except end
 .add-product-button {
   display: none;

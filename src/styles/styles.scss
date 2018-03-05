@@ -144,6 +144,14 @@ button {
   opacity: 0.6;
 }
 
+.ui-input-error {
+  position: absolute;
+  font-size: 0.75em;
+  color: $primary-color;
+  padding-left: 1em;
+  padding-top: 0.5em;
+}
+
 /* FORMS - SELECT */
 .ui-dropdown {
   @extend %common-ui-input-border;

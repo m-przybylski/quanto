@@ -92,13 +92,11 @@ export class ProductService {
 
   private mapProductDatabaseToProduct: (
     [products, categories]: [ProductDatabase[], ProductCategoryDatabase],
-  ) => Product[] = ([products, categories]) => {
-    console.log(products.length)
-    return products.map(product => ({
+  ) => Product[] = ([products, categories]) =>
+    products.map(product => ({
       ...product,
       categories: this.mapCategories(product.categories, categories),
     }))
-  }
 
   private mapAllCategories(
     categoryList: ProductCategoryDatabase,

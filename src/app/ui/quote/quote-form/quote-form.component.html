@@ -5,6 +5,9 @@
       <div class='quote-form-prop'>
         <label class='dropdown-label'>Company</label>
         <p-dropdown [autoWidth]='false' [options]='companyList' formControlName='companyCrtl' optionLabel='name'></p-dropdown>
+        <div class='ui-input-error' *ngIf='quoteForm.controls.companyCrtl.errors'>
+          <div *ngIf='quoteForm.controls.companyCrtl.errors.required'>Company is required</div>
+        </div>
       </div>
     </div>
   </div>
@@ -38,8 +41,11 @@
     <div class='quote-form-segment-details'>
       <div class='quote-form-prop'>
         <label class='dropdown-label'>Client Name</label>
-        <p-autoComplete formControlName='clientCtrl' [suggestions]='filteredCustomer' (onSelect)='selectCustomer($event)' (completeMethod)='filterCustomer($event)'
-          field='name'></p-autoComplete>
+        <p-autoComplete formControlName='clientCtrl' [suggestions]='filteredCustomer' (onBlur)='customerSelected()' (onDropdownClick)='selectCustomer($event)'
+          (completeMethod)='filterCustomer($event)' field='name'></p-autoComplete>
+        <div class='ui-input-error' *ngIf='quoteForm.controls.clientCtrl.errors'>
+          <div *ngIf='quoteForm.controls.clientCtrl.errors.required'>Customer is required</div>
+        </div>
       </div>
     </div>
   </div>
@@ -52,42 +58,63 @@
           <span class='ui-float-label'>
             <input formControlName='nameCtrl' type='text' pInputText>
             <label>Client Name</label>
+            <div class='ui-input-error' *ngIf='customer.controls.nameCtrl.errors'>
+              <div *ngIf='customer.controls.nameCtrl.errors.required'>Customer name is required</div>
+            </div>
           </span>
         </div>
         <div class='quote-form-prop'>
           <span class='ui-float-label'>
             <input formControlName='contanctNameCtrl' type='text' pInputText>
             <label>Contact Name</label>
+            <div class='ui-input-error' *ngIf='customer.controls.contanctNameCtrl.errors'>
+              <div *ngIf='customer.controls.contanctNameCtrl.errors.required'>Customer name is required</div>
+            </div>
           </span>
         </div>
         <div class='quote-form-prop'>
           <span class='ui-float-label'>
             <input formControlName='contanctEmailCtrl' type='text' pInputText>
             <label>Contact Email</label>
+            <div class='ui-input-error' *ngIf='customer.controls.contanctEmailCtrl.errors'>
+              <div *ngIf='customer.controls.contanctEmailCtrl.errors.required'>Customer name is required</div>
+            </div>
           </span>
         </div>
         <div class='quote-form-prop'>
           <span class='ui-float-label'>
             <input formControlName='contanctAddressCtrl' type='text' pInputText>
             <label>Contact Address</label>
+            <div class='ui-input-error' *ngIf='customer.controls.contanctAddressCtrl.errors'>
+              <div *ngIf='customer.controls.contanctAddressCtrl.errors.required'>Customer name is required</div>
+            </div>
           </span>
         </div>
         <div class='quote-form-prop'>
           <span class='ui-float-label'>
             <input formControlName='cityCtrl' type='text' pInputText>
             <label>City</label>
+            <div class='ui-input-error' *ngIf='customer.controls.cityCtrl.errors'>
+              <div *ngIf='customer.controls.cityCtrl.errors.required'>Customer name is required</div>
+            </div>
           </span>
         </div>
         <div class='quote-form-prop'>
           <span class='ui-float-label'>
             <input formControlName='postalCodeCtrl' type='text' pInputText>
             <label>Postal Code</label>
+            <div class='ui-input-error' *ngIf='customer.controls.postalCodeCtrl.errors'>
+              <div *ngIf='customer.controls.postalCodeCtrl.errors.required'>Customer name is required</div>
+            </div>
           </span>
         </div>
         <div class='quote-form-prop'>
           <span class='ui-float-label'>
             <input formControlName='countryCtrl' type='text' pInputText>
             <label>Country</label>
+            <div class='ui-input-error' *ngIf='customer.controls.countryCtrl.errors'>
+              <div *ngIf='customer.controls.countryCtrl.errors.required'>Customer name is required</div>
+            </div>
           </span>
         </div>
       </div>
@@ -98,7 +125,7 @@
     <div class='quote-form-segment-details' *ngFor='let product of productsArrayCtrl.controls; let i = index;' [formGroupName]='i'>
       <div class='quote-form-prop'>
         <label class='dropdown-label'>Product</label>
-        <p-dropdown [autoWidth]='false' [options]='products' formControlName='productCtrl' optionLabel='name'></p-dropdown>
+        <p-dropdown [autoWidth]='false' [options]='productList' formControlName='productCtrl' optionLabel='name'></p-dropdown>
       </div>
       <div class='quote-form-prop'>
         <span class='ui-float-label'>
@@ -110,6 +137,13 @@
         <p-button (onClick)='addNewProduct()' class='add-product-button' icon='fa fa-fw fa-plus'></p-button>
         <p-button (onClick)='removeProduct(i)' class='remove-product-button' icon='fa fa-fw fa-minus'></p-button>
       </div>
+    </div>
+  </div>
+  <div class='quote-form-segment'>
+    <h3 class='quote-form-segment-header'>Actions</h3>
+    <div class='quote-form-actions'>
+      <p-button class='quote-form-action' icon='fa fa-eraser' iconPos='right' (click)='resetForm()' label='Clear'></p-button>
+      <p-button class='quote-form-action' icon='fa fa-floppy-o' iconPos='right' (click)='saveQuote()' label='Save'></p-button>
     </div>
   </div>
 </form>

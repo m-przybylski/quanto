@@ -21,7 +21,7 @@ export class QuoteEditComponent {
     this.companyList = router.snapshot.data.company
     this.productList = router.snapshot.data.products
     this.clientList = router.snapshot.data.clients
-    this.quote = router.snapshot.data.quote
+    this.quote = router.snapshot.data.quote && router.snapshot.data.quote[0]
     this.nextID = router.snapshot.data.nextID
   }
 }
