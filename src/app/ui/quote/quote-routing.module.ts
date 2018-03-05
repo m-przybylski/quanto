@@ -30,6 +30,12 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: QuoteEditComponent,
+    resolve: {
+      company: CompanyResolverService,
+      quote: QuoteResolverService,
+      products: ProductResolverService,
+      clients: ClientResolverService,
+    },
   },
   { path: '**', redirectTo: '/' },
 ]

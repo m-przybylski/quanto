@@ -134,4 +134,35 @@ describe('ProductService', () => {
       })
     }),
   )
+  it('should return product by SKU', () => {
+    callList = AngularFirestoreMock.list = jasmine
+      .createSpy()
+      .and.callFake(() => ({
+        set: callSet,
+        valueChanges: jasmine.createSpy('getProducts').and.returnValue(
+          of([
+            {
+              name: 'name',
+              price: [{ currency: 'USD', price: 12 }],
+              sku: '123',
+              description: 'opus',
+              categories: { Software: true },
+            },
+          ]),
+        ),
+      }))
+    service.getProductBySKU('123').subscribe(products => {
+      expect(products.length).toEqual(1)
+      expect(products).toEqual([
+        {
+          name: 'name',
+          price: [{ currency: 'USD', price: 12 }],
+          sku: '123',
+          description: 'opus',
+          categories: [{ name: 'Software', description: 'Software' }],
+        },
+      ])
+    })
+    expect(callList).toHaveBeenCalledWith(`${UserID}/products/123`)
+  })
 })

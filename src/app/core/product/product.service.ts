@@ -6,14 +6,17 @@ import {
   AngularFireList,
   AngularFireObject,
 } from 'angularfire2/database'
-import { switchMap, map } from 'rxjs/operators'
+import { map } from 'rxjs/operators'
 import { AngularFireAuth } from 'angularfire2/auth'
+import { forkJoin } from 'rxjs/observable/forkJoin'
 
 @Injectable()
 export class ProductService {
   private _productList: AngularFireList<ProductDatabase>
   private _productCategories: AngularFireObject<ProductCategoryDatabase>
-  private _getProductBySKU
+  private _getProductBySKU$: (
+    productSku: string,
+  ) => AngularFireList<ProductDatabase>
   constructor(private database: AngularFireDatabase, auth: AngularFireAuth) {
     this._productList = this.database.list<ProductDatabase>(
       `${auth.auth.currentUser.uid}/products/`,
@@ -22,23 +25,17 @@ export class ProductService {
     this._productCategories = this.database.object<ProductCategoryDatabase>(
       `${auth.auth.currentUser.uid}/productCategories/`,
     )
-    this._getProductBySKU = productSku =>
+    this._getProductBySKU$ = productSku =>
       this.database.list<ProductDatabase>(
         `${auth.auth.currentUser.uid}/products/${productSku}`,
       )
   }
 
   public getProducts(): Observable<Product[]> {
-    return this._productCategories.valueChanges().pipe(
-      switchMap(categories =>
-        this._productList.valueChanges().map(products =>
-          products.map(product => ({
-            ...product,
-            categories: this.mapCategories(product.categories, categories),
-          })),
-        ),
-      ),
-    )
+    return forkJoin(
+      this._productList.valueChanges(),
+      this._productCategories.valueChanges(),
+    ).pipe(map(this.mapProductDatabaseToProduct))
   }
   public getProductCategories(): Observable<ProductCategory[]> {
     return this._productCategories
@@ -46,7 +43,10 @@ export class ProductService {
       .pipe(map(categories => this.mapAllCategories(categories)))
   }
   public getProductBySKU(sku: string): Observable<Product[]> {
-    return this._getProductBySKU(sku).valueChanges()
+    return forkJoin(
+      this._getProductBySKU$(sku).valueChanges(),
+      this._productCategories.valueChanges(),
+    ).pipe(map(res => this.mapProductDatabaseToProduct(res)))
   }
   public getCurrency() {
     return [
@@ -88,6 +88,16 @@ export class ProductService {
       }
     }
     return result
+  }
+
+  private mapProductDatabaseToProduct: (
+    [products, categories]: [ProductDatabase[], ProductCategoryDatabase],
+  ) => Product[] = ([products, categories]) => {
+    console.log(products.length)
+    return products.map(product => ({
+      ...product,
+      categories: this.mapCategories(product.categories, categories),
+    }))
   }
 
   private mapAllCategories(

@@ -8,7 +8,6 @@ import { AutoCompleteModule } from 'primeng/autocomplete'
 import { MessageService } from 'primeng/components/common/messageservice'
 import { Product } from '../../../core/product/products'
 import { Company } from '../../../core/company/company'
-import { Deceiver } from 'deceiver-core'
 import { RouterTestingModule } from '@angular/router/testing'
 
 const ProductList: Product[] = [
@@ -73,4 +72,13 @@ describe('QuoteFormComponent', () => {
     expect(addMessage).toHaveBeenCalledTimes(2)
     expect(component).toBeTruthy()
   })
+
+  it('should initialize form group', () => {
+    component.productList = ProductList
+    component.companyList = CompanyList
+    component.ngOnInit()
+    expect(component.quoteForm).toBeTruthy()
+    expect(component.quoteForm.controls)
+  })
+  it('should initialize form group', () => {})
 })

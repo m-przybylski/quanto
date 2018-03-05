@@ -1,5 +1,6 @@
 {
   "rulesDirectory": ["node_modules/codelyzer"],
+  "extends": "rxjs-tslint-rules",
   "rules": {
     "arrow-return-shorthand": true,
     "callable-types": true,
@@ -61,6 +62,10 @@
     "prefer-const": true,
     "quotemark": [true, "single"],
     "radix": true,
+    "rxjs-no-add": { "severity": "error" },
+    "rxjs-no-operator": { "severity": "error" },
+    "rxjs-no-patched": { "severity": "error" },
+    "rxjs-no-wholesale": { "severity": "error" },
     "semicolon": [true, "never"],
     "triple-equals": [true, "allow-null-check"],
     "typedef-whitespace": [

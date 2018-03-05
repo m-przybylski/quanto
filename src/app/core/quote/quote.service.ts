@@ -3,7 +3,7 @@ import { AngularFireList, AngularFireDatabase } from 'angularfire2/database'
 import { Observable } from 'rxjs/Observable'
 import { Quote, Client } from './quote'
 import { AngularFireAuth } from 'angularfire2/auth'
-import { switchMap, mergeMap, take, reduce } from 'rxjs/operators'
+import { switchMap, mergeMap, take, reduce, map } from 'rxjs/operators'
 import { from } from 'rxjs/observable/from'
 import { Company } from '../company/company'
 import { Product } from '../product/products'
@@ -24,6 +24,17 @@ export class QuoteService {
     )
   }
 
+  public getQuoteList(): Observable<Quote[]> {
+    return this.mapQuote(this.quoteList.valueChanges().pipe(take(1)))
+  }
+  public getQuote(id: number): Observable<Quote[]> {
+    return this.mapQuote(
+      this.database
+        .list<QuoteDatabse>(`${this.auth.auth.currentUser.uid}/quote/${id}`)
+        .valueChanges()
+        .pipe(take(1)),
+    )
+  }
   /**overenginierd select... this is how you do joins in noSql...
    * but let my try to explain:
    * 1. change list of quotes to stream
@@ -32,9 +43,8 @@ export class QuoteService {
    * 4. we need to do the same for customer.
    * btw take(1) is for reduce - make sure to close stream
    */
-  public getQuoteList(): Observable<Quote[]> {
-    return this.quoteList.valueChanges().pipe(
-      take(1),
+  private mapQuote(source: Observable<QuoteDatabse[]>) {
+    return source.pipe(
       switchMap(quoteList => from(quoteList)),
       mergeMap(
         quote =>
@@ -120,7 +130,7 @@ export class QuoteService {
         ref.limitToLast(1),
       )
       .valueChanges()
-      .map(quotes => quotes.map(quote => quote.id + 1)[0])
+      .pipe(map(quotes => quotes.map(quote => quote.id + 1)[0]))
   }
   public getClientList(): Observable<Client[]> {
     return this.clientList.valueChanges()
