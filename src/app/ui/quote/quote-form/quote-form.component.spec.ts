@@ -9,6 +9,7 @@ import { MessageService } from 'primeng/components/common/messageservice'
 import { Product } from '../../../core/product/products'
 import { Company } from '../../../core/company/company'
 import { RouterTestingModule } from '@angular/router/testing'
+import { CoreModule } from '../../../core/core.module'
 
 const ProductList: Product[] = [
   {

@@ -1,0 +1,55 @@
+@import '../../../../styles/variables';
+
+// .layout-quote-form {
+//   width: 100%;
+//   border: 1px solid $divider-color;
+// }
+
+.layout-quote-form {
+  padding: 2rem 1rem;
+}
+
+.quote-form-segment-header {
+  font-weight: 700;
+  padding: 0 0 0.75rem 1.75rem;
+  border-bottom: 2px solid $divider-color;
+}
+
+.quote-form-sub-segment-header {
+  font-weight: 700;
+  padding: 0 0 0.5rem 2rem;
+  border-bottom: 1px solid $divider-color;
+}
+
+.quote-form-segment-details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.quote-form-prop {
+  position: relative;
+  flex: 0 0 30%;
+  margin-top: 1.5rem;
+  margin-right: 5%;
+  padding-bottom: 1.75rem;
+}
+
+.quote-form-prop:nth-child(3n) {
+  margin-right: 0;
+}
+
+// trick to show plus only @ the end and remore except end
+.add-product-button {
+  display: none;
+}
+
+.quote-form-segment-details:nth-last-child(1) .quote-form-prop {
+  .add-product-button {
+    display: inline-block;
+  }
+
+  .remove-product-button {
+    display: none;
+  }
+}

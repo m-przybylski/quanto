@@ -32,6 +32,7 @@ const routes: Routes = [
     component: QuoteEditComponent,
     resolve: {
       company: CompanyResolverService,
+      nextID: NewQuoteIDResolverService,
       quote: QuoteResolverService,
       products: ProductResolverService,
       clients: ClientResolverService,

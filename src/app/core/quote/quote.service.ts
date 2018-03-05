@@ -30,9 +30,9 @@ export class QuoteService {
   public getQuote(id: number): Observable<Quote[]> {
     return this.mapQuote(
       this.database
-        .list<QuoteDatabse>(`${this.auth.auth.currentUser.uid}/quote/${id}`)
+        .object<QuoteDatabse>(`${this.auth.auth.currentUser.uid}/quote/${id}`)
         .valueChanges()
-        .pipe(take(1)),
+        .pipe(take(1), map(quote => [quote])),
     )
   }
   /**overenginierd select... this is how you do joins in noSql...

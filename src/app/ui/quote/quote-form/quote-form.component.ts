@@ -88,4 +88,7 @@ export class QuoteFormComponent implements OnInit {
       ]),
     })
   }
+
+  public selectCustomer(_event) {}
+  public filterCustomer(_event) {}
 }

@@ -6,7 +6,7 @@ import {
   AngularFireList,
   AngularFireObject,
 } from 'angularfire2/database'
-import { map } from 'rxjs/operators'
+import { map, take } from 'rxjs/operators'
 import { AngularFireAuth } from 'angularfire2/auth'
 import { forkJoin } from 'rxjs/observable/forkJoin'
 
@@ -33,8 +33,8 @@ export class ProductService {
 
   public getProducts(): Observable<Product[]> {
     return forkJoin(
-      this._productList.valueChanges(),
-      this._productCategories.valueChanges(),
+      this._productList.valueChanges().pipe(take(1)),
+      this._productCategories.valueChanges().pipe(take(1)),
     ).pipe(map(this.mapProductDatabaseToProduct))
   }
   public getProductCategories(): Observable<ProductCategory[]> {

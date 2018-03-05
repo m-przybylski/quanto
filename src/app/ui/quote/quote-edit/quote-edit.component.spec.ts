@@ -7,6 +7,7 @@ import { DropdownModule } from 'primeng/dropdown'
 import { CalendarModule } from 'primeng/calendar'
 import { AutoCompleteModule } from 'primeng/autocomplete'
 import { MessageService } from 'primeng/components/common/messageservice'
+import { CoreModule } from '../../../core/core.module'
 
 describe('QuoteEditComponent', () => {
   let component: QuoteEditComponent
@@ -20,6 +21,7 @@ describe('QuoteEditComponent', () => {
           DropdownModule,
           CalendarModule,
           AutoCompleteModule,
+          CoreModule.forRoot(),
         ],
         declarations: [QuoteEditComponent, QuoteFormComponent],
         providers: [MessageService],
@@ -30,7 +32,6 @@ describe('QuoteEditComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(QuoteEditComponent)
     component = fixture.componentInstance
-    fixture.detectChanges()
   })
 
   xit('should create', () => {
