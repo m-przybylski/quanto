@@ -29,8 +29,8 @@ export class QuoteAddComponent {
   }
   public addQuote(quote: Quote) {
     console.log(quote)
-    // this.quoteService.addQuote(quote).then(() => {
-    //   this.router.navigate(['/quote'])
-    // })
+    this.quoteService.addQuote(quote).then(() => {
+      this.router.navigate(['/quote'])
+    })
   }
 }
