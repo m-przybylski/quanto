@@ -12,11 +12,12 @@ import { QuoteService } from '../../../core/quote/quote.service'
   styleUrls: ['./quote-edit.component.scss'],
 })
 export class QuoteEditComponent {
-  companyList: Company[]
-  quote: Quote
-  productList: Product[]
-  clientList: Client[]
-  nextID: number
+  public companyList: Company[]
+  public quote: Quote
+  public productList: Product[]
+  public clientList: Client[]
+  public nextID: number
+  public currencyList
 
   constructor(
     route: ActivatedRoute,
@@ -34,6 +35,7 @@ export class QuoteEditComponent {
     this.clientList = route.snapshot.data.clients
     this.quote = route.snapshot.data.quote[0]
     this.nextID = route.snapshot.data.nextID
+    this.currencyList = route.snapshot.data.currency
   }
 
   public saveQuote(quoteOut) {

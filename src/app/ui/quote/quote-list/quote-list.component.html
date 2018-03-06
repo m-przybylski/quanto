@@ -27,8 +27,13 @@
                 <tr *ngFor='let item of quote.products'>
                   <td>{{item.product.sku}} - {{item.product.name}}</td>
                   <td class='number'>{{item.quantity}}</td>
-                  <td class='number'>{{item.product.price[0].currency}} {{item.product.price[0].price}}</td>
-                  <td class='number'>{{item.product.price[0].currency}} {{item.quantity * item.product.price[0].price}}</td>
+                  <td class='number'>{{getPrice(item.product, quote.currency)}}</td>
+                  <td class='number'>{{getPrice(item.product, quote.currency, item.quantity)}}</td>
+                </tr>
+                <tr class='quote-item-products-total'>
+                  <td colspan=2></td>
+                  <td class='total'> Total: </td>
+                  <td class='number'>{{getTotalSum(quote.products, quote.currency)}}</td>
                 </tr>
               </table>
             </div>

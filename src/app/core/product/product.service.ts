@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs/Observable'
-import { Product, ProductCategory, Price } from './products'
+import {
+  Product,
+  ProductCategory,
+  Price,
+  Currency,
+  CurrencyDropDown,
+} from './products'
 import {
   AngularFireDatabase,
   AngularFireList,
@@ -9,6 +15,7 @@ import {
 import { map, take } from 'rxjs/operators'
 import { AngularFireAuth } from 'angularfire2/auth'
 import { forkJoin } from 'rxjs/observable/forkJoin'
+import { of } from 'rxjs/observable/of'
 
 @Injectable()
 export class ProductService {
@@ -48,12 +55,12 @@ export class ProductService {
       this._productCategories.valueChanges(),
     ).pipe(map(res => this.mapProductDatabaseToProduct(res)))
   }
-  public getCurrency() {
-    return [
-      { label: 'USD', value: 'USD' },
-      { label: 'EUR', value: 'EUR' },
-      { label: 'PLN', value: 'PLN' },
-    ]
+  public getCurrency(): Observable<CurrencyDropDown[]> {
+    return of([
+      { label: 'USD', value: 'USD' as Currency },
+      { label: 'EUR', value: 'EUR' as Currency },
+      { label: 'PLN', value: 'PLN' as Currency },
+    ])
   }
   public addEditProduct(product: Product): Promise<any> {
     const productToBeInserted: ProductDatabase = {

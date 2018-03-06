@@ -2,7 +2,11 @@ import { ProductAddComponent } from './product-add.component'
 import { Deceiver } from 'deceiver-core'
 import { ProductService } from '../../../core/product/product.service'
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router'
-import { ProductCategory } from '../../../core/product/products'
+import {
+  ProductCategory,
+  CurrencyDropDown,
+} from '../../../core/product/products'
+import { of } from 'rxjs/observable/of'
 
 describe('ProductAddComponent', () => {
   let component: ProductAddComponent
@@ -16,11 +20,12 @@ describe('ProductAddComponent', () => {
   activateRoute.snapshot.data = { productCategories: Categories }
   beforeEach(() => {
     productService = Deceiver(ProductService)
-    productService.getCurrency = () => [
-      { label: 'USD', value: 'USD' },
-      { label: 'EUR', value: 'EUR' },
-      { label: 'PLN', value: 'PLN' },
-    ]
+    productService.getCurrency = () =>
+      of(<CurrencyDropDown[]>[
+        { label: 'USD', value: 'USD' },
+        { label: 'EUR', value: 'EUR' },
+        { label: 'PLN', value: 'PLN' },
+      ])
 
     component = new ProductAddComponent(
       productService,
@@ -36,7 +41,7 @@ describe('ProductAddComponent', () => {
   })
   it('should add curency and modify table', () => {
     component.addPrice(0)
-    expect(component.currencyListArray).toEqual([
+    expect(component.currencyListArray).toEqual(<CurrencyDropDown[][]>[
       [
         { label: 'USD', value: 'USD' },
         { label: 'EUR', value: 'EUR' },
@@ -47,7 +52,7 @@ describe('ProductAddComponent', () => {
     expect(component.disableAdd).toBeFalsy()
     expect(component.disableRemove).toBeFalsy()
     component.addPrice(1)
-    expect(component.currencyListArray).toEqual([
+    expect(component.currencyListArray).toEqual(<CurrencyDropDown[][]>[
       [
         { label: 'USD', value: 'USD' },
         { label: 'EUR', value: 'EUR' },
@@ -62,7 +67,7 @@ describe('ProductAddComponent', () => {
   it('should remove curency and modify table', () => {
     component.addPrice(0)
     component.removePrice(1)
-    expect(component.currencyListArray).toEqual([
+    expect(component.currencyListArray).toEqual(<CurrencyDropDown[][]>[
       [
         { label: 'USD', value: 'USD' },
         { label: 'EUR', value: 'EUR' },

@@ -21,6 +21,7 @@ import { PdfService } from './pdf/pdf.service'
 import { JSPDFConfig } from './pdf/interfaces/js-pdf-config'
 import { PDFConfig } from './pdf/interfaces/tokens'
 import { JsPDF } from './pdf/js-pdf.service'
+import { ProductCurrencyResolverService } from './resolvers/product-currency-resolver.service'
 
 const PDFConfigVariable: JSPDFConfig = {
   orientation: 'p',
@@ -48,6 +49,7 @@ export class CoreModule {
         { provide: PDFConfig, useValue: PDFConfigVariable },
         UserResolverService,
         ProductCategoryResolverService,
+        ProductCurrencyResolverService,
         ProductResolverService,
         ProductService,
         NewQuoteIDResolverService,

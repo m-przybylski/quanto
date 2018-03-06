@@ -7,7 +7,7 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core'
 import { Company } from '../../../core/company/company'
-import { Product } from '../../../core/product/products'
+import { Product, CurrencyDropDown } from '../../../core/product/products'
 import { Client, Quote, ClientInfo } from '../../../core/quote/quote'
 import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms'
 import { MessageService } from 'primeng/components/common/messageservice'
@@ -22,6 +22,7 @@ export class QuoteFormComponent implements OnInit {
   @Input() companyList: Company[] = []
   @Input() productList: Product[] = []
   @Input() clientList: Client[] = []
+  @Input() currencyList: CurrencyDropDown[] = []
   @Input() nextID: number
   @Input() quote: Quote
   @Output() save: EventEmitter<Quote> = new EventEmitter<Quote>()
@@ -68,6 +69,7 @@ export class QuoteFormComponent implements OnInit {
       expirationDateCtrl: new FormControl(),
       preparedByCtrl: new FormControl(''),
       clientCtrl: new FormControl('', Validators.required),
+      currencyCtrl: new FormControl(this.currencyList[0]),
       productsArrayCtrl: this.productsArrayCtrl,
       clientDetailArray: this.clientDetailArray,
     })
@@ -91,6 +93,7 @@ export class QuoteFormComponent implements OnInit {
           productCtrl: product.product,
           productQtyCtrl: product.quantity,
         })),
+        currencyCtrl: this.quote.currency,
         clientDetailArray: [
           this.intractPartialClientInfo(this.quote.client.ship),
           this.intractPartialClientInfo(this.quote.client.bill),
@@ -133,6 +136,7 @@ export class QuoteFormComponent implements OnInit {
       expiration: this.quoteForm.controls.expirationDateCtrl.value,
       preparedBy: this.quoteForm.controls.preparedByCtrl.value,
       client: this.extractClientInfo(),
+      currency: this.quoteForm.controls.currencyCtrl.value,
       products: this.extractProductInfo(this.productsArrayCtrl),
     })
   }

@@ -6,7 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth'
 import { switchMap, mergeMap, take, reduce, map } from 'rxjs/operators'
 import { from } from 'rxjs/observable/from'
 import { Company } from '../company/company'
-import { Product } from '../product/products'
+import { Product, Currency } from '../product/products'
 
 @Injectable()
 export class QuoteService {
@@ -104,6 +104,7 @@ export class QuoteService {
       expiration: (quote.expiration && quote.expiration.toString()) || '',
       client: quote.client.name,
       preparedBy: quote.preparedBy,
+      currency: quote.currency,
       products: quote.products.map(product => ({
         product: product.product.sku,
         quantity: product.quantity,
@@ -144,6 +145,7 @@ interface QuoteDatabse {
   expiration: string
   preparedBy: string
   client: string
+  currency: Currency
   products: ProductQty[]
 }
 

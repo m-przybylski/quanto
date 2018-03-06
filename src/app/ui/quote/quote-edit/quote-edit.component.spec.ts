@@ -23,6 +23,7 @@ class QuoteListTestComponent {
   @Input() clientList = []
   @Input() nextID
   @Input() quote
+  @Input() currencyList = []
   @Output() save = new EventEmitter()
 }
 
@@ -86,6 +87,7 @@ describe('QuoteEditComponent', () => {
           clients: [],
           quote: ['someValue'],
           nextID: 1,
+          currencyList: [],
         },
       },
     }

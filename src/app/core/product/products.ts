@@ -12,7 +12,12 @@ export interface Price {
   price: number
 }
 
-export type Currency = 'USD' | 'EUR'
+export type Currency = 'USD' | 'EUR' | 'PLN'
+
+export interface CurrencyDropDown {
+  label: string
+  value: Currency
+}
 
 export interface ProductCategory {
   name: string

@@ -75,8 +75,14 @@ td {
   padding: 0.25em 0.5em;
 }
 
-td.number {
+td.number,
+.total {
   text-align: right;
+}
+
+.quote-item-products-total {
+  background-color: $accent-color;
+  color: $primary-color-text;
 }
 
 /* BORDERS */

@@ -12,9 +12,12 @@ import {
   FormArray,
 } from '@angular/forms'
 import { ProductService } from '../../../core/product/product.service'
-import { Price, ProductCategory, Product } from '../../../core/product/products'
+import {
+  Price,
+  Product,
+  CurrencyDropDown,
+} from '../../../core/product/products'
 import { MessageService } from 'primeng/components/common/messageservice'
-import { SelectItem } from 'primeng/api'
 import { map, take } from 'rxjs/operators'
 import { Router, ActivatedRoute } from '@angular/router'
 
@@ -30,10 +33,10 @@ export class ProductAddComponent {
   public productName: FormControl
   public prices: FormArray
 
-  public currencyListArray: SelectItem[][]
-  public productCategories: ProductCategory[]
+  public currencyListArray: CurrencyDropDown[][]
+  public productCategories: CurrencyDropDown[]
 
-  private currencyList: SelectItem[]
+  private currencyList: CurrencyDropDown[]
   public disableAdd = false
   public disableRemove = true
   constructor(
@@ -44,9 +47,9 @@ export class ProductAddComponent {
     private route: ActivatedRoute,
   ) {
     this.productCategories = this.route.snapshot.data.productCategories
-    this.currencyListArray = [this.currencyList] = [
-      this.productService.getCurrency(),
-    ]
+    this.productService.getCurrency().subscribe(value => {
+      this.currencyListArray = [this.currencyList] = [value]
+    })
 
     this.productSku = new FormControl('', {
       validators: Validators.required,

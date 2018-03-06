@@ -8,6 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing'
 import { PdfService } from '../../../core/pdf/pdf.service'
 import { Deceiver } from 'deceiver-core'
 import { Quote } from '../../../core/quote/quote'
+import { Product } from '../../../core/product/products'
 
 describe('QuoteListComponent', () => {
   const quotes: Quote[] = [
@@ -18,6 +19,7 @@ describe('QuoteListComponent', () => {
       client: undefined,
       expiration: undefined,
       preparedBy: undefined,
+      currency: undefined,
       products: [],
     },
     {
@@ -27,6 +29,7 @@ describe('QuoteListComponent', () => {
       client: undefined,
       expiration: undefined,
       preparedBy: undefined,
+      currency: undefined,
       products: [],
     },
   ]
@@ -86,5 +89,49 @@ describe('QuoteListComponent', () => {
       'Quote.1.2018-05-22',
       quotes[0],
     )
+  })
+  it('should get price for specific currency', () => {
+    const product: Product = {
+      categories: undefined,
+      name: '',
+      sku: '',
+      price: [{ currency: 'PLN', price: 123 }, { currency: 'USD', price: 234 }],
+      description: '',
+    }
+    const producQuote: { product: Product; quantity: number }[] = [
+      {
+        product: {
+          categories: undefined,
+          name: '',
+          sku: '',
+          price: [
+            { currency: 'PLN', price: 123 },
+            { currency: 'USD', price: 234 },
+          ],
+          description: '',
+        },
+        quantity: 10,
+      },
+      {
+        product: {
+          categories: undefined,
+          name: '',
+          sku: '',
+          price: [
+            { currency: 'PLN', price: 123 },
+            { currency: 'USD', price: 234 },
+          ],
+          description: '',
+        },
+        quantity: 10,
+      },
+    ]
+    expect(component.getPrice(product, 'PLN')).toEqual('123 PLN')
+    expect(component.getPrice(product, 'USD')).toEqual('USD 234')
+    expect(component.getPrice(product, 'EUR')).toEqual('123 PLN')
+    expect(component.getPrice(product, 'EUR', 2)).toEqual('246 PLN')
+    expect(component.getPrice(product, 'USD', 5)).toEqual('USD 1170')
+    expect(component.getTotalSum(producQuote, 'USD')).toEqual('USD 4680')
+    expect(component.getTotalSum(producQuote, 'EUR')).toEqual('')
   })
 })

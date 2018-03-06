@@ -1,10 +1,5 @@
 @import '../../../../styles/variables';
 
-// .layout-quote-form {
-//   width: 100%;
-//   border: 1px solid $divider-color;
-// }
-
 .layout-quote-form {
   padding: 2rem 1rem;
 }
@@ -13,6 +8,14 @@
   font-weight: 700;
   padding: 0 0 0.75rem 1.75rem;
   border-bottom: 2px solid $divider-color;
+  position: relative;
+}
+
+.quote-form-product-currency {
+  display: inline-block;
+  position: absolute;
+  top: 0.5rem;
+  left: 8.5rem;
 }
 
 .quote-form-sub-segment-header {
@@ -42,12 +45,12 @@
 .quote-form-actions {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-start;
   padding-top: 2rem;
 }
 
 .quote-form-action {
-  margin-right: 1rem;
+  margin-left: 1rem;
 }
 
 // trick to show plus only @ the end and remore except end

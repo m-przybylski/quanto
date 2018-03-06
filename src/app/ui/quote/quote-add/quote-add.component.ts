@@ -15,6 +15,7 @@ export class QuoteAddComponent {
   public productList: Product[]
   public companyList: Company[]
   public clientList: Client[]
+  public currencyList
   public nextID: number
   public disabled = true
   constructor(
@@ -26,6 +27,7 @@ export class QuoteAddComponent {
     this.productList = this.route.snapshot.data.products
     this.clientList = this.route.snapshot.data.clients
     this.nextID = this.route.snapshot.data.nextID || 1
+    this.currencyList = route.snapshot.data.currency
   }
   public addQuote(quote: Quote) {
     this.quoteService.addQuote(quote).then(() => {

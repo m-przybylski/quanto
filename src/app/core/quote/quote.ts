@@ -1,5 +1,5 @@
 import { Company } from '../company/company'
-import { Product } from '../product/products'
+import { Product, Currency } from '../product/products'
 
 export interface Quote {
   id: number
@@ -8,6 +8,7 @@ export interface Quote {
   expiration: Date
   preparedBy: string
   client: Client
+  currency: Currency
   products: { product: Product; quantity: number }[]
 }
 
