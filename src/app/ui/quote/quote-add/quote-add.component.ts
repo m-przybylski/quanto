@@ -28,7 +28,6 @@ export class QuoteAddComponent {
     this.nextID = this.route.snapshot.data.nextID || 1
   }
   public addQuote(quote: Quote) {
-    console.log(quote)
     this.quoteService.addQuote(quote).then(() => {
       this.router.navigate(['/quote'])
     })

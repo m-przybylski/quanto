@@ -1,7 +1,7 @@
 <div class='layout-quote-edit'>
   <qto-header>
     <h1 class='header--text'>Quote add</h1>
-    <p-button icon='fa fa-fw fa-pencil' iconPos='right' (click)='editQuote()' label='Edit'></p-button>
   </qto-header>
-  <qto-quote-form [companyList]='companyList' [productList]='productList' [clientList]='clientList' [nextID]='nextID' [quote]='quote'></qto-quote-form>
+  <qto-quote-form [companyList]='companyList' [productList]='productList' [clientList]='clientList' [nextID]='nextID' [quote]='quote'
+    (save)='saveQuote($event)'></qto-quote-form>
 </div>

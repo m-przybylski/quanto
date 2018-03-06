@@ -1,9 +1,10 @@
 import { Component } from '@angular/core'
 import { Company } from '../../../core/company/company'
-import { Quote } from '@angular/compiler'
 import { Product } from '../../../core/product/products'
-import { Client } from '../../../core/quote/quote'
-import { ActivatedRoute } from '@angular/router'
+import { Client, Quote } from '../../../core/quote/quote'
+import { MessageService } from 'primeng/components/common/messageservice'
+import { ActivatedRoute, Router } from '@angular/router'
+import { QuoteService } from '../../../core/quote/quote.service'
 
 @Component({
   selector: 'qto-quote-edit',
@@ -17,11 +18,27 @@ export class QuoteEditComponent {
   clientList: Client[]
   nextID: number
 
-  constructor(router: ActivatedRoute) {
-    this.companyList = router.snapshot.data.company
-    this.productList = router.snapshot.data.products
-    this.clientList = router.snapshot.data.clients
-    this.quote = router.snapshot.data.quote && router.snapshot.data.quote[0]
-    this.nextID = router.snapshot.data.nextID
+  constructor(
+    route: ActivatedRoute,
+    messageService: MessageService,
+    private router: Router,
+    private quoteService: QuoteService,
+  ) {
+    if (!route.snapshot.data.quote) {
+      messageService.add({ severity: 'error', detail: 'No Quote Found' })
+      router.navigate(['/quote'])
+      return
+    }
+    this.companyList = route.snapshot.data.company
+    this.productList = route.snapshot.data.products
+    this.clientList = route.snapshot.data.clients
+    this.quote = route.snapshot.data.quote[0]
+    this.nextID = route.snapshot.data.nextID
+  }
+
+  public saveQuote(quoteOut) {
+    this.quoteService.addQuote(quoteOut).then(() => {
+      this.router.navigate(['/quote'])
+    })
   }
 }

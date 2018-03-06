@@ -41,7 +41,7 @@
     <div class='quote-form-segment-details'>
       <div class='quote-form-prop'>
         <label class='dropdown-label'>Client Name</label>
-        <p-autoComplete formControlName='clientCtrl' [suggestions]='filteredCustomer' (onBlur)='customerSelected()' (onDropdownClick)='selectCustomer($event)'
+        <p-autoComplete formControlName='clientCtrl' [suggestions]='filteredCustomer' (onKeyUp)='customerKeyUp()' (onSelect)='selectCustomer($event)'
           (completeMethod)='filterCustomer($event)' field='name'></p-autoComplete>
         <div class='ui-input-error' *ngIf='quoteForm.controls.clientCtrl.errors'>
           <div *ngIf='quoteForm.controls.clientCtrl.errors.required'>Customer is required</div>
@@ -131,6 +131,10 @@
         <span class='ui-float-label'>
           <input formControlName='productQtyCtrl' type='number' pInputText>
           <label>Quantity</label>
+          <div class='ui-input-error' *ngIf='product.controls.productQtyCtrl.errors'>
+            <div *ngIf='product.controls.productQtyCtrl.errors.required'>Quantity is required</div>
+            <div *ngIf='product.controls.productQtyCtrl.errors.min'>Minimal quantity is 0</div>
+          </div>
         </span>
       </div>
       <div class='quote-form-prop'>
@@ -143,7 +147,8 @@
     <h3 class='quote-form-segment-header'>Actions</h3>
     <div class='quote-form-actions'>
       <p-button class='quote-form-action' icon='fa fa-eraser' iconPos='right' (click)='resetForm()' label='Clear'></p-button>
-      <p-button class='quote-form-action' icon='fa fa-floppy-o' iconPos='right' (click)='saveQuote()' label='Save'></p-button>
+      <p-button class='quote-form-action' [disabled]='!quoteForm.valid' icon='fa fa-floppy-o' iconPos='right' (click)='saveQuote()'
+        label='Save'></p-button>
     </div>
   </div>
 </form>

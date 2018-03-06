@@ -73,40 +73,44 @@ export class QuoteFormComponent implements OnInit {
     })
 
     if (this.quote) {
-      this.quoteForm.setValue({
+      this.clientDetailArray.push(this.clientShipGroup)
+      this.clientDetailArray.push(this.clientBillGroup)
+      this.productsArrayCtrl.removeAt(0)
+      this.quote.products.map(() => {
+        this.productsArrayCtrl.push(this.createProductItem())
+      })
+      this.quoteForm.patchValue({
         companyCrtl: this.quote.company,
         quoteNumberCtrl: this.quote.id,
-        creationDateCtrl: this.quote.created,
-        expirationDateCtrl: this.quote.expiration || '',
+        creationDateCtrl: new Date(this.quote.created),
+        expirationDateCtrl:
+          this.quote.expiration && new Date(this.quote.expiration),
         preparedByCtrl: this.quote.preparedBy || '',
         clientCtrl: this.quote.client,
         productsArrayCtrl: this.quote.products.map(product => ({
           productCtrl: product.product,
           productQtyCtrl: product.quantity,
         })),
-        clientDetailArray: {
-          clientShipGroup: this.intractPartialClientInfo(
-            this.quote.client.ship,
-          ),
-          clientBillGroup: this.intractPartialClientInfo(
-            this.quote.client.bill,
-          ),
-        },
+        clientDetailArray: [
+          this.intractPartialClientInfo(this.quote.client.ship),
+          this.intractPartialClientInfo(this.quote.client.bill),
+        ],
       })
     }
   }
   public selectCustomer(event: Client) {
-    this.customerSelected()
     this.clientShipGroup.setValue(this.intractPartialClientInfo(event.ship))
     this.clientBillGroup.setValue(this.intractPartialClientInfo(event.bill))
   }
-
-  public customerSelected() {
+  public customerKeyUp() {
+    if (this.quoteForm.controls.clientCtrl.value === '') {
+      this.clientDetailArray.removeAt(0)
+      this.clientDetailArray.removeAt(0)
+      return
+    }
     if (this.clientDetailArray.length === 0) {
       this.clientDetailArray.push(this.clientShipGroup)
       this.clientDetailArray.push(this.clientBillGroup)
-    } else {
-      console.log(this.quoteForm.controls.clientCtrl.value)
     }
   }
   public filterCustomer(event): void {
@@ -122,7 +126,7 @@ export class QuoteFormComponent implements OnInit {
     this.productsArrayCtrl.removeAt(i)
   }
   public saveQuote() {
-    const quote: Quote = {
+    this.save.emit({
       id: this.quoteForm.controls.quoteNumberCtrl.value,
       company: this.quoteForm.controls.companyCrtl.value,
       created: this.quoteForm.controls.creationDateCtrl.value,
@@ -130,8 +134,7 @@ export class QuoteFormComponent implements OnInit {
       preparedBy: this.quoteForm.controls.preparedByCtrl.value,
       client: this.extractClientInfo(),
       products: this.extractProductInfo(this.productsArrayCtrl),
-    }
-    this.save.emit(quote)
+    })
   }
   public resetForm() {
     this.ngOnInit()
@@ -156,7 +159,6 @@ export class QuoteFormComponent implements OnInit {
       ]),
     })
   }
-
   private generateClientDetailForm() {
     return {
       nameCtrl: new FormControl('', Validators.required),

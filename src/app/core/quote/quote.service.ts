@@ -100,8 +100,8 @@ export class QuoteService {
     const quoteToInsert: QuoteDatabse = {
       id: quote.id,
       company: quote.company.name,
-      created: quote.created,
-      expiration: quote.expiration,
+      created: quote.created.toString(),
+      expiration: (quote.expiration && quote.expiration.toString()) || '',
       client: quote.client.name,
       preparedBy: quote.preparedBy,
       products: quote.products.map(product => ({
@@ -140,8 +140,8 @@ export class QuoteService {
 interface QuoteDatabse {
   id: number
   company: string
-  created: Date
-  expiration: Date
+  created: string
+  expiration: string
   preparedBy: string
   client: string
   products: ProductQty[]
