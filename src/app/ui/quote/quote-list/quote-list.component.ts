@@ -1,7 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { Quote } from '../../../core/quote/quote'
-import { PdfService } from '../../../core/pdf/pdf.service'
 import { Currency, Product } from '../../../core/product/products'
 import { DialogService } from '../../../shared/dialog/dialog.service'
 import { QuotePreviewComponent } from '../quote-preview/quote-preview.component'
@@ -14,21 +13,14 @@ import { QuotePreviewComponent } from '../quote-preview/quote-preview.component'
 })
 export class QuoteListComponent {
   public quotes: Quote[]
-  constructor(
-    route: ActivatedRoute,
-    private pdf: PdfService,
-    private dialog: DialogService,
-  ) {
+  constructor(route: ActivatedRoute, private dialog: DialogService) {
     this.quotes = route.snapshot.data.quotes
   }
 
-  public generatePDF(quoteId, date = new Date()) {
-    const fileName = `Quote.${quoteId}.${this.generateDateString(date)}`
-    this.dialog.open(QuotePreviewComponent)
-    this.pdf.generatePdf(
-      fileName,
-      this.quotes.find(quote => quote.id === quoteId),
-    )
+  public openPreview(quoteId) {
+    this.dialog.open(QuotePreviewComponent, {
+      data: this.quotes.find(quote => quote.id === quoteId),
+    })
   }
   public getPrice(
     product: Product,
@@ -67,14 +59,5 @@ export class QuoteListComponent {
     } else {
       return `${price} ${currency}`
     }
-  }
-  private generateDateString(date: Date): string {
-    const year = date.getFullYear()
-    const month =
-      date.getMonth() + 1 > 10
-        ? date.getMonth() + 1
-        : '0' + (date.getMonth() + 1)
-    const day = date.getDate() > 10 ? date.getDate() : '0' + date.getDate()
-    return `${year}-${month}-${day}`
   }
 }

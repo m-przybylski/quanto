@@ -1,9 +1,9 @@
 <div class='layout-quote-preview'>
   <div class='layout-quote-preview-header'>I'm header</div>
-  <div class='layout-quote-preview-content'>I'm content</div>
+  <div #content class='layout-quote-preview-content'>I'm content</div>
   <div class='layout-quote-preview-footer'>
-    <p-button icon='fa fa-file-pdf-o' label='PDF'></p-button>
-    <p-button icon='fa fa-file-word-o' label='Word'></p-button>
+    <p-button (click)='getPDF(content)' icon='fa fa-file-pdf-o' label='PDF'></p-button>
+    <p-button (click)='getDoc(content)' icon='fa fa-file-word-o' label='Word'></p-button>
     <p-button (click)='close()' icon='fa fa-times' label='Close'></p-button>
   </div>
 </div>

@@ -40,7 +40,7 @@
           </div>
           <div class='layout-quote-options'>
             <p-button [routerLink]='["edit", quote.id]' label='edit'></p-button>
-            <p-button (click)='generatePDF(quote.id)' label='pdf'></p-button>
+            <p-button (click)='openPreview(quote.id)' label='preview'></p-button>
           </div>
         </div>
       </ng-template>
