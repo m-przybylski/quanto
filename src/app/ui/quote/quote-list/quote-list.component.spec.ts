@@ -9,6 +9,7 @@ import { PdfService } from '../../../core/pdf/pdf.service'
 import { Deceiver } from 'deceiver-core'
 import { Quote } from '../../../core/quote/quote'
 import { Product } from '../../../core/product/products'
+import { DialogService } from '../../../shared/dialog/dialog.service'
 
 describe('QuoteListComponent', () => {
   const quotes: Quote[] = [
@@ -36,6 +37,7 @@ describe('QuoteListComponent', () => {
   let component: QuoteListComponent
   let fixture: ComponentFixture<QuoteListComponent>
   const pdfServiceMock: PdfService = Deceiver(PdfService)
+  const dialogServiceMock = Deceiver(DialogService)
   const generateFunctionMock = (pdfServiceMock.generatePdf = jasmine
     .createSpy('create')
     .and.stub())
@@ -49,7 +51,10 @@ describe('QuoteListComponent', () => {
           RouterTestingModule,
         ],
         declarations: [QuoteListComponent],
-        providers: [{ provide: PdfService, useValue: pdfServiceMock }],
+        providers: [
+          { provide: PdfService, useValue: pdfServiceMock },
+          { provide: DialogService, useValue: dialogServiceMock },
+        ],
       }).compileComponents()
     }),
   )

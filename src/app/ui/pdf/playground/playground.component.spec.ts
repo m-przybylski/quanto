@@ -1,26 +1,26 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { ListComponent } from './list.component'
+import { PlaygroundComponent } from './playground.component'
 
-describe('ListComponent', () => {
-  let component: ListComponent
-  let fixture: ComponentFixture<ListComponent>
+describe('PlaygroundComponent', () => {
+  let component: PlaygroundComponent
+  let fixture: ComponentFixture<PlaygroundComponent>
 
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        declarations: [ListComponent],
+        declarations: [PlaygroundComponent],
       }).compileComponents()
     }),
   )
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListComponent)
+    fixture = TestBed.createComponent(PlaygroundComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })
 
-  it('should create', () => {
+  xit('should create', () => {
     expect(component).toBeTruthy()
   })
 })

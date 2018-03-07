@@ -21,6 +21,10 @@ const routes: Routes = [
         path: 'quote',
         loadChildren: 'app/ui/quote/quote.module#QuoteModule',
       },
+      {
+        path: 'pdf',
+        loadChildren: 'app/ui/pdf/pdf.module#PdfModule',
+      },
     ],
   },
   {

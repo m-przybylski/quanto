@@ -1,12 +1,17 @@
-import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
-import { MenuModule } from 'primeng/menu'
-import { SidebarModule } from './sidebar/sidebar.module'
-import { ListModule } from './list/list.module'
-import { HeaderModule } from './header/header.module'
+import { DialogService } from './dialog/dialog.service'
+import { ModuleWithProviders } from '@angular/compiler/src/core'
 
 @NgModule({
-  imports: [CommonModule, MenuModule, SidebarModule, ListModule, HeaderModule],
+  imports: [],
+  exports: [],
   declarations: [],
 })
-export class SharedModule {}
+export class SharedModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [DialogService],
+    }
+  }
+}

@@ -6,10 +6,10 @@ import { Quote } from '../quote/quote'
 export class PdfService {
   constructor(private jsPDF: JsPDF) {}
 
-  public generatePdf(fineName: string, quote: Quote) {
+  public generatePdf(_fineName: string, quote: Quote) {
     if (quote) {
       this.jsPDF.text(quote.company.name, 0, 0)
     }
-    this.jsPDF.save(fineName)
+    this.jsPDF.save(_fineName)
   }
 }

@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router'
 import { GrowlModule } from 'primeng/growl'
 import { CoreModule } from '../core/core.module'
 import { MessageService } from 'primeng/components/common/messageservice'
+import { PdfModule } from './pdf/pdf.module'
 @NgModule({
   imports: [
     CommonModule,
@@ -17,6 +18,7 @@ import { MessageService } from 'primeng/components/common/messageservice'
     RouterModule,
     GrowlModule,
     BrowserAnimationsModule,
+    PdfModule,
   ],
   declarations: [HomeComponent],
   providers: [MessageService],

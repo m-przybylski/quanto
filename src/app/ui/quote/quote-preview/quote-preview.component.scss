@@ -1,0 +1,37 @@
+@import '../../../../styles/variables';
+
+%quote-preview-secion {
+  flex: 0 0 auto;
+  padding: 0.5em 1em;
+  border-bottom: 1px solid $divider-color;
+}
+
+.layout-quote-preview {
+  width: 100%;
+  height: 100%;
+  background: $white;
+  color: $primary-text-color;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-quote-preview-header {
+  @extend %quote-preview-secion;
+}
+
+.layout-quote-preview-content {
+  @extend %quote-preview-secion;
+  flex-grow: 1;
+}
+
+.layout-quote-preview-footer {
+  @extend %quote-preview-secion;
+  font-size: 1.25em;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  & > p-button {
+    margin-left: 0.25em;
+  }
+}

@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router'
 import { Quote } from '../../../core/quote/quote'
 import { PdfService } from '../../../core/pdf/pdf.service'
 import { Currency, Product } from '../../../core/product/products'
+import { DialogService } from '../../../shared/dialog/dialog.service'
+import { QuotePreviewComponent } from '../quote-preview/quote-preview.component'
 
 @Component({
   selector: 'qto-quote-list',
@@ -12,13 +14,17 @@ import { Currency, Product } from '../../../core/product/products'
 })
 export class QuoteListComponent {
   public quotes: Quote[]
-  constructor(route: ActivatedRoute, private pdf: PdfService) {
+  constructor(
+    route: ActivatedRoute,
+    private pdf: PdfService,
+    private dialog: DialogService,
+  ) {
     this.quotes = route.snapshot.data.quotes
   }
 
   public generatePDF(quoteId, date = new Date()) {
     const fileName = `Quote.${quoteId}.${this.generateDateString(date)}`
-
+    this.dialog.open(QuotePreviewComponent)
     this.pdf.generatePdf(
       fileName,
       this.quotes.find(quote => quote.id === quoteId),

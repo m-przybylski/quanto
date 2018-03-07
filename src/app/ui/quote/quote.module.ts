@@ -18,6 +18,9 @@ import { QuoteEditComponent } from './quote-edit/quote-edit.component'
 import { CalendarModule } from 'primeng/calendar'
 import { AutoCompleteModule } from 'primeng/autocomplete'
 import { QuoteFormComponent } from './quote-form/quote-form.component'
+import { QuotePreviewComponent } from './quote-preview/quote-preview.component'
+import { OverlayModule } from '@angular/cdk/overlay'
+import { DialogService } from '../../shared/dialog/dialog.service'
 
 @NgModule({
   imports: [
@@ -32,13 +35,16 @@ import { QuoteFormComponent } from './quote-form/quote-form.component'
     DataListModule,
     CalendarModule,
     AutoCompleteModule,
+    OverlayModule,
   ],
-  providers: [QuoteService, CompanyService, ProductService],
+  providers: [QuoteService, CompanyService, ProductService, DialogService],
   declarations: [
     QuoteListComponent,
     QuoteAddComponent,
     QuoteEditComponent,
     QuoteFormComponent,
+    QuotePreviewComponent,
   ],
+  entryComponents: [QuotePreviewComponent],
 })
 export class QuoteModule {}
