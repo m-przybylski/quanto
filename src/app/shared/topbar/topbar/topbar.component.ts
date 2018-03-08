@@ -9,10 +9,25 @@ import { UserInfo } from 'firebase'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TopbarComponent {
+  items = [
+    {
+      label: 'user settings',
+      icon: 'fa-user',
+      routerLink: ['/user'],
+    },
+    {
+      label: 'logout',
+      icon: 'fa-sign-out',
+      command: () => {
+        this.logout()
+      },
+      routerLink: ['/login'],
+    },
+  ]
   constructor(private auth: AngularFireAuth) {}
   @Input() user: UserInfo
 
-  public logout() {
+  private logout() {
     this.auth.auth.signOut()
   }
 }

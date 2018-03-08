@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="1102 271 173 60">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        font-size: 50px;
+        font-family: Lato-Regular, Lato;
+      }
+
+      .cls-2 {
+        font-size: 20px;
+        font-family: HelveticaNeue, Helvetica Neue;
+      }
+    </style>
+  </defs>
+  <text id="Quanto_" data-name="Quanto " class="cls-1" transform="translate(1102 320)"><tspan x="0" y="0">Quanto</tspan><tspan class="cls-2" y="0"> </tspan></text>
+</svg>

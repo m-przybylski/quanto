@@ -3,17 +3,16 @@
     <div class='layout-topbar-menu-left'>
       <ul>
         <li>
-          <a>Some text? maybe screen name??</a>
+          <span class="user-email">{{user.email}}</span>
         </li>
       </ul>
     </div>
     <div class='layout-topbar-menu-right'>
       <ul>
         <li>
-          <span class="user-email">{{user.email}}</span>
-        </li>
-        <li>
-          <a routerLink='/login' (click)='logout()'>LOGOUT</a>
+          <qto-menu menuIcon='fa fa-2x fa-cog'>
+            <p-menu [model]="items"></p-menu>
+          </qto-menu>
         </li>
       </ul>
     </div>

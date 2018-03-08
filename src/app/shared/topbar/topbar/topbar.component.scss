@@ -19,10 +19,7 @@ a {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  padding: 0 1rem;
 }
 
 .layout-topbar-menu-left {
@@ -44,4 +41,5 @@ li {
 ul {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
