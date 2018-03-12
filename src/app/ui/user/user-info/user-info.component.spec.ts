@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { UserInfoComponent } from './user-info.component'
+import { AngularFireAuth } from 'angularfire2/auth'
+import { AngularFireAuthMock } from '../../../core/common.test'
 
 describe('UserInfoComponent', () => {
   let component: UserInfoComponent
@@ -10,6 +12,9 @@ describe('UserInfoComponent', () => {
     async(() => {
       TestBed.configureTestingModule({
         declarations: [UserInfoComponent],
+        providers: [
+          { provide: AngularFireAuth, useFactory: AngularFireAuthMock },
+        ],
       }).compileComponents()
     }),
   )
