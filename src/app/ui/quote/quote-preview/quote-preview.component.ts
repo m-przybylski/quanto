@@ -22,17 +22,12 @@ export class QuotePreviewComponent implements OnInit {
     this.dialogRef.close()
   }
 
-  getPDF(content) {
-    const fileName = `Quote.${this.quote.id}.${this.generateDateString(
-      new Date(),
-    )}`
+  getPDF(content, date = new Date()) {
+    const fileName = `Quote.${this.quote.id}.${this.generateDateString(date)}`
     this.pdfService.generatePdfFromHTML(fileName, content)
   }
-  getDoc(content) {
-    // alert('not implemented')
-    const fileName = `Quote.${this.quote.id}.${this.generateDateString(
-      new Date(),
-    )}`
+  getDoc(content, date = new Date()) {
+    const fileName = `Quote.${this.quote.id}.${this.generateDateString(date)}`
     this.pdfService.generateDocFromHTML(fileName, content)
   }
 

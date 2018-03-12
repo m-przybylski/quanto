@@ -4,8 +4,10 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "ngc": "ngc",
     "start": "ng serve",
     "build": "ng build --prod --build-optimizer",
+    "deploy": "npm run build && firebase deploy",
     "test": "ng test",
     "lint": "ng lint",
     "stylelint": "stylelint **/*.scss",

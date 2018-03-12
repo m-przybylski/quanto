@@ -2,6 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { TopbarComponent } from './topbar.component'
 import { Deceiver } from 'deceiver-core'
 import { AngularFireAuth } from 'angularfire2/auth'
+import { MenuModule } from 'primeng/menu'
+import { ContextMenuModule } from '../../context-menu/context-menu.module'
+import { RouterTestingModule } from '@angular/router/testing'
 
 describe('TopbarComponent', () => {
   let component: TopbarComponent
@@ -11,6 +14,11 @@ describe('TopbarComponent', () => {
     async(() => {
       const AngularFireAuthMock = Deceiver(AngularFireAuth)
       TestBed.configureTestingModule({
+        imports: [
+          MenuModule,
+          ContextMenuModule,
+          RouterTestingModule.withRoutes([]),
+        ],
         declarations: [TopbarComponent],
         providers: [
           {
