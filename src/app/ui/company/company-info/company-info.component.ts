@@ -6,6 +6,7 @@ import {
 import { Router, ActivatedRoute } from '@angular/router'
 import { Validators } from '@angular/forms'
 import { Company } from '../../../core/company/company'
+import { CompanyService } from '../../../core/company/company.service'
 
 @Component({
   selector: 'qto-company-info',
@@ -15,7 +16,11 @@ import { Company } from '../../../core/company/company'
 export class CompanyInfoComponent {
   public companyFormConfig: FormConfig[]
   private companyList: Company[]
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private companyService: CompanyService,
+  ) {
     this.companyList = this.route.snapshot.data.company
     this.companyFormConfig = [
       {
@@ -29,8 +34,10 @@ export class CompanyInfoComponent {
     ]
   }
 
-  saveForm(value) {
-    console.log(value)
+  saveForm(value: { companyInfo: Company[] }) {
+    value.companyInfo.map(company => {
+      this.companyService.updateCompany(company)
+    })
     this.router.navigate(['/'])
   }
   private createCompanyForm(company: Company): ControlConfig[] {

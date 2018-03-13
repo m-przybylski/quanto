@@ -9,6 +9,6 @@ import { Observable } from 'rxjs/Observable'
 export class CompanyResolverService implements Resolve<Company[]> {
   constructor(private companyService: CompanyService) {}
   resolve(): Observable<Company[]> {
-    return this.companyService.getCompanyList().pipe(take(1))
+    return this.companyService.getCompanyObject().pipe(take(1))
   }
 }
