@@ -25,6 +25,10 @@ const routes: Routes = [
         path: 'user',
         loadChildren: 'app/ui/user/user.module#UserModule',
       },
+      {
+        path: 'company',
+        loadChildren: 'app/ui/company/company.module#CompanyModule',
+      },
     ],
   },
   {

@@ -11,7 +11,11 @@ export class CommonControl implements OnInit {
   constructor(private ngClass: NgClass) {}
 
   ngOnInit(): void {
-    this.ngClass.ngClass = [this.control.controlClass, 'form-control-prop']
+    const classes = ['form-control-prop']
+    if (this.control.controlClass) {
+      classes.push(this.control.controlClass)
+    }
+    this.ngClass.ngClass = classes
     this.ngClass.ngDoCheck()
   }
 }

@@ -16,6 +16,11 @@ export class TopbarComponent {
       routerLink: ['/user'],
     },
     {
+      label: 'company settings',
+      icon: 'fa-building',
+      routerLink: ['/company'],
+    },
+    {
       label: 'logout',
       icon: 'fa-sign-out',
       command: () => {

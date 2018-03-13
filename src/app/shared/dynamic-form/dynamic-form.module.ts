@@ -8,6 +8,8 @@ import { FormSectionComponent } from './form-section/form-section.component'
 import { FormTextFieldComponent } from './form-controls/form-text-field/form-text-field.component'
 import { FormDropdownComponent } from './form-controls/form-dropdown/form-dropdown.component'
 import { FormGroupHeaderComponent } from './form-controls/form-group-header/form-group-header.component'
+import { FormArrayComponent } from './form-array/form-array.component'
+import { FormBuilder } from './form-builder.service'
 
 @NgModule({
   imports: [CommonModule, ReactiveFormsModule, InputTextModule, ButtonModule],
@@ -18,11 +20,14 @@ import { FormGroupHeaderComponent } from './form-controls/form-group-header/form
     FormComponent,
     FormGroupHeaderComponent,
     FormSectionComponent,
+    FormArrayComponent,
   ],
   entryComponents: [
     FormGroupHeaderComponent,
     FormTextFieldComponent,
     FormDropdownComponent,
+    FormArrayComponent,
   ],
+  providers: [FormBuilder],
 })
 export class DynamicFormModule {}

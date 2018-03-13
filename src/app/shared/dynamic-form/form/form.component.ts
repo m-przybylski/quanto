@@ -36,6 +36,10 @@ export class FormComponent implements OnInit {
     this._formConfig = this.formConfig.map(config => ({
       ...config,
       formGroup: this.dynamicForm,
+      formArrayControls: config.formArrayControls.map(formArrayControl => ({
+        ...formArrayControl,
+        formGroup: this.dynamicForm,
+      })),
     }))
     const header = this.actions.createComponent(
       this.cfr.resolveComponentFactory(FormGroupHeaderComponent),
@@ -45,7 +49,6 @@ export class FormComponent implements OnInit {
   }
   resetForm() {
     this.formConfig = Object.assign({}, this.formConfig)
-    // this.dynamicForm = new FormGroup({})
   }
   saveForm() {
     this.save.emit(this.dynamicForm.value)

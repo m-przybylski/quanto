@@ -1,0 +1,5 @@
+<div class='form-section-detail-array' [formGroup]='formConfig.formGroup'>
+  <ng-container [formArrayName]='formConfig.formArrayName'>
+    <qto-form-section *ngFor='let section of _formConfig; let i = index' [formSection]='section'></qto-form-section>
+  </ng-container>
+</div>

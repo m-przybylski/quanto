@@ -1,4 +1,4 @@
-import { ValidatorFn, FormGroup } from '@angular/forms'
+import { ValidatorFn, FormGroup, FormArray } from '@angular/forms'
 
 export interface ControlConfig {
   name: string
@@ -12,7 +12,10 @@ export interface ControlConfig {
 export interface FormConfig {
   header: string
   formGroup?: FormGroup
-  formControls: ControlConfig[]
+  formControls?: ControlConfig[]
+  formArray?: FormArray
+  formArrayName?: string
+  formArrayControls?: FormConfig[]
 }
 
 export const TEXT_CONTROL = 'text'

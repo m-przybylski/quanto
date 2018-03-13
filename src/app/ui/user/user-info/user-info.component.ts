@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 import { AngularFireAuth } from 'angularfire2/auth'
 import { UserInfo } from 'firebase'
 import { FormConfig } from '../../../shared/dynamic-form/form-config'
@@ -10,7 +10,7 @@ import { Router } from '@angular/router'
   templateUrl: './user-info.component.html',
   styleUrls: ['./user-info.component.scss'],
 })
-export class UserInfoComponent implements OnInit {
+export class UserInfoComponent {
   public userFormConfig: FormConfig[]
   constructor(private auth: AngularFireAuth, private router: Router) {
     const user: UserInfo = this.auth.auth.currentUser
@@ -51,8 +51,6 @@ export class UserInfoComponent implements OnInit {
       },
     ]
   }
-
-  ngOnInit() {}
 
   saveForm(value) {
     this.auth.auth.currentUser
