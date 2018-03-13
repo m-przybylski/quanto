@@ -1,0 +1,12 @@
+<div class='form' [formGroup]='dynamicForm'>
+  <qto-form-section *ngFor='let section of _formConfig' [formSection]='section'></qto-form-section>
+  <ng-container #actions></ng-container>
+</div>
+
+<ng-template #actionTemplate>
+  <div class='form-actions'>
+    <p-button class='form-action' icon='fa fa-eraser' iconPos='right' (onClick)='resetForm()' label='Clear'></p-button>
+    <p-button class='form-action' [disabled]='!dynamicForm.valid' icon='fa fa-floppy-o' iconPos='right' (onClick)='saveForm()'
+      label='Save'></p-button>
+  </div>
+</ng-template>

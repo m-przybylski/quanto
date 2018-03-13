@@ -1,8 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
-import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms'
+import {
+  ReactiveFormsModule,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms'
 
 import { FormTextFieldComponent } from './form-text-field.component'
-import { ControlConfig } from '../control-config'
+import { ControlConfig } from '../../form-config'
 
 describe('FormTextFieldComponent', () => {
   let component: FormTextFieldComponent
@@ -12,7 +17,9 @@ describe('FormTextFieldComponent', () => {
     name: 'user',
     type: 'text',
     label: 'user placeholder',
-    controlValidators: [{ key: 'required', message: 'error' }],
+    controlValidators: [
+      { key: 'required', message: 'error', validator: Validators.required },
+    ],
   }
 
   beforeEach(

@@ -1,5 +1,5 @@
 <span [formGroup]='formGroup' class='ui-float-label'>
-  <input [formControlName]='control.name' type='control.type' pInputText>
+  <input [formControlName]='control.name' [type]='control.type' pInputText>
   <label>{{control.label}}</label>
   <div class='ui-input-error' *ngIf='formControl.errors'>
     <ng-container *ngFor="let controlValidator of control.controlValidators">

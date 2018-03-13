@@ -1,0 +1,11 @@
+:host(.form-control-prop) {
+  position: relative;
+  flex: 0 0 30%;
+  margin-top: 1.5rem;
+  margin-right: 5%;
+  padding-bottom: 1.75rem;
+}
+
+:host(.form-control-prop:nth-child(3n)) {
+  margin-right: 0;
+}

@@ -1,0 +1,8 @@
+@import '../../../../../styles/variables';
+
+.form-group-header {
+  font-weight: 700;
+  padding: 0 0 0.75rem 1.75rem;
+  border-bottom: 2px solid $divider-color;
+  position: relative;
+}
