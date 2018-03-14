@@ -37,6 +37,7 @@ export class UserInfoComponent {
             label: 'User email',
             name: 'userEmail',
             type: 'text',
+            disabled: true,
             controlClass: 'user-add-prop',
             controlValidators: [
               {

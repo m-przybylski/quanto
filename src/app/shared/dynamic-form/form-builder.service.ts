@@ -37,11 +37,14 @@ export class FormBuilder {
     if (form.formControls) {
       form.formControls.forEach(control => {
         let component: ComponentRef<CommonControl>
-        const formControl = new FormControl(control.value || '', {
-          validators: control.controlValidators.map(
-            validator => validator.validator,
-          ),
-        })
+        const formControl = new FormControl(
+          { value: control.value || '', disabled: control.disabled },
+          {
+            validators: control.controlValidators.map(
+              validator => validator.validator,
+            ),
+          },
+        )
         form.formGroup.addControl(control.name, formControl)
         switch (control.type) {
           case 'dropdown':

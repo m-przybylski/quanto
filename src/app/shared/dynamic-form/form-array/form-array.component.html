@@ -2,4 +2,5 @@
   <ng-container [formArrayName]='formConfig.formArrayName'>
     <qto-form-section *ngFor='let section of _formConfig; let i = index' [formSection]='section'></qto-form-section>
   </ng-container>
+  <p-button [disabled]='!formConfig.formGroup.valid' icon='fa fa-plus' (onClick)='add()'></p-button>
 </div>

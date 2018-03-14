@@ -34,9 +34,14 @@ export class CompanyInfoComponent {
     ]
   }
 
-  saveForm(value: { companyInfo: Company[] }) {
+  saveForm(value: {
+    companyInfo: { companyName: string; companyAddress: string }[]
+  }) {
     value.companyInfo.map(company => {
-      this.companyService.updateCompany(company)
+      this.companyService.updateCompany({
+        name: company.companyName,
+        address: company.companyAddress,
+      })
     })
     this.router.navigate(['/'])
   }
@@ -46,6 +51,7 @@ export class CompanyInfoComponent {
         label: 'Company name',
         name: 'companyName',
         type: 'text',
+        disabled: true,
         controlValidators: [
           {
             key: 'required',

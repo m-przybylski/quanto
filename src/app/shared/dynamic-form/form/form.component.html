@@ -2,7 +2,6 @@
   <qto-form-section *ngFor='let section of _formConfig' [formSection]='section'></qto-form-section>
   <ng-container #actions></ng-container>
 </div>
-{{dynamicForm.value | json}}
 <ng-template #actionTemplate>
   <div class='form-actions'>
     <p-button class='form-action' icon='fa fa-eraser' iconPos='right' (onClick)='resetForm()' label='Clear'></p-button>

@@ -5,6 +5,7 @@ export interface ControlConfig {
   type: ControlConfigType
   label: string
   value?: any
+  disabled?: boolean
   controlClass?: string
   controlValidators: { key: string; message: string; validator: ValidatorFn }[]
 }

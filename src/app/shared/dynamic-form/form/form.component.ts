@@ -3,7 +3,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  // ChangeDetectionStrategy,
   OnInit,
   ViewChild,
   TemplateRef,
@@ -18,7 +17,6 @@ import { FormGroupHeaderComponent } from '../form-controls/form-group-header/for
   selector: 'qto-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
-  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormComponent implements OnInit {
   public _formConfig: FormConfig[]
@@ -36,10 +34,12 @@ export class FormComponent implements OnInit {
     this._formConfig = this.formConfig.map(config => ({
       ...config,
       formGroup: this.dynamicForm,
-      formArrayControls: config.formArrayControls.map(formArrayControl => ({
-        ...formArrayControl,
-        formGroup: this.dynamicForm,
-      })),
+      formArrayControls:
+        config.formArrayControls &&
+        config.formArrayControls.map(formArrayControl => ({
+          ...formArrayControl,
+          formGroup: this.dynamicForm,
+        })),
     }))
     const header = this.actions.createComponent(
       this.cfr.resolveComponentFactory(FormGroupHeaderComponent),
@@ -51,6 +51,6 @@ export class FormComponent implements OnInit {
     this.formConfig = Object.assign({}, this.formConfig)
   }
   saveForm() {
-    this.save.emit(this.dynamicForm.value)
+    this.save.emit(this.dynamicForm.getRawValue())
   }
 }
