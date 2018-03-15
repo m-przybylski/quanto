@@ -1,5 +1,9 @@
-<!-- <label class='dropdown-label'>Company</label>
-<p-dropdown [autoWidth]='false' [options]='companyList' formControlName='companyCrtl' optionLabel='name'></p-dropdown>
-<div class='ui-input-error' *ngIf='quoteForm.controls.companyCrtl.errors'>
-  <div *ngIf='quoteForm.controls.companyCrtl.errors.required'>Company is required</div>
-</div> -->
+<ng-container [formGroup]='formGroup'>
+  <label class='dropdown-label'>{{control.label}}</label>
+  <p-dropdown [autoWidth]='false' [options]='control.options' [formControlName]='control.name' [optionLabel]='control.optionLabel'></p-dropdown>
+  <div class='ui-input-error' *ngIf='formControl.errors'>
+    <ng-container *ngFor="let controlValidator of control.controlValidators">
+      <div *ngIf='formControl.errors[controlValidator.key]'>{{controlValidator.message}}</div>
+    </ng-container>
+  </div>
+</ng-container>

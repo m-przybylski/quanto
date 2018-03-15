@@ -19,6 +19,7 @@ import { CompanyService } from './company/company.service'
 import { ClientResolverService } from './resolvers/client-resolver.service'
 import { PdfService } from './pdf/pdf.service'
 import { ProductCurrencyResolverService } from './resolvers/product-currency-resolver.service'
+import { UserService } from './user/user.service'
 
 @NgModule({
   imports: [
@@ -48,6 +49,7 @@ export class CoreModule {
         CompanyResolverService,
         CompanyService,
         PdfService,
+        UserService,
       ],
     }
   }

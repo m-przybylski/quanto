@@ -1,9 +1,9 @@
 import { Component } from '@angular/core'
-import { AngularFireAuth } from 'angularfire2/auth'
 import { UserInfo } from 'firebase'
 import { FormConfig } from '../../../shared/dynamic-form/form-config'
 import { Validators } from '@angular/forms'
 import { Router } from '@angular/router'
+import { UserService } from '../../../core/user/user.service'
 
 @Component({
   selector: 'qto-user-info',
@@ -12,8 +12,8 @@ import { Router } from '@angular/router'
 })
 export class UserInfoComponent {
   public userFormConfig: FormConfig[]
-  constructor(private auth: AngularFireAuth, private router: Router) {
-    const user: UserInfo = this.auth.auth.currentUser
+  constructor(private userService: UserService, private router: Router) {
+    const user: UserInfo = this.userService.currentUser
 
     this.userFormConfig = [
       {
@@ -48,19 +48,28 @@ export class UserInfoComponent {
             ],
             value: user.email,
           },
+          {
+            label: 'Theme',
+            name: 'theme',
+            type: 'dropdown',
+            controlClass: '',
+            controlValidators: [],
+            options: [
+              { key: '', label: '' },
+              { key: 'theme-blue-orange', label: 'Blue' },
+              { key: 'theme-pink-indigo', label: 'Pink <3' },
+            ],
+            optionLabel: 'label',
+            value: user.photoURL,
+          },
         ],
       },
     ]
   }
 
   saveForm(value) {
-    this.auth.auth.currentUser
-      .updateProfile({
-        displayName: value.userName,
-        photoURL: null,
-      })
-      .then(_ => {
-        this.router.navigate(['/'])
-      })
+    this.userService.updateUser(value.theme, value.userName).then(_ => {
+      this.router.navigate(['/'])
+    })
   }
 }

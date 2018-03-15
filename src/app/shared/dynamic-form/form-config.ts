@@ -7,7 +7,9 @@ export interface ControlConfig {
   value?: any
   disabled?: boolean
   controlClass?: string
-  controlValidators: { key: string; message: string; validator: ValidatorFn }[]
+  controlValidators?: { key: string; message: string; validator: ValidatorFn }[]
+  options?: any[]
+  optionLabel?: string
 }
 
 export interface FormConfig {

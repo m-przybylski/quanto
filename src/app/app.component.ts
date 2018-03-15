@@ -5,17 +5,23 @@ import {
   NavigationStart,
   NavigationEnd,
 } from '@angular/router'
+import { UserService } from './core/user/user.service'
 
 @Component({
   selector: 'qto-root',
-  template: `
+  template: `<div id='root' [ngClass]='className'>
   <p-progressBar mode="indeterminate" *ngIf='loading'></p-progressBar>
   <router-outlet></router-outlet>
+  </div>
   `,
 })
 export class AppComponent {
   public loading: boolean
-  constructor(router: Router) {
+  public className: string
+  constructor(router: Router, userService: UserService) {
+    userService.user().subscribe(userSelectedClass => {
+      this.className = userSelectedClass || 'theme-pink-indigo'
+    })
     router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.loading = true

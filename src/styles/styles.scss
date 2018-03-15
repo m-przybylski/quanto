@@ -4,10 +4,6 @@
 
 /**** BASE ****/
 
-html body {
-  color: $primary-text-color;
-}
-
 html {
   height: 100%;
   font-size: $font-size;
@@ -47,11 +43,10 @@ h4 {
 }
 
 button {
-  border: 1px solid $accent-color;
   border-radius: 5px;
-  background-color: $accent-color;
-  color: $primary-color-text;
   font: inherit;
+  border-width: 1px;
+  border-style: solid;
 }
 
 /**** LAYOUT ****/
@@ -62,15 +57,10 @@ button {
 
 /* PROGRESS BAR */
 .ui-progressbar {
-  background-color: $primary-color-light;
   height: 6px;
   position: absolute;
   z-index: 40;
   width: 100%;
-}
-
-.ui-progressbar-value {
-  background-color: $primary-color-dark;
 }
 
 /* MENU */
@@ -78,34 +68,18 @@ button {
   width: auto;
 
   .ui-menuitem-link {
-    background-color: $accent-color;
-    color: $primary-color-text;
     border-radius: 5px;
     padding-top: 1em;
     padding-bottom: 1em;
-
-    &.ui-state-active {
-      background-color: $primary-color-dark;
-    }
   }
-
-  .ui-menuitem-link:hover {
-    background-color: $primary-color;
-    color: $primary-color-text;
-  }
-}
-
-/* ERROR MESSAGES */
-.ui-growl-item-container {
-  background: $primary-color-dark;
-  color: $primary-color-text;
 }
 
 /* FORMS - USER INPUT */
 %common-ui-input-border {
   width: 100%;
   border: 0px;
-  border-bottom: 1px solid $primary-color-light;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
 }
 
 %common-ui-input {
@@ -114,7 +88,8 @@ button {
 }
 
 %common-ui-input-focus-border {
-  border-bottom: 2px solid $primary-color;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
 }
 
 %common-ui-input-focus {
@@ -124,11 +99,6 @@ button {
 .ui-inputtext {
   @extend %common-ui-input;
   @extend %common-ui-input-border;
-  color: $primary-text-color;
-}
-
-.ui-float-label > label {
-  color: $primary-text-color;
 }
 
 .ui-float-label > input:focus ~ label,
@@ -150,7 +120,6 @@ button {
 .ui-input-error {
   position: absolute;
   font-size: 0.75em;
-  color: $primary-color;
   padding-left: 1em;
   padding-top: 0.5em;
 }
@@ -187,30 +156,12 @@ button {
   top: -1.25em;
 }
 
-.fa-caret-down:before {
-  content: '\f107';
-}
+// .fa-caret-down:before {
+//   content: '\f107';
+// }
 
-.ui-dropdown-panel {
-  background-color: $white;
-
-  & .ui-dropdown-list {
-    padding: 0px;
-  }
-}
-
-.ui-dropdown-item:hover {
-  background-color: $primary-color-light;
-  color: $primary-color-text;
-}
-
-.ui-dropdown-item {
-  background-color: $white;
-
-  &.ui-state-highlight {
-    background-color: $primary-color;
-    color: $primary-color-text;
-  }
+.ui-dropdown-panel .ui-dropdown-list {
+  padding: 0px;
 }
 
 /* FORMS - AUTOCOMPLETE */
@@ -218,17 +169,8 @@ button {
   width: 100%;
 }
 
-.ui-autocomplete-panel {
-  background-color: $white;
-
-  & .ui-autocomplete-items {
-    padding: 0px;
-  }
-}
-
-.ui-autocomplete-list-item:hover {
-  background-color: $primary-color-light;
-  color: $primary-color-text;
+.ui-autocomplete-panel .ui-autocomplete-items {
+  padding: 0px;
 }
 
 /* FORMS - CALLENDAR */
@@ -236,22 +178,19 @@ button {
   width: 100%;
 }
 
-.ui-datepicker {
-  background-color: $white;
-
-  a {
-    color: $primary-text-color;
-  }
+/* FORMS - DYNAMIC CONTENT */
+.form-control-prop {
+  position: relative;
+  flex: 0 0 30%;
+  margin-top: 1.5rem;
+  margin-right: 5%;
+  padding-bottom: 1.75rem;
 }
 
-.ui-datepicker-today {
-  background-color: $accent-color;
-
-  a {
-    color: $primary-color-text;
-  }
+.form-control-prop:nth-child(3n) {
+  margin-right: 0;
 }
 
 /**** STATE ****/
 
-/**** THEMES ****/
+@import 'themes';

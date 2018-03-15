@@ -2,6 +2,7 @@ import {
   ComponentFactoryResolver,
   ViewContainerRef,
   ComponentRef,
+  Injectable,
 } from '@angular/core'
 import { FormConfig } from './form-config'
 import { FormGroupHeaderComponent } from './form-controls/form-group-header/form-group-header.component'
@@ -11,6 +12,7 @@ import { FormArrayComponent } from './form-array/form-array.component'
 import { CommonControl } from './form-controls/common-control'
 import { FormControl, FormArray } from '@angular/forms'
 
+@Injectable()
 export class FormBuilder {
   constructor(private cfr: ComponentFactoryResolver) {}
   public build(

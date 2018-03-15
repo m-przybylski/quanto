@@ -16,13 +16,13 @@ describe('CompanyService', () => {
         },
         {
           provide: AngularFireAuth,
-          useValue: AngularFireAuthMock,
+          useFactory: AngularFireAuthMock,
         },
       ],
     })
   })
 
-  xit(
+  it(
     'should be created',
     inject([CompanyService], (service: CompanyService) => {
       expect(service).toBeTruthy()

@@ -4,9 +4,8 @@
   font-size: 1.5rem;
   min-height: 5em;
   padding: 0 4rem;
-  background: $primary-color;
-  color: $primary-color-text;
-  border-bottom: 1px solid $divider-color;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

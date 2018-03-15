@@ -1,0 +1,107 @@
+/**** themes ****/
+html body {
+  @include themify($themes) {
+    color: themed('primary-text-color');
+  }
+}
+
+button {
+  @include themify($themes) {
+    color: themed('primary-color-text');
+    background-color: themed('accent-color');
+    border-color: themed('accent-color');
+  }
+}
+
+.layout-sidebar,
+.menu-dropdown-content-wrapper,
+.ui-progressbar {
+  @include themify($themes) {
+    background-color: themed('primary-color-light');
+  }
+}
+
+.ui-progressbar-value {
+  @include themify($themes) {
+    background-color: themed('primary-color-dark');
+  }
+}
+
+.quote-item-products-total,
+.ui-menuitem-link {
+  @include themify($themes) {
+    color: themed('primary-color-text');
+    background-color: themed('accent-color');
+  }
+}
+
+.ui-menuitem-link .ui-state-active,
+.sidebar-logo,
+.ui-growl-item-container {
+  @include themify($themes) {
+    color: themed('primary-color-text');
+    background-color: themed('primary-color-dark');
+  }
+}
+
+.header,
+.form-group-header,
+.ui-inputtext,
+.ui-dropdown,
+.layout-quote,
+.layout-quote-options {
+  @include themify($themes) {
+    border-color: themed('primary-color');
+  }
+}
+
+.ui-input-error {
+  @include themify($themes) {
+    color: themed('primary-color');
+  }
+}
+
+thead > tr,
+.layout-topbar,
+.header,
+.menu-dropdown-head-line,
+.ui-menuitem-link:hover,
+.ui-dropdown-item .ui-state-highlight {
+  @include themify($themes) {
+    color: themed('primary-color-text');
+    background-color: themed('primary-color');
+  }
+}
+
+.ui-float-label > label,
+.ui-dropdown,
+.ui-inputtext,
+.ui-dropdown-item:hover,
+.ui-autocomplete-list-item:hover {
+  @include themify($themes) {
+    color: themed('primary-text-color');
+  }
+}
+
+.ui-dropdown-panel,
+.ui-dropdown-item,
+.ui-autocomplete-panel,
+.ui-datepicker {
+  @include themify($themes) {
+    background-color: themed('background');
+
+    a {
+      color: themed('primary-text-color');
+    }
+  }
+}
+
+.ui-datepicker-today {
+  @include themify($themes) {
+    background-color: themed('accent-color');
+
+    a {
+      color: themed('primary-color-text');
+    }
+  }
+}

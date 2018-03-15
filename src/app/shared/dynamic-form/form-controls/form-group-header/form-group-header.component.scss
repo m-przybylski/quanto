@@ -3,6 +3,7 @@
 .form-group-header {
   font-weight: 700;
   padding: 0 0 0.75rem 1.75rem;
-  border-bottom: 2px solid $divider-color;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
   position: relative;
 }

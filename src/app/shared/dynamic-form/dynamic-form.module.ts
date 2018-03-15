@@ -10,9 +10,16 @@ import { FormDropdownComponent } from './form-controls/form-dropdown/form-dropdo
 import { FormGroupHeaderComponent } from './form-controls/form-group-header/form-group-header.component'
 import { FormArrayComponent } from './form-array/form-array.component'
 import { FormBuilder } from './form-builder.service'
+import { DropdownModule } from 'primeng/dropdown'
 
 @NgModule({
-  imports: [CommonModule, ReactiveFormsModule, InputTextModule, ButtonModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    ButtonModule,
+    DropdownModule,
+  ],
   exports: [FormComponent],
   declarations: [
     FormTextFieldComponent,

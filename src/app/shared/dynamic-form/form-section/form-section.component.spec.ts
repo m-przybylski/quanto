@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { FormSectionComponent } from './form-section.component'
+import { FormBuilder } from '../form-builder.service'
+import { ComponentFactoryResolver } from '@angular/core'
 
 describe('FormSectionComponent', () => {
   let component: FormSectionComponent
@@ -10,6 +12,7 @@ describe('FormSectionComponent', () => {
     async(() => {
       TestBed.configureTestingModule({
         declarations: [FormSectionComponent],
+        providers: [FormBuilder, ComponentFactoryResolver],
       }).compileComponents()
     }),
   )

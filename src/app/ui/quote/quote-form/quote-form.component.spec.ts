@@ -52,27 +52,6 @@ describe('QuoteFormComponent', () => {
     component = fixture.componentInstance
   })
 
-  it('should create', () => {
-    component.productList = ProductList
-    component.companyList = CompanyList
-    const addMessage = spyOn(
-      fixture.debugElement.injector.get(MessageService),
-      'add',
-    ).and.callThrough()
-    expect(component).toBeTruthy()
-    expect(addMessage.calls.any()).toBe(false)
-  })
-
-  it('should display message when no input provided', () => {
-    const addMessage = spyOn(
-      fixture.debugElement.injector.get(MessageService),
-      'add',
-    ).and.callThrough()
-    component.ngOnInit()
-    expect(addMessage).toHaveBeenCalledTimes(2)
-    expect(component).toBeTruthy()
-  })
-
   it('should initialize form group', () => {
     component.productList = ProductList
     component.companyList = CompanyList

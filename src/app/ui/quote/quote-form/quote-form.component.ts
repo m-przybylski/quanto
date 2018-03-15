@@ -10,7 +10,6 @@ import { Company } from '../../../core/company/company'
 import { Product, CurrencyDropDown } from '../../../core/product/products'
 import { Client, Quote, ClientInfo } from '../../../core/quote/quote'
 import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms'
-import { MessageService } from 'primeng/components/common/messageservice'
 
 @Component({
   selector: 'qto-quote-form',
@@ -32,23 +31,8 @@ export class QuoteFormComponent implements OnInit {
   private clientBillGroup: FormGroup
   public productsArrayCtrl: FormArray
   public clientDetailArray: FormArray
-  constructor(private errorMessageService: MessageService) {}
+  constructor() {}
   ngOnInit(): void {
-    let errorFlag = false
-    if (this.productList.length === 0) {
-      errorFlag = true
-      this.errorMessageService.add({
-        detail: 'There is no products please create one',
-      })
-    }
-    if (this.companyList.length === 0) {
-      errorFlag = true
-      this.errorMessageService.add({ detail: 'Please provice company info' })
-    }
-
-    if (errorFlag) {
-      return
-    }
     this.clientShipGroup = new FormGroup(this.generateClientDetailForm())
     this.clientBillGroup = new FormGroup(this.generateClientDetailForm())
     this.clientDetailArray = new FormArray([])

@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { FormDropdownComponent } from './form-dropdown.component'
+import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms'
+import { DropdownModule } from 'primeng/dropdown'
 
 describe('FormDropdownComponent', () => {
   let component: FormDropdownComponent
@@ -9,6 +11,7 @@ describe('FormDropdownComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
+        imports: [ReactiveFormsModule, DropdownModule],
         declarations: [FormDropdownComponent],
       }).compileComponents()
     }),
@@ -17,7 +20,15 @@ describe('FormDropdownComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FormDropdownComponent)
     component = fixture.componentInstance
-    fixture.detectChanges()
+    component.formControl = new FormControl()
+    component.formGroup = new FormGroup({
+      control: component.formControl,
+    })
+    component.control = {
+      name: 'control',
+      type: 'dropdown',
+      label: '',
+    }
   })
 
   it('should create', () => {

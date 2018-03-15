@@ -12,9 +12,9 @@ import { ControlConfig } from '../../form-config'
   providers: [NgClass],
 })
 export class FormTextFieldComponent extends CommonControl {
-  public control: ControlConfig
   public formGroup: FormGroup
   public formControl: FormControl
+  public control: ControlConfig
 
   constructor(@Self() ngClass: NgClass) {
     super(ngClass)
