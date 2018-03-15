@@ -8,6 +8,8 @@
     "start": "ng serve",
     "build": "ng build --prod --build-optimizer --aot",
     "deploy": "npm run build && firebase deploy",
+    "bundle-report": "webpack-bundle-analyzer dist/stats.json",
+    "build:report": "ng build --prod --stats-json",
     "test": "ng test",
     "lint": "ng lint",
     "stylelint": "stylelint **/*.scss",
@@ -66,7 +68,8 @@
     "tslint": "^5.9.1",
     "tslint-config-prettier": "^1.10.0",
     "typescript": "2.6.2",
-    "wallaby-webpack": "^3.9.5"
+    "wallaby-webpack": "^3.9.5",
+    "webpack-bundle-analyzer": "^2.11.1"
   },
   "pre-commit": [
     "lint"
