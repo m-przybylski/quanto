@@ -8,7 +8,7 @@ export const AngularFireAuthMock = () => {
   ;(<any>angularFireAuth).auth = {
     currentUser: {},
   }
-  ;(<any>angularFireAuth).authState = of({ a: 123 })
+  ;(<any>angularFireAuth).authState = of({ photoURL: '{}' })
   return angularFireAuth
 }
 export const AngularFirestoreMock = () => Deceiver(AngularFireDatabase)

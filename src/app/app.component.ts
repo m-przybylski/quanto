@@ -19,7 +19,7 @@ export class AppComponent {
   public loading: boolean
   public className: string
   constructor(router: Router, userService: UserService) {
-    userService.user().subscribe(userSelectedClass => {
+    userService.userTheme().subscribe(userSelectedClass => {
       this.className = userSelectedClass || 'theme-pink-indigo'
     })
     router.events.subscribe(event => {

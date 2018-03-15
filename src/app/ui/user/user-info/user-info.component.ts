@@ -60,7 +60,7 @@ export class UserInfoComponent {
               { key: 'theme-pink-indigo', label: 'Pink <3' },
             ],
             optionLabel: 'label',
-            value: user.photoURL,
+            value: JSON.parse(user.photoURL),
           },
         ],
       },

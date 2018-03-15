@@ -10,11 +10,15 @@ export class UserService {
   private _userTheme: BehaviorSubject<string> = new BehaviorSubject('')
   constructor(private auth: AngularFireAuth) {
     this.auth.authState.subscribe(user => {
-      this._userTheme.next(this.parseJson(user.photoURL))
-      this._currentUser = user
+      if (user) {
+        this._userTheme.next(this.parseJson(user.photoURL))
+        this._currentUser = user
+      } else {
+        this._currentUser = null
+      }
     })
   }
-  user(): Observable<string> {
+  userTheme(): Observable<string> {
     return this._userTheme.asObservable()
   }
 
