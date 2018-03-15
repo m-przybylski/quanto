@@ -18,7 +18,8 @@ export interface FormConfig {
   formControls?: ControlConfig[]
   formArray?: FormArray
   formArrayName?: string
-  formArrayControls?: FormConfig[]
+  formArrayControls?: FormConfig
+  formArrayValues?: { [key: string]: any }[]
 }
 
 export const TEXT_CONTROL = 'text'

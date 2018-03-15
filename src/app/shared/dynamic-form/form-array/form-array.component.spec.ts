@@ -31,7 +31,8 @@ describe('FormArrayComponent', () => {
     component = fixture.componentInstance
     component.formConfig = {
       header: 'Header',
-      formArrayControls: [],
+      formArrayControls: { header: '' },
+      formArrayValues: [],
       formArrayName: 'formArray',
       formGroup: new FormGroup({
         formArray: new FormArray([]),

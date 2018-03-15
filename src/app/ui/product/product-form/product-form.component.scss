@@ -1,0 +1,56 @@
+@import '../../../../styles/variables';
+
+.layout-product-form {
+  width: 100%;
+  border: 1px solid $divider-color;
+}
+
+.layout-product-form-form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 2rem 1rem;
+}
+
+.product-form-prop,
+.product-form-prop-full-width {
+  padding-bottom: 3.25rem;
+  position: relative;
+}
+
+.product-form-prop:nth-child(odd) {
+  flex: 0 0 16%;
+}
+
+.product-form-prop:nth-child(even) {
+  flex: 0 0 84%;
+  padding-left: 1rem;
+}
+
+.product-form-prop-full-width {
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 100%;
+  padding-left: 0;
+}
+
+.no-padding {
+  padding-bottom: 2rem;
+}
+
+.product-price-line {
+  display: flex;
+  flex-direction: row;
+}
+
+.product-form-desc-editor {
+  width: 100%;
+}
+
+.price-value-input {
+  padding-left: 1rem;
+}
+
+.add-price-button {
+  margin-left: 1rem;
+}

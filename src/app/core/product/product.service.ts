@@ -33,7 +33,6 @@ export class ProductService {
       `${auth.auth.currentUser.uid}/productCategories/`,
     )
     this._getProductBySKU$ = productSku => {
-      console.log(productSku)
       return this.database.list<ProductDatabase>(
         `${auth.auth.currentUser.uid}/products/${productSku}`,
       )

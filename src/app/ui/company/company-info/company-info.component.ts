@@ -26,10 +26,13 @@ export class CompanyInfoComponent {
       {
         header: 'Company',
         formArrayName: 'companyInfo',
-        formArrayControls: this.companyList.map(company => ({
+        formArrayControls: {
           header: 'Company',
-          formControls: this.createCompanyForm(company),
-        })),
+          formControls: this.createCompanyForm(),
+        },
+        formArrayValues: this.companyList.map(company =>
+          this.createCompanyFormValues(company),
+        ),
       },
     ]
   }
@@ -45,7 +48,7 @@ export class CompanyInfoComponent {
     })
     this.router.navigate(['/'])
   }
-  private createCompanyForm(company: Company): ControlConfig[] {
+  private createCompanyForm(): ControlConfig[] {
     return [
       {
         label: 'Company name',
@@ -59,7 +62,6 @@ export class CompanyInfoComponent {
             validator: Validators.required,
           },
         ],
-        value: company.name,
       },
       {
         label: 'Company address',
@@ -72,8 +74,13 @@ export class CompanyInfoComponent {
             validator: Validators.required,
           },
         ],
-        value: company.address,
       },
     ]
+  }
+  private createCompanyFormValues(company: Company) {
+    return {
+      companyName: company.name,
+      companyAddress: company.address,
+    }
   }
 }

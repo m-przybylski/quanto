@@ -36,10 +36,9 @@ export class FormComponent implements OnInit {
       formGroup: this.dynamicForm,
       formArrayControls:
         config.formArrayControls &&
-        config.formArrayControls.map(formArrayControl => ({
-          ...formArrayControl,
+        Object.assign(config.formArrayControls, {
           formGroup: this.dynamicForm,
-        })),
+        }),
     }))
     const header = this.actions.createComponent(
       this.cfr.resolveComponentFactory(FormGroupHeaderComponent),

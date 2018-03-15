@@ -26,6 +26,9 @@
           </div>
           <div *ngIf='product.description' class='product-list-item-desc' [innerHTML]='product.description'></div>
         </div>
+        <div class='product-list-item-actions'>
+          <p-button [routerLink]='["edit", product.sku]' label='edit'></p-button>
+        </div>
       </div>
     </ng-template>
   </p-dataList>

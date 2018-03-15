@@ -13,16 +13,39 @@ export class FormArrayComponent implements OnInit {
   public formConfig: FormConfig
   public _formConfig: FormConfig[] = []
   ngOnInit(): void {
-    this.formConfig.formArrayControls.forEach(item => {
+    /**
+     * during initialization of array value is stored separetply
+     * there is a need to iterate over each control and map value
+     * from this.formConfig.formArrayValues to formControls array
+     */
+    this.formConfig.formArrayValues.forEach(item => {
       const formGroup = new FormGroup({})
       this.formArray.push(formGroup)
-      this._formConfig.push({ ...item, formGroup })
+      const formControls = this.formConfig.formArrayControls.formControls.map(
+        formControl => {
+          if (item.hasOwnProperty(formControl.name)) {
+            formControl.value = item[formControl.name]
+          } else {
+            formControl.value = ''
+          }
+          return formControl
+        },
+      )
+      /**
+       * OK, now to be able to nest arrays there is a need to
+       * copy FormConfig from array and assign new formControls with populated values
+       */
+      this._formConfig.push({
+        ...this.formConfig.formArrayControls,
+        formGroup,
+        formControls,
+      })
     })
   }
   add() {
     const formGroup = new FormGroup({})
     this.formArray.push(formGroup)
-    const exampleConfig = this._formConfig[0]
+    const exampleConfig = this.formConfig.formArrayControls
     exampleConfig.formControls = exampleConfig.formControls.map(control => ({
       ...control,
       value: '',

@@ -4,6 +4,7 @@ import { ProductListComponent } from './product-list/product-list.component'
 import { ProductAddComponent } from './product-add/product-add.component'
 import { ProductResolverService } from '../../core/resolvers/product-resolver.service'
 import { ProductCategoryResolverService } from '../../core/resolvers/product-category-resolver.service'
+import { ProductEditComponent } from './product-edit/product-edit.component'
 
 const routes: Routes = [
   {
@@ -15,6 +16,14 @@ const routes: Routes = [
     path: 'add',
     component: ProductAddComponent,
     resolve: { productCategories: ProductCategoryResolverService },
+  },
+  {
+    path: 'edit/:sku',
+    component: ProductEditComponent,
+    resolve: {
+      product: ProductResolverService,
+      productCategories: ProductCategoryResolverService,
+    },
   },
   { path: '**', redirectTo: '/' },
 ]

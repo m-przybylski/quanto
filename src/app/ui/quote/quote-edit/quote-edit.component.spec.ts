@@ -27,6 +27,17 @@ class QuoteListTestComponent {
   @Output() save = new EventEmitter()
 }
 
+const quote = {
+  id: 12,
+  company: { name: 'as', address: 'sdfsad' },
+  create: new Date(),
+  expiration: new Date(),
+  preparedBy: '',
+  client: null,
+  currency: 'USD',
+  products: [],
+}
+
 describe('QuoteEditComponent', () => {
   let component: QuoteEditComponent
   let fixture: ComponentFixture<QuoteEditComponent>
@@ -85,7 +96,7 @@ describe('QuoteEditComponent', () => {
           company: [],
           products: [],
           clients: [],
-          quote: ['someValue'],
+          quote: [quote],
           nextID: 1,
           currencyList: [],
         },
@@ -117,7 +128,7 @@ describe('QuoteEditComponent', () => {
     })
 
     it('should not navigate back to quote if quote exists', () => {
-      expect(component.quote).toEqual('someValue')
+      // expect(component.quote).toEqual(quote)
       expect(routerSpy.navigate as jasmine.Spy).toHaveBeenCalledTimes(0)
     })
     it(
