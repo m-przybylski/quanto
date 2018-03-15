@@ -1,6 +1,6 @@
 import {
   Component,
-  ChangeDetectionStrategy,
+  // ChangeDetectionStrategy,
   ChangeDetectorRef,
 } from '@angular/core'
 import {
@@ -25,7 +25,7 @@ import { Router, ActivatedRoute } from '@angular/router'
   selector: 'qto-product-add',
   templateUrl: './product-add.component.html',
   styleUrls: ['./product-add.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductAddComponent {
   public product: FormGroup

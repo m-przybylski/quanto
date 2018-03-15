@@ -32,10 +32,12 @@ export class ProductService {
     this._productCategories = this.database.object<ProductCategoryDatabase>(
       `${auth.auth.currentUser.uid}/productCategories/`,
     )
-    this._getProductBySKU$ = productSku =>
-      this.database.list<ProductDatabase>(
+    this._getProductBySKU$ = productSku => {
+      console.log(productSku)
+      return this.database.list<ProductDatabase>(
         `${auth.auth.currentUser.uid}/products/${productSku}`,
       )
+    }
   }
 
   public getProducts(): Observable<Product[]> {
@@ -51,9 +53,11 @@ export class ProductService {
   }
   public getProductBySKU(sku: string): Observable<Product[]> {
     return forkJoin(
-      this._getProductBySKU$(sku).valueChanges(),
-      this._productCategories.valueChanges(),
-    ).pipe(map(res => this.mapProductDatabaseToProduct(res)))
+      this._getProductBySKU$(sku)
+        .valueChanges()
+        .pipe(take(1)),
+      this._productCategories.valueChanges().pipe(take(1)),
+    ).pipe(map(this.mapProductDatabaseToProduct))
   }
   public getCurrency(): Observable<CurrencyDropDown[]> {
     return of([
