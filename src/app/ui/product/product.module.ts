@@ -11,7 +11,7 @@ import { ButtonModule } from 'primeng/button'
 import { InputTextModule } from 'primeng/inputtext'
 import { DropdownModule } from 'primeng/dropdown'
 import { EditorModule } from 'primeng/editor'
-import { HeaderModule } from '../../shared/header/header.module';
+import { HeaderModule } from '../../shared/header/header.module'
 import { ProductFormComponent } from './product-form/product-form.component'
 @NgModule({
   imports: [

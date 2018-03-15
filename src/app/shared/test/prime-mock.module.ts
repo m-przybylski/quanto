@@ -15,7 +15,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
     },
   ],
 })
-class EditorMockComponent implements ControlValueAccessor {
+export class EditorMockComponent implements ControlValueAccessor {
   writeValue(_obj: any): void {}
   registerOnChange(_fn: any): void {}
   registerOnTouched(_fn: any): void {}
@@ -34,7 +34,7 @@ class EditorMockComponent implements ControlValueAccessor {
     },
   ],
 })
-class DropdownMockComponent implements ControlValueAccessor {
+export class DropdownMockComponent implements ControlValueAccessor {
   @Input() autoWidth
   @Input() options
 
@@ -49,7 +49,7 @@ class DropdownMockComponent implements ControlValueAccessor {
   selector: 'p-button',
   template: '',
 })
-class ButtonMockComponent {
+export class ButtonMockComponent {
   @Input() disabled
 }
 

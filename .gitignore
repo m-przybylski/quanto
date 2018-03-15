@@ -29,6 +29,7 @@
 /.sass-cache
 /connect.lock
 /coverage
+/yarn-error.log
 /libpeerconnection.log
 npm-debug.log
 testem.log
