@@ -12,7 +12,7 @@ import { ControlConfig } from '../../form-config'
 describe('FormTextFieldComponent', () => {
   let component: FormTextFieldComponent
   let fixture: ComponentFixture<FormTextFieldComponent>
-  const formControl = new FormControl()
+  let formControl: FormControl
   const controlConfig: ControlConfig = {
     name: 'user',
     type: 'text',
@@ -32,6 +32,7 @@ describe('FormTextFieldComponent', () => {
   )
 
   beforeEach(() => {
+    formControl = new FormControl()
     fixture = TestBed.createComponent(FormTextFieldComponent)
     component = fixture.componentInstance
     component.formGroup = new FormGroup(

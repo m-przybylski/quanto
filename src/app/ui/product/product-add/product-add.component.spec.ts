@@ -1,80 +1,51 @@
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+
+import { MessageService } from 'primeng/components/common/messageservice'
+import { Router, ActivatedRoute } from '@angular/router'
+import { Component, Input } from '@angular/core'
 import { ProductAddComponent } from './product-add.component'
-import { Deceiver } from 'deceiver-core'
-import { ProductService } from '../../../core/product/product.service'
-import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router'
-import {
-  ProductCategory,
-  CurrencyDropDown,
-} from '../../../core/product/products'
-import { of } from 'rxjs/observable/of'
+
+@Component({
+  selector: 'qto-product-form',
+  template: '',
+})
+export class ProductFormMockComponent {
+  @Input() product
+  @Input() productCategories
+}
 
 describe('ProductAddComponent', () => {
   let component: ProductAddComponent
-  let productService: ProductService
-  const Categories: ProductCategory[] = [
-    { name: 'Consulting', description: 'Consulting' },
-    { name: 'Hardware', description: 'Hardware' },
-  ]
-  const activateRoute = Deceiver(ActivatedRoute)
-  activateRoute.snapshot = Deceiver(ActivatedRouteSnapshot)
-  activateRoute.snapshot.data = { productCategories: Categories }
-  beforeEach(() => {
-    productService = Deceiver(ProductService)
-    productService.getCurrency = () =>
-      of(<CurrencyDropDown[]>[
-        { label: 'USD', value: 'USD' },
-        { label: 'EUR', value: 'EUR' },
-        { label: 'PLN', value: 'PLN' },
-      ])
+  let fixture: ComponentFixture<ProductAddComponent>
+  let messageService, routerSpy
+  beforeEach(
+    async(() => {
+      messageService = jasmine.createSpyObj('MessageService', ['add'])
+      routerSpy = jasmine.createSpyObj('Router', ['navigate'])
+      TestBed.configureTestingModule({
+        declarations: [ProductAddComponent, ProductFormMockComponent],
+        providers: [
+          {
+            provide: MessageService,
+            useValue: messageService,
+          },
+          { provide: Router, useValue: routerSpy },
+          {
+            provide: ActivatedRoute,
+            useValue: { snapshot: { data: {} } },
+          },
+        ],
+      }).compileComponents()
+    }),
+  )
 
-    component = new ProductAddComponent(
-      productService,
-      undefined,
-      undefined,
-      undefined,
-      activateRoute,
-    )
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ProductAddComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
   })
 
   it('should create', () => {
     expect(component).toBeTruthy()
-  })
-  it('should add curency and modify table', () => {
-    component.addPrice(0)
-    expect(component.currencyListArray).toEqual(<CurrencyDropDown[][]>[
-      [
-        { label: 'USD', value: 'USD' },
-        { label: 'EUR', value: 'EUR' },
-        { label: 'PLN', value: 'PLN' },
-      ],
-      [{ label: 'EUR', value: 'EUR' }, { label: 'PLN', value: 'PLN' }],
-    ])
-    expect(component.disableAdd).toBeFalsy()
-    expect(component.disableRemove).toBeFalsy()
-    component.addPrice(1)
-    expect(component.currencyListArray).toEqual(<CurrencyDropDown[][]>[
-      [
-        { label: 'USD', value: 'USD' },
-        { label: 'EUR', value: 'EUR' },
-        { label: 'PLN', value: 'PLN' },
-      ],
-      [{ label: 'EUR', value: 'EUR' }, { label: 'PLN', value: 'PLN' }],
-      [{ label: 'PLN', value: 'PLN' }],
-    ])
-    expect(component.disableAdd).toBeTruthy()
-    expect(component.disableRemove).toBeFalsy()
-  })
-  it('should remove curency and modify table', () => {
-    component.addPrice(0)
-    component.removePrice(1)
-    expect(component.currencyListArray).toEqual(<CurrencyDropDown[][]>[
-      [
-        { label: 'USD', value: 'USD' },
-        { label: 'EUR', value: 'EUR' },
-        { label: 'PLN', value: 'PLN' },
-      ],
-    ])
-    expect(component.disableAdd).toBeFalsy()
-    expect(component.disableRemove).toBeTruthy()
   })
 })

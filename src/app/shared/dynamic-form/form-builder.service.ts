@@ -42,9 +42,9 @@ export class FormBuilder {
         const formControl = new FormControl(
           { value: control.value || '', disabled: control.disabled },
           {
-            validators: control.controlValidators.map(
-              validator => validator.validator,
-            ),
+            validators:
+              control.controlValidators &&
+              control.controlValidators.map(validator => validator.validator),
           },
         )
         form.formGroup.addControl(control.name, formControl)

@@ -43,6 +43,10 @@ export class FormArrayComponent implements OnInit {
       })
     })
   }
+  /**
+   * This function appends element to our Array and copy
+   * controls from formArrayControls
+   */
   add() {
     const formGroup = new FormGroup({})
     this.formArray.push(formGroup)

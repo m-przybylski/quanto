@@ -1,7 +1,11 @@
 import { NgModule, Input, forwardRef } from '@angular/core'
 
 import { Component } from '@angular/core'
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
+import {
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+  ReactiveFormsModule,
+} from '@angular/forms'
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -37,7 +41,7 @@ export class EditorMockComponent implements ControlValueAccessor {
 export class DropdownMockComponent implements ControlValueAccessor {
   @Input() autoWidth
   @Input() options
-
+  @Input() optionLabel
   writeValue(_obj: any): void {}
   registerOnChange(_fn: any): void {}
   registerOnTouched(_fn: any): void {}
@@ -59,6 +63,7 @@ export class ButtonMockComponent {
     DropdownMockComponent,
     ButtonMockComponent,
   ],
+  imports: [ReactiveFormsModule],
   exports: [EditorMockComponent, DropdownMockComponent, ButtonMockComponent],
 })
 export class PrimeTestingModule {}
