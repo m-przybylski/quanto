@@ -23,12 +23,13 @@ export class FormArrayComponent implements OnInit {
       this.formArray.push(formGroup)
       const formControls = this.formConfig.formArrayControls.formControls.map(
         formControl => {
-          if (item.hasOwnProperty(formControl.name)) {
-            formControl.value = item[formControl.name]
+          const result = { ...formControl }
+          if (item.hasOwnProperty(result.name)) {
+            result.value = item[result.name]
           } else {
-            formControl.value = ''
+            result.value = ''
           }
-          return formControl
+          return result
         },
       )
       /**
