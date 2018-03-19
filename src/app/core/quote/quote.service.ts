@@ -3,7 +3,7 @@ import { AngularFireList, AngularFireDatabase } from 'angularfire2/database'
 import { Observable } from 'rxjs/Observable'
 import { Quote, Client } from './quote'
 import { AngularFireAuth } from 'angularfire2/auth'
-import { switchMap, mergeMap, take, reduce, map } from 'rxjs/operators'
+import { switchMap, mergeMap, take, reduce, map, tap } from 'rxjs/operators'
 import { from } from 'rxjs/observable/from'
 import { Company } from '../company/company'
 import { Product, Currency } from '../product/products'
@@ -34,6 +34,47 @@ export class QuoteService {
         .valueChanges()
         .pipe(take(1), map(quote => [quote])),
     )
+  }
+  public addQuote(quote: Quote): Promise<void> {
+    const clientToInsert: Client = { ...quote.client }
+    const quoteToInsert: QuoteDatabse = {
+      id: quote.id,
+      company: quote.company.name,
+      created: quote.created.toString(),
+      expiration: (quote.expiration && quote.expiration.toString()) || '',
+      client: quote.client.name,
+      preparedBy: quote.preparedBy,
+      currency: quote.currency,
+      products: quote.products.map(product => ({
+        product: product.product.sku,
+        quantity: product.quantity,
+        discount: 0,
+      })),
+    }
+    const setQuote = this.quoteList.set(quote.id.toString(), quoteToInsert)
+    const setClient = this.clientList.set(quote.client.name, clientToInsert)
+    return new Promise((resolve, reject) => {
+      Promise.all([setQuote, setClient])
+        .then(() => {
+          resolve()
+        })
+        .catch(error => reject(error))
+    })
+  }
+  public getNewID(): Observable<number> {
+    /**
+     * limit to last will return 1 or 0 quotes in form of array.
+     * map to get only one element and retrive ID and incementy by 1
+     */
+    return this.database
+      .list<Quote>(`${this.auth.auth.currentUser.uid}/quote`, ref =>
+        ref.limitToLast(1),
+      )
+      .valueChanges()
+      .pipe(map(quotes => quotes.map(quote => quote.id + 1)[0]))
+  }
+  public getClientList(): Observable<Client[]> {
+    return this.clientList.valueChanges()
   }
   /**overenginierd select... this is how you do joins in noSql...
    * but let my try to explain:
@@ -94,47 +135,6 @@ export class QuoteService {
       ),
       reduce((acc: Quote[], value: any) => [...acc, value], []),
     )
-  }
-  public addQuote(quote: Quote): Promise<void> {
-    const clientToInsert: Client = { ...quote.client }
-    const quoteToInsert: QuoteDatabse = {
-      id: quote.id,
-      company: quote.company.name,
-      created: quote.created.toString(),
-      expiration: (quote.expiration && quote.expiration.toString()) || '',
-      client: quote.client.name,
-      preparedBy: quote.preparedBy,
-      currency: quote.currency,
-      products: quote.products.map(product => ({
-        product: product.product.sku,
-        quantity: product.quantity,
-        discount: 0,
-      })),
-    }
-    const setQuote = this.quoteList.set(quote.id.toString(), quoteToInsert)
-    const setClient = this.clientList.set(quote.client.name, clientToInsert)
-    return new Promise((resolve, reject) => {
-      Promise.all([setQuote, setClient])
-        .then(() => {
-          resolve()
-        })
-        .catch(error => reject(error))
-    })
-  }
-  public getNewID(): Observable<number> {
-    /**
-     * limit to last will return 1 or 0 quotes in form of array.
-     * map to get only one element and retrive ID and incementy by 1
-     */
-    return this.database
-      .list<Quote>(`${this.auth.auth.currentUser.uid}/quote`, ref =>
-        ref.limitToLast(1),
-      )
-      .valueChanges()
-      .pipe(map(quotes => quotes.map(quote => quote.id + 1)[0]))
-  }
-  public getClientList(): Observable<Client[]> {
-    return this.clientList.valueChanges()
   }
 }
 

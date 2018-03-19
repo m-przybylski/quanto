@@ -9,7 +9,7 @@ export interface Quote {
   preparedBy: string
   client: Client
   currency: Currency
-  products: { product: Product; quantity: number }[]
+  products: { product: Product; quantity: number; discount?: number }[]
 }
 
 export interface Client {
