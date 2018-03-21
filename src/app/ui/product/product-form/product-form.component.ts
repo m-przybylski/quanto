@@ -57,7 +57,7 @@ export class ProductFormComponent implements OnInit {
       {
         validators: Validators.required,
         asyncValidators: this.ValidateSKU,
-        updateOn: 'blur',
+        // updateOn: 'blur',
       },
     )
     this.productName = new FormControl(

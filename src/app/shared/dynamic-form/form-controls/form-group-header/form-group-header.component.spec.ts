@@ -30,12 +30,8 @@ describe('FormGroupHeaderComponent', () => {
   it('should diplaty title', () => {
     const element = fixture.debugElement
     let h3
-    if (By) {
-      const h3Header = element.query(By.css('.form-group-header'))
-      h3 = h3Header.nativeElement
-    } else {
-      h3 = element.nativeElement.querySelector('.form-group-header')
-    }
+    const h3Header = element.query(By.css('.form-group-header'))
+    h3 = h3Header.nativeElement
     expect(h3.textContent).toContain('Header')
   })
 })

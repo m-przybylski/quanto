@@ -102,9 +102,8 @@ export class QuoteFormComponent implements OnInit {
   }
   public filterCustomer(event): void {
     const query = event.query
-    this.filteredCustomer = this.clientList.filter(client =>
-      client.name.includes(query),
-    )
+    this.filteredCustomer = this.clientList /*?*/
+      .filter(client => client.name.includes(query))
   }
   public addNewProduct(): void {
     this.productsArrayCtrl.push(this.createProductItem())

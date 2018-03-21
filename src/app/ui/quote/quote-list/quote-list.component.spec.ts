@@ -9,6 +9,7 @@ import { Deceiver } from 'deceiver-core'
 import { Quote } from '../../../core/quote/quote'
 import { Product } from '../../../core/product/products'
 import { DialogService } from '../../../shared/dialog/dialog.service'
+import { QuotePreviewComponent } from '../quote-preview/quote-preview.component'
 
 describe('QuoteListComponent', () => {
   const quotes: Quote[] = [
@@ -35,7 +36,9 @@ describe('QuoteListComponent', () => {
   ]
   let component: QuoteListComponent
   let fixture: ComponentFixture<QuoteListComponent>
-  const dialogServiceMock = Deceiver(DialogService)
+  const dialogServiceMock = Deceiver(DialogService, {
+    open: jasmine.createSpy().and.stub(),
+  })
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
@@ -61,7 +64,6 @@ describe('QuoteListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
-
   it('should get price for specific currency', () => {
     const product: Product = {
       categories: undefined,
@@ -105,5 +107,11 @@ describe('QuoteListComponent', () => {
     expect(component.getPrice(product, 'USD', 5)).toEqual('USD 1170')
     expect(component.getTotalSum(producQuote, 'USD')).toEqual('USD 4680')
     expect(component.getTotalSum(producQuote, 'EUR')).toEqual('')
+  })
+  it('should open dialog and pass selected', () => {
+    component.openPreview(1)
+    expect(dialogServiceMock.open).toHaveBeenCalledWith(QuotePreviewComponent, {
+      data: quotes[0],
+    })
   })
 })

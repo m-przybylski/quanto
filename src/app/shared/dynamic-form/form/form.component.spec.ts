@@ -49,4 +49,18 @@ describe('FormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
+
+  it('should emit value when saved', done => {
+    component.save.subscribe(_ => {
+      expect(_).toBeTruthy()
+      done()
+    })
+    component.saveForm()
+  })
+
+  it('should reset form', () => {
+    const form = component._formConfig
+    component.resetForm()
+    expect(component._formConfig).not.toEqual(form)
+  })
 })

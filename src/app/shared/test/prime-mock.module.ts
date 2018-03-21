@@ -7,6 +7,13 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms'
 
+class ControlValueAccessorMock implements ControlValueAccessor {
+  writeValue(_obj: any): void {}
+  registerOnChange(_fn: any): void {}
+  registerOnTouched(_fn: any): void {}
+  setDisabledState?(_isDisabled: boolean): void {}
+}
+
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'p-editor',
@@ -19,12 +26,7 @@ import {
     },
   ],
 })
-export class EditorMockComponent implements ControlValueAccessor {
-  writeValue(_obj: any): void {}
-  registerOnChange(_fn: any): void {}
-  registerOnTouched(_fn: any): void {}
-  setDisabledState?(_isDisabled: boolean): void {}
-}
+export class EditorMockComponent extends ControlValueAccessorMock {}
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -38,14 +40,10 @@ export class EditorMockComponent implements ControlValueAccessor {
     },
   ],
 })
-export class DropdownMockComponent implements ControlValueAccessor {
+export class DropdownMockComponent extends ControlValueAccessorMock {
   @Input() autoWidth
   @Input() options
   @Input() optionLabel
-  writeValue(_obj: any): void {}
-  registerOnChange(_fn: any): void {}
-  registerOnTouched(_fn: any): void {}
-  setDisabledState?(_isDisabled: boolean): void {}
 }
 
 @Component({
@@ -55,6 +53,38 @@ export class DropdownMockComponent implements ControlValueAccessor {
 })
 export class ButtonMockComponent {
   @Input() disabled
+  @Input() label
+}
+
+@Component({
+  // tslint:disable-next-line:component-selector
+  selector: 'p-calendar',
+  template: '',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: forwardRef(() => CalendarMockComponent),
+    },
+  ],
+})
+export class CalendarMockComponent extends ControlValueAccessorMock {
+  @Input() disabled
+}
+@Component({
+  // tslint:disable-next-line:component-selector
+  selector: 'p-autoComplete',
+  template: '',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: forwardRef(() => AutoCompleteMockComponent),
+    },
+  ],
+})
+export class AutoCompleteMockComponent extends ControlValueAccessorMock {
+  @Input() suggestions
 }
 
 @NgModule({
@@ -62,8 +92,16 @@ export class ButtonMockComponent {
     EditorMockComponent,
     DropdownMockComponent,
     ButtonMockComponent,
+    CalendarMockComponent,
+    AutoCompleteMockComponent,
   ],
   imports: [ReactiveFormsModule],
-  exports: [EditorMockComponent, DropdownMockComponent, ButtonMockComponent],
+  exports: [
+    EditorMockComponent,
+    DropdownMockComponent,
+    ButtonMockComponent,
+    CalendarMockComponent,
+    AutoCompleteMockComponent,
+  ],
 })
 export class PrimeTestingModule {}

@@ -22,10 +22,6 @@ export class CompanyService {
     )
   }
 
-  public getCompanyList(): Observable<Company[]> {
-    return this.companyList.valueChanges()
-  }
-
   public getCompanyObject(): Observable<Company[]> {
     return this.companyObject.valueChanges().pipe(
       map(item => {
@@ -40,8 +36,8 @@ export class CompanyService {
     )
   }
 
-  public updateCompany(company: Company) {
-    this.companyList.set(company.name, company)
+  public updateCompany(company: Company): Promise<void> {
+    return this.companyList.set(company.name, company)
   }
 }
 

@@ -65,7 +65,7 @@ export class ProductService {
       { label: 'PLN', value: 'PLN' as Currency },
     ])
   }
-  public addEditProduct(product: Product): Promise<any> {
+  public addEditProduct(product: Product): Promise<void> {
     const productToBeInserted: ProductDatabase = {
       sku: product.sku,
       name: product.name,

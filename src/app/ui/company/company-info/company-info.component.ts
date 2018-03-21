@@ -41,12 +41,15 @@ export class CompanyInfoComponent {
     companyInfo: { companyName: string; companyAddress: string }[]
   }) {
     value.companyInfo.map(company => {
-      this.companyService.updateCompany({
-        name: company.companyName,
-        address: company.companyAddress,
-      })
+      this.companyService
+        .updateCompany({
+          name: company.companyName,
+          address: company.companyAddress,
+        })
+        .then(() => {
+          this.router.navigate(['/'])
+        })
     })
-    this.router.navigate(['/'])
   }
   private createCompanyForm(): ControlConfig[] {
     return [

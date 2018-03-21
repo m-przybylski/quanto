@@ -31,7 +31,21 @@ export class FormComponent implements OnInit {
 
   constructor(private cfr: ComponentFactoryResolver) {}
   ngOnInit(): void {
-    this._formConfig = this.formConfig.map(config => ({
+    this._formConfig = this.buildForm()
+    const header = this.actions.createComponent(
+      this.cfr.resolveComponentFactory(FormGroupHeaderComponent),
+    )
+    header.instance.headerCaption = 'Actions'
+    this.actions.createEmbeddedView(this.actionsTemplate)
+  }
+  resetForm() {
+    this._formConfig = this.buildForm()
+  }
+  saveForm() {
+    this.save.emit(this.dynamicForm.getRawValue())
+  }
+  private buildForm(): FormConfig[] {
+    return this.formConfig.map(config => ({
       ...config,
       formGroup: this.dynamicForm,
       formArrayControls:
@@ -40,16 +54,5 @@ export class FormComponent implements OnInit {
           formGroup: this.dynamicForm,
         }),
     }))
-    const header = this.actions.createComponent(
-      this.cfr.resolveComponentFactory(FormGroupHeaderComponent),
-    )
-    header.instance.headerCaption = 'Actions'
-    this.actions.createEmbeddedView(this.actionsTemplate)
-  }
-  resetForm() {
-    this.formConfig = Object.assign({}, this.formConfig)
-  }
-  saveForm() {
-    this.save.emit(this.dynamicForm.getRawValue())
   }
 }
