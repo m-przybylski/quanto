@@ -33,4 +33,29 @@ describe('ProductListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
+
+  it('should return empty price when input is empty', () => {
+    const priceStr = component.getPrice(null, 'USD')
+    expect(priceStr).toBe('-')
+  })
+
+  it('should return empty price when there is no price for given currency', () => {
+    const priceStr = component.getPrice(
+      [{ currency: 'PLN', price: 10 }, { currency: 'EUR', price: 10 }],
+      'USD',
+    )
+    expect(priceStr).toBe('-')
+  })
+
+  it('should return empty price for given currency as a string', () => {
+    const priceStr = component.getPrice(
+      [
+        { currency: 'PLN', price: 10 },
+        { currency: 'EUR', price: 15 },
+        { currency: 'USD', price: 20 },
+      ],
+      'USD',
+    )
+    expect(priceStr).toBe('20')
+  })
 })
