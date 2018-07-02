@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router'
 import { Quote } from '../quote/quote'
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
 import { QuoteService } from '../quote/quote.service'
 import { take } from 'rxjs/operators'
 

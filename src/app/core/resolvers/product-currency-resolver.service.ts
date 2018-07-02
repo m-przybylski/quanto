@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Resolve } from '@angular/router'
 import { Currency } from '../product/products'
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
 import { ProductService } from '../product/product.service'
 
 @Injectable()

@@ -4,7 +4,7 @@ import { CompanyService } from './company.service'
 import { AngularFireDatabase } from 'angularfire2/database'
 import { AngularFireAuthMock, AngularFirestoreMock } from '../common.test'
 import { AngularFireAuth } from 'angularfire2/auth'
-import { of } from 'rxjs/observable/of'
+import { of } from 'rxjs'
 import { Company } from './company'
 
 const companyFlush = {
@@ -53,25 +53,25 @@ describe('CompanyService', () => {
     })
   })
 
-  it(
-    'should be created',
-    inject([CompanyService], (service: CompanyService) => {
+  it('should be created', inject(
+    [CompanyService],
+    (service: CompanyService) => {
       expect(service).toBeTruthy()
-    }),
-  )
-  it(
-    'should return company ',
-    inject([CompanyService], (service: CompanyService) => {
+    },
+  ))
+  it('should return company ', inject(
+    [CompanyService],
+    (service: CompanyService) => {
       service.getCompanyObject().subscribe(companyList => {
         expect(companyList).toEqual(companyOutput)
       })
-    }),
-  )
-  it(
-    'should call company update',
-    inject([CompanyService], (service: CompanyService) => {
+    },
+  ))
+  it('should call company update', inject(
+    [CompanyService],
+    (service: CompanyService) => {
       service.updateCompany(companyOutput[0])
       expect(set).toHaveBeenCalledWith(companyOutput[0].name, companyOutput[0])
-    }),
-  )
+    },
+  ))
 })

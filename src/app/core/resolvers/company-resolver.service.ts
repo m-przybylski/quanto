@@ -3,7 +3,7 @@ import { CompanyService } from '../company/company.service'
 import { Resolve } from '@angular/router'
 import { Company } from '../company/company'
 import { take } from 'rxjs/operators'
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
 
 @Injectable()
 export class CompanyResolverService implements Resolve<Company[]> {

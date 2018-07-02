@@ -1,6 +1,6 @@
 import { UserService } from './user.service'
 import { AngularFireAuthMock } from '../common.test'
-import { of } from 'rxjs/observable/of'
+import { of } from 'rxjs'
 
 describe('UserService', () => {
   let service: UserService

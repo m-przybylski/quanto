@@ -6,7 +6,7 @@ import {
   CurrencyDropDown,
   Product,
 } from '../../../core/product/products'
-import { of } from 'rxjs/observable/of'
+import { of } from 'rxjs'
 import { TestBed, ComponentFixture, async } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { MessageService } from 'primeng/components/common/messageservice'
@@ -43,41 +43,37 @@ describe('ProductFormComponent', () => {
     { name: 'Hardware', description: 'Hardware' },
   ]
   describe('ProductFormComponent with product input', () => {
-    beforeEach(
-      async(() => {
-        productService = Deceiver(ProductService, {
-          getProductBySKU: jasmine.createSpy().and.returnValue(of({})),
-          addEditProduct: jasmine
-            .createSpy()
-            .and.returnValue(Promise.resolve()),
-        })
-        productService.getCurrency = () =>
-          of(<CurrencyDropDown[]>[
-            { label: 'USD', value: 'USD' },
-            { label: 'EUR', value: 'EUR' },
-            { label: 'PLN', value: 'PLN' },
-          ])
-        TestBed.configureTestingModule({
-          imports: [
-            ReactiveFormsModule,
-            RouterTestingModule,
-            PrimeTestingModule,
-            HeaderModule,
-          ],
-          declarations: [ProductFormComponent],
-          providers: [
-            {
-              provide: MessageService,
-              useClass: MessageService,
-            },
-            {
-              provide: ProductService,
-              useValue: productService,
-            },
-          ],
-        }).compileComponents()
-      }),
-    )
+    beforeEach(async(() => {
+      productService = Deceiver(ProductService, {
+        getProductBySKU: jasmine.createSpy().and.returnValue(of({})),
+        addEditProduct: jasmine.createSpy().and.returnValue(Promise.resolve()),
+      })
+      productService.getCurrency = () =>
+        of(<CurrencyDropDown[]>[
+          { label: 'USD', value: 'USD' },
+          { label: 'EUR', value: 'EUR' },
+          { label: 'PLN', value: 'PLN' },
+        ])
+      TestBed.configureTestingModule({
+        imports: [
+          ReactiveFormsModule,
+          RouterTestingModule,
+          PrimeTestingModule,
+          HeaderModule,
+        ],
+        declarations: [ProductFormComponent],
+        providers: [
+          {
+            provide: MessageService,
+            useClass: MessageService,
+          },
+          {
+            provide: ProductService,
+            useValue: productService,
+          },
+        ],
+      }).compileComponents()
+    }))
     beforeEach(() => {
       fixture = TestBed.createComponent(ProductFormComponent)
       component = fixture.componentInstance
@@ -144,44 +140,40 @@ describe('ProductFormComponent', () => {
     })
   })
   describe('ProductFormComponent with product input', () => {
-    beforeEach(
-      async(() => {
-        messageService = Deceiver(MessageService, {
-          add: jasmine.createSpy('add').and.stub(),
-        })
-        productService = Deceiver(ProductService, {
-          getProductBySKU: jasmine.createSpy().and.returnValue(of([])),
-          addEditProduct: jasmine
-            .createSpy()
-            .and.returnValue(Promise.resolve()),
-        })
-        productService.getCurrency = () =>
-          of(<CurrencyDropDown[]>[
-            { label: 'USD', value: 'USD' },
-            { label: 'EUR', value: 'EUR' },
-            { label: 'PLN', value: 'PLN' },
-          ])
-        TestBed.configureTestingModule({
-          imports: [
-            ReactiveFormsModule,
-            RouterTestingModule,
-            PrimeTestingModule,
-            HeaderModule,
-          ],
-          declarations: [ProductFormComponent],
-          providers: [
-            {
-              provide: MessageService,
-              useValue: messageService,
-            },
-            {
-              provide: ProductService,
-              useValue: productService,
-            },
-          ],
-        }).compileComponents()
-      }),
-    )
+    beforeEach(async(() => {
+      messageService = Deceiver(MessageService, {
+        add: jasmine.createSpy('add').and.stub(),
+      })
+      productService = Deceiver(ProductService, {
+        getProductBySKU: jasmine.createSpy().and.returnValue(of([])),
+        addEditProduct: jasmine.createSpy().and.returnValue(Promise.resolve()),
+      })
+      productService.getCurrency = () =>
+        of(<CurrencyDropDown[]>[
+          { label: 'USD', value: 'USD' },
+          { label: 'EUR', value: 'EUR' },
+          { label: 'PLN', value: 'PLN' },
+        ])
+      TestBed.configureTestingModule({
+        imports: [
+          ReactiveFormsModule,
+          RouterTestingModule,
+          PrimeTestingModule,
+          HeaderModule,
+        ],
+        declarations: [ProductFormComponent],
+        providers: [
+          {
+            provide: MessageService,
+            useValue: messageService,
+          },
+          {
+            provide: ProductService,
+            useValue: productService,
+          },
+        ],
+      }).compileComponents()
+    }))
     beforeEach(() => {
       fixture = TestBed.createComponent(ProductFormComponent)
       component = fixture.componentInstance

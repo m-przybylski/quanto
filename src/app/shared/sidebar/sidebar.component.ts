@@ -15,13 +15,13 @@ export class SidebarComponent implements OnInit {
     this.items = [
       {
         label: 'products',
-        icon: 'fa-book',
+        icon: 'fa fa-book',
         routerLink: ['/products'],
         routerLinkActiveOptions: {},
       },
       {
         label: 'quote',
-        icon: 'fa-book',
+        icon: 'fa fa-book',
         routerLink: ['/quote'],
         routerLinkActiveOptions: 'active',
       },

@@ -12,7 +12,7 @@ import {
   NavigationEnd,
   GuardsCheckEnd,
 } from '@angular/router'
-import { Subject } from 'rxjs/Subject'
+import { Subject } from 'rxjs'
 import { Deceiver } from 'deceiver-core'
 import { Component } from '@angular/core'
 // tslint:disable-next-line:component-selector
@@ -24,29 +24,27 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>
   let routerMock: Router
   const events$: Subject<RouterEvent> = new Subject()
-  beforeEach(
-    async(() => {
-      routerMock = Deceiver(Router, {
-        navigate: jasmine.createSpy('navigate').and.stub(),
-        events: events$.asObservable(),
-      })
-      TestBed.configureTestingModule({
-        imports: [RouterTestingModule],
-        declarations: [AppComponent, ProgressBarComponent],
-        providers: [
-          UserService,
-          {
-            provide: AngularFireAuth,
-            useFactory: AngularFireAuthMock,
-          },
-          {
-            provide: Router,
-            useValue: routerMock,
-          },
-        ],
-      }).compileComponents()
-    }),
-  )
+  beforeEach(async(() => {
+    routerMock = Deceiver(Router, {
+      navigate: jasmine.createSpy('navigate').and.stub(),
+      events: events$.asObservable(),
+    })
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
+      declarations: [AppComponent, ProgressBarComponent],
+      providers: [
+        UserService,
+        {
+          provide: AngularFireAuth,
+          useFactory: AngularFireAuthMock,
+        },
+        {
+          provide: Router,
+          useValue: routerMock,
+        },
+      ],
+    }).compileComponents()
+  }))
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent)

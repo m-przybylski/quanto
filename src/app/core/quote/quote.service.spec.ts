@@ -6,7 +6,7 @@ import { AngularFireAuthMock, AngularFirestoreMock } from '../common.test'
 import { AngularFireAuth } from 'angularfire2/auth'
 import { Quote, Client } from './quote'
 import { Product } from '../product/products'
-import { of } from 'rxjs/observable/of'
+import { of } from 'rxjs'
 
 const productList: Product[] = [
   {
@@ -166,16 +166,13 @@ describe('QuoteService', () => {
     })
   })
 
-  it(
-    'should be created',
-    inject([QuoteService], (service: QuoteService) => {
-      expect(service).toBeTruthy()
-    }),
-  )
+  it('should be created', inject([QuoteService], (service: QuoteService) => {
+    expect(service).toBeTruthy()
+  }))
 
-  it(
-    'should add quote to databse',
-    inject([QuoteService], (service: QuoteService) => {
+  it('should add quote to databse', inject(
+    [QuoteService],
+    (service: QuoteService) => {
       service.addQuote(quoteList[0])
       expect(setQuoteMethod.calls.count()).toBe(
         1,
@@ -190,11 +187,11 @@ describe('QuoteService', () => {
         '20',
         quoteToDatabase[1],
       ])
-    }),
-  )
-  it(
-    'should get quote by ID from database',
-    inject([QuoteService], (service: QuoteService) => {
+    },
+  ))
+  it('should get quote by ID from database', inject(
+    [QuoteService],
+    (service: QuoteService) => {
       service.getQuote(10).subscribe(quote => {
         expect(quote).toEqual([
           <any>{
@@ -220,26 +217,26 @@ describe('QuoteService', () => {
         }`,
       )
       expect(getObjectQuoteMethod).toHaveBeenCalled()
-    }),
-  )
-  it(
-    'should tertive new ID',
-    inject([QuoteService, AngularFireDatabase], (service: QuoteService) => {
+    },
+  ))
+  it('should tertive new ID', inject(
+    [QuoteService, AngularFireDatabase],
+    (service: QuoteService) => {
       const listCallsCount = listSpy.calls.count()
       service.getNewID().subscribe(newID => {
         expect(newID).toBe(11)
       })
       expect(listSpy.calls.count()).toBe(listCallsCount + 1, 'called once more')
-    }),
-  )
-  it(
-    'should return client list in form of an array',
-    inject([QuoteService], (service: QuoteService) => {
+    },
+  ))
+  it('should return client list in form of an array', inject(
+    [QuoteService],
+    (service: QuoteService) => {
       const listCallsCount = listSpy.calls.count()
       service.getClientList().subscribe(clientList => {
         expect(clientList).toEqual(<any>client)
       })
       expect(listSpy.calls.count()).toBe(listCallsCount, 'not called any more')
-    }),
-  )
+    },
+  ))
 })

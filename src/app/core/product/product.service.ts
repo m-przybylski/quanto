@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
 import {
   Product,
   ProductCategory,
@@ -14,8 +14,7 @@ import {
 } from 'angularfire2/database'
 import { map, take } from 'rxjs/operators'
 import { AngularFireAuth } from 'angularfire2/auth'
-import { forkJoin } from 'rxjs/observable/forkJoin'
-import { of } from 'rxjs/observable/of'
+import { forkJoin, of } from 'rxjs'
 
 @Injectable()
 export class ProductService {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { Resolve } from '@angular/router'
 import { QuoteService } from '../quote/quote.service'
 import { Client } from '../quote/quote'
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
 import { take } from 'rxjs/operators'
 
 @Injectable()

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core'
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database'
-import { Observable } from 'rxjs/Observable'
+import { Observable, from } from 'rxjs'
 import { Quote, Client } from './quote'
 import { AngularFireAuth } from 'angularfire2/auth'
 import { switchMap, mergeMap, take, reduce, map } from 'rxjs/operators'
-import { from } from 'rxjs/observable/from'
 import { Company } from '../company/company'
 import { Product, Currency } from '../product/products'
 
@@ -32,7 +31,10 @@ export class QuoteService {
       this.database
         .object<QuoteDatabse>(`${this.auth.auth.currentUser.uid}/quote/${id}`)
         .valueChanges()
-        .pipe(take(1), map(quote => [quote])),
+        .pipe(
+          take(1),
+          map(quote => [quote]),
+        ),
     )
   }
   public addQuote(quote: Quote): Promise<void> {

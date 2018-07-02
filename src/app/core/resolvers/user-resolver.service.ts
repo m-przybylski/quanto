@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { Resolve } from '@angular/router'
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
 import { AngularFireAuth } from 'angularfire2/auth'
 import { User } from '@firebase/auth-types'
 import { take } from 'rxjs/operators'

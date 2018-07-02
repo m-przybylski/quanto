@@ -12,17 +12,17 @@ export class TopbarComponent {
   items = [
     {
       label: 'user settings',
-      icon: 'fa-user',
+      icon: 'fa fa-user',
       routerLink: ['/user'],
     },
     {
       label: 'company settings',
-      icon: 'fa-building',
+      icon: 'fa fa-building',
       routerLink: ['/company'],
     },
     {
       label: 'logout',
-      icon: 'fa-sign-out',
+      icon: 'fa fa-sign-out',
       command: () => {
         this.logout()
       },

@@ -3,7 +3,7 @@ import { AngularFireDatabase } from 'angularfire2/database'
 import { Deceiver } from 'deceiver-core'
 import { Product, ProductCategory } from './products'
 
-import { of } from 'rxjs/observable/of'
+import { of } from 'rxjs'
 import { AngularFireAuth } from 'angularfire2/auth'
 import { async } from '@angular/core/testing'
 
@@ -126,14 +126,11 @@ describe('ProductService', () => {
       sku: '123',
     })
   })
-  it(
-    'should return product categories with name and description',
-    async(() => {
-      service.getProductCategories().subscribe(categories => {
-        expect(categories).toEqual(ProductCategoriesList)
-      })
-    }),
-  )
+  it('should return product categories with name and description', async(() => {
+    service.getProductCategories().subscribe(categories => {
+      expect(categories).toEqual(ProductCategoriesList)
+    })
+  }))
   it('should return product by SKU', () => {
     callList = AngularFirestoreMock.list = jasmine
       .createSpy()

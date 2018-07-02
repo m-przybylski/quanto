@@ -1,7 +1,7 @@
 import { Deceiver } from 'deceiver-core'
 import { AngularFireDatabase } from 'angularfire2/database'
 import { AngularFireAuth } from 'angularfire2/auth'
-import { of } from 'rxjs/observable/of'
+import { of } from 'rxjs'
 
 export const AngularFireAuthMock = () => {
   const angularFireAuth = Deceiver(AngularFireAuth)

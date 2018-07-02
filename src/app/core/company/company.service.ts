@@ -6,7 +6,7 @@ import {
 } from 'angularfire2/database'
 import { AngularFireAuth } from 'angularfire2/auth'
 import { Company } from './company'
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 
 @Injectable()
